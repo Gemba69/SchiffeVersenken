@@ -1,0 +1,78 @@
+html {
+	font-family: sans-serif;
+}
+
+#boardcontainer{
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	/*margin-top: 5%;*/
+}
+
+table, th, td {
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+table {
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+td {
+	width: 25px;
+	height: 25px;
+	padding: 1px;
+	text-align: center;
+}
+
+.board_cell {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	background-color: #74C2E1;
+	transition: all .15s ease;
+}
+
+.board_cell:hover {
+	background-color: #54a2c1;
+}
+
+.mouse_down {
+	height: 80%;
+	width: 80%;
+	background-color: #3482a1;
+}
+
+.flipToRed {
+	animation-name: flipRed;
+    animation-duration: .5s;
+	/*animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: linear;*/
+	animation-fill-mode: forwards;
+}
+
+@keyframes flipRed {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #74C2E1;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #74C2E1;
+	}
+	51% {
+		background-color: red;
+	}
+	100% {
+		width: 100%;
+		background-color: red;
+		height: 100%;
+	}
+}
