@@ -4,7 +4,7 @@
 		for ($i = 0; $i < $rows; $i++) {
 			echo("<tr>");
 			for ($j = 0; $j < $columns; $j++) {
-				echo("<td><span onmouseup='flipTile($i, $j); removeMouseDownClassFromCell($i, $j);' onmousedown='addMouseDownClassToCell($i, $j)' onmouseleave='removeMouseDownClassFromCell($i, $j)' class='board_cell' id='cell_{$i}_{$j}'></span></td>");
+				echo("<td><span onclick='flipTile($i, $j)' onmouseup='removeMouseDownClassFromCell($i, $j)' onmousedown='addMouseDownClassToCell($i, $j)' onmouseleave='removeMouseDownClassFromCell($i, $j)' class='board_cell' id='cell_{$i}_{$j}'></span></td>");
 			}
 			echo("</tr>");
 		}
@@ -25,12 +25,12 @@
 	<body>
 		<div id="boardcontainer">
 			<div id="enemyboard">
-				<?php createBoard(5, 29); ?>
+				<?php createBoard(); ?>
 			</div>
 			<br>
-			<!--<div id="ownboard">
+			<div id="ownboard">
 				<?php createBoard(); ?>
-			</div>-->
+			</div>
 		</div>
 	</body>
 </html>
