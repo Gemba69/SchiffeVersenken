@@ -1,14 +1,14 @@
-function addMouseDownClassToCell(i, j) {
-	document.getElementById("cell_" + i + "_" + j).classList.add("mouse_down");
+function addMouseDownClassToCell(i, j, idPrefix) {
+	document.getElementById(idPrefix + "_cell_" + i + "_" + j).classList.add("mouse_down");
 }
 
-function removeMouseDownClassFromCell(i, j) {
-	document.getElementById("cell_" + i + "_" + j).classList.remove('mouse_down');
+function removeMouseDownClassFromCell(i, j, idPrefix) {
+	document.getElementById(idPrefix + "_cell_" + i + "_" + j).classList.remove('mouse_down');
 }
 
-function flipTile(i, j) {
-	var tile = document.getElementById("cell_" + i + "_" + j);
-	tile.classList.add("flipToRed");
+function flipTile(i, j, idPrefix) {
+	var tile = document.getElementById(idPrefix + "_cell_" + i + "_" + j);
+	tile.classList.add("flipToGray");
 }
 
 function flipTileAndWait(i, j) {

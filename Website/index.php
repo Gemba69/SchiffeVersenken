@@ -1,10 +1,10 @@
 <?php
-	function createBoard($rows = 10, $columns = 10) {
+	function createBoard($rows, $columns, $idPrefix) {
 		echo("<table class='board'>");
 		for ($i = 0; $i < $rows; $i++) {
 			echo("<tr>");
 			for ($j = 0; $j < $columns; $j++) {
-				echo("<td><span onclick='flipTile($i, $j)' onmouseup='removeMouseDownClassFromCell($i, $j)' onmousedown='addMouseDownClassToCell($i, $j)' onmouseleave='removeMouseDownClassFromCell($i, $j)' class='board_cell' id='cell_{$i}_{$j}'></span></td>");
+			echo("<td><span onclick='flipTile($i, $j, \"$idPrefix\")' onmouseup='removeMouseDownClassFromCell($i, $j, \"$idPrefix\")' onmousedown='addMouseDownClassToCell($i, $j, \"$idPrefix\")' onmouseleave='removeMouseDownClassFromCell($i, $j, \"$idPrefix\")' class='board_cell' id='{$idPrefix}_cell_{$i}_{$j}'></span></td>");
 			}
 			echo("</tr>");
 		}
@@ -25,11 +25,11 @@
 	<body>
 		<div id="boardcontainer">
 			<div id="enemyboard">
-				<?php createBoard(); ?>
+				<?php createBoard(10, 10, 'enemy'); ?>
 			</div>
 			<br>
 			<div id="ownboard">
-				<?php createBoard(); ?>
+				<?php createBoard(10, 10, 'self'); ?>
 			</div>
 		</div>
 	</body>

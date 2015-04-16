@@ -49,11 +49,68 @@ td {
 
 .flipToRed {
 	animation-name: flipRed;
-    animation-duration: .5s;
+    animation-duration: .2s;
 	/*animation-iteration-count: infinite;
 	animation-direction: alternate;
 	animation-timing-function: linear;*/
 	animation-fill-mode: forwards;
+}
+
+.flipToDarkBlue {
+	animation-name: flipDarkBlue;
+    animation-duration: .2s;
+	animation-fill-mode: forwards;
+}
+
+.flipToGray {
+	animation-name: flipGray;
+    animation-duration: .2s;
+	animation-fill-mode: forwards;
+}
+
+/*Keyframes*/
+
+@keyframes flipGray {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #74C2E1;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #74C2E1;
+	}
+	51% {
+		background-color: #555;
+	}
+	100% {
+		width: 100%;
+		background-color: #555;
+		height: 100%;
+	}
+}
+
+
+@keyframes flipDarkBlue {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #74C2E1;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #74C2E1;
+	}
+	51% {
+		background-color: #3482a1;
+	}
+	100% {
+		width: 100%;
+		background-color: #3482a1;
+		height: 100%;
+	}
 }
 
 @keyframes flipRed {
