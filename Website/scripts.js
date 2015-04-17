@@ -1,9 +1,24 @@
+var ENEMY_ID_PREFIX = "enemy";
+var SELF_ID_PREFIX = "self";
+var gamePhase = 0;
+
 function addMouseDownClassToCell(i, j, idPrefix) {
 	document.getElementById(idPrefix + "_cell_" + i + "_" + j).classList.add("mouse_down");
 }
 
 function removeMouseDownClassFromCell(i, j, idPrefix) {
 	document.getElementById(idPrefix + "_cell_" + i + "_" + j).classList.remove('mouse_down');
+}
+
+function cellClicked(i, j, idPrefix) {
+	/*if (gamePhase == 0 && idPrefix === SELF_ID_PREFIX) {
+		toggleShip(i, j, idPrefix);
+	} else if (gamePhase == 1 && idPrefix == ENEMY_ID_PREFIX) {
+		
+	} else {
+		return;
+	}*/
+	cellClickedAjaxRequest(i, j, idPrefix);
 }
 
 function toggleShip(i, j, idPrefix) {
@@ -46,4 +61,27 @@ function flipTile(i, j, idPrefix, newColor) {
 
 function hasClass(element, cls) {
     return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+}
+
+function cellClickedAjaxRequest(i, j, idPrefix) {
+	$.post( "ajax.php", { i: i, j: j, idPrefix: idPrefix })
+	.done(function(data) {
+		processCellClickedAnswer(data);
+	});
+}
+
+function processCellClickedAnswer(answer) {
+	alert(answer);
+	var ans = jQuery.parseJSON(answer);
+	if (ans.illegal == true)
+		return;
+	var i = ans.i;
+	var j = ans.j;
+	var color = ans.color;
+	var idPrefix = ans.field;
+	
+	if (color === "gray")
+		toggleShip(i, j, idPrefix);
+	else
+		flipTile(i, j, idPrefix, color);
 }
