@@ -18,7 +18,7 @@
 				<p>
 					<ul>
 						<li>Platziere deine Schiffe auf dem unteren Feld.<br><br>
-							<?php drawRemainingShips(""); ?>
+							<span id="remainingships"><?php drawShips(); ?></span>
 						</li>
 						<li>
 							<span id="infobox"></span>

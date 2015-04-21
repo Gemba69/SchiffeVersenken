@@ -11,37 +11,45 @@
 		echo("</table>");
 	}
 	
-	function drawRemainingShips($ships) {
+	function getDrawnShipsCode($ships) {
 		$shipfragment = "<span class='example_cell graycol'></span>";
+		$ret = "";
 		if (empty($ships)) {
-			$ships = array('5' => 1, '4' => 2, '3' => 3, '2' => 4);
-		}
-		echo("<ul>");
+			$ships = array('5' => 1, '4' => 2, '3' => 3, '2' => 4); //todo: aus der datenbank auslesen
+		} 
+		$ret = $ret."<ul>";
 		
-		echo("<li>");
+		$ret = $ret."<li>";
 		for ($i = 0; $i < 5; $i++) {
-			echo($shipfragment);
+			$ret = $ret."$shipfragment";
 		}
-		echo(" x ".$ships['5']."</li>");
+		$ret = $ret." x ".$ships['5']."</li>";
 		
-		echo("<li>");
+		$ret = $ret."<li>";
 		for ($i = 0; $i < 4; $i++) {
-			echo($shipfragment);
+			$ret = $ret."$shipfragment";
 		}
-		echo(" x {$ships["4"]}</li>");
+		$ret = $ret." x {$ships["4"]}</li>";
 		
-		echo("<li>");
+		$ret = $ret."<li>";
 		for ($i = 0; $i < 3; $i++) {
-			echo($shipfragment);
+			$ret = $ret."$shipfragment";
 		}
-		echo(" x {$ships["3"]}</li>");
+		$ret = $ret." x {$ships["3"]}</li>";
 		
-		echo("<li>");
+		$ret = $ret."<li>";
 		for ($i = 0; $i < 2; $i++) {
-			echo($shipfragment);
+			$ret = $ret."$shipfragment";
 		}
-		echo(" x {$ships["2"]}</li>");
+		$ret = $ret." x {$ships["2"]}</li>";
 		
-		echo("</ul>");
+		$ret = $ret."</ul>";
+		
+		return $ret;
+	}
+	
+	function drawShips() {
+		$output = getDrawnShipsCode("");
+		echo $output;
 	}
 ?>

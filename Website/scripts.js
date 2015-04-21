@@ -72,7 +72,7 @@ function cellClickedAjaxRequest(i, j, idPrefix) {
 }
 
 function processCellClickedAnswer(answer) {
-	document.getElementById('infobox').innerHTML = answer;
+	//document.getElementById('infobox').innerHTML = answer;
 
 	var ans = jQuery.parseJSON(answer);
 	if (ans.illegal == true)
@@ -81,12 +81,14 @@ function processCellClickedAnswer(answer) {
 	var j = ans.j;
 	var color = ans.color;
 	var idPrefix = ans.field;
-	var ships = ans.ships;
+	var remainingShipCode = ans.remainingShipCode;
 	
 	if (color === "gray")
 		toggleShip(i, j, idPrefix);
 	else
 		flipTile(i, j, idPrefix, color);
+	
+	document.getElementById('remainingships').innerHTML = remainingShipCode;
 }
 
 function reset() {
