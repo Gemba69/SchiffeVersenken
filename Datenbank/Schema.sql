@@ -91,9 +91,9 @@ CREATE TABLE IF NOT EXISTS `Spielzug` (
 	
 CREATE TABLE IF NOT EXISTS `Farbcode` (
 `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(40) NOT NULL,
+  `Feld_Typ` varchar(40) NOT NULL,
   `Farbcode` varchar(100),
   PRIMARY KEY (`ID`), 
-  UNIQUE KEY `UNIQUE_NAME` (`Name`)
+  UNIQUE KEY `UNIQUE_NAME` (`Feld_Typ`)
 ) ;
 

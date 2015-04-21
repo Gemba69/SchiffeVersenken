@@ -2,10 +2,10 @@
 -- Testdaten Benutzer
 --
 
-Insert Into Benutzer (Benutzername, Password, Email) VALUES ('Gemba', 123, ('bluhn@web.de');
-Insert Into Benutzer (Benutzername, Password, Email) VALUES ('Klabautermann', password, ('klaubautermann@web.de');
-Insert Into Benutzer (Benutzername, Password, Email) VALUES ('admin', admin, ('admin@web.de');
-Insert Into Benutzer (Benutzername, Password, Email) VALUES ('test', test, ('test@web.de');
+Insert Into Benutzer (Benutzername, Password, Email) VALUES ('Gemba', 123, 'bluhn@web.de');
+Insert Into Benutzer (Benutzername, Password, Email) VALUES ('Klabautermann', password, 'klaubautermann@web.de');
+Insert Into Benutzer (Benutzername, Password, Email) VALUES ('admin', 'admin', 'admin@web.de');
+Insert Into Benutzer (Benutzername, Password, Email) VALUES ('test', 'test', 'test@web.de');
 
 --
 -- Testdaten Spielzugtyp
