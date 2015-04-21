@@ -20,6 +20,12 @@
 						<li>Platziere deine Schiffe auf dem unteren Feld.<br><br>
 							<?php drawRemainingShips(""); ?>
 						</li>
+						<li>
+							<span id="infobox"></span>
+						</li>
+						<li>
+							<button id="resetbutton" onclick="reset()">Destroy Session</button>
+						</li>
 					</ul>
 				</p>
 			</aside>
