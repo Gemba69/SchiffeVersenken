@@ -1,29 +1,35 @@
-<?php
-	function createBoard($rows, $columns, $idPrefix) {
-		echo("<table class='board'>");
-		for ($i = 0; $i < $rows; $i++) {
-			echo("<tr>");
-			for ($j = 0; $j < $columns; $j++) {
-			echo("<td><span onclick='flipTile($i, $j, \"$idPrefix\")' onmouseup='removeMouseDownClassFromCell($i, $j, \"$idPrefix\")' onmousedown='addMouseDownClassToCell($i, $j, \"$idPrefix\")' onmouseleave='removeMouseDownClassFromCell($i, $j, \"$idPrefix\")' class='board_cell' id='{$idPrefix}_cell_{$i}_{$j}'></span></td>");
-			}
-			echo("</tr>");
-		}
-		echo("</table>");
-	}
-?>
-
+<?php require_once('drawFunctions.php'); ?>
 <!doctype html>
 <html>
 	<head>
 		<script src="scripts.js"></script>
+		<script src="jquery.js"></script>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 		<title>
 			Schiffe versenken
 		</title>
 	</head>
 	<body>
 		<div id="boardcontainer">
+			<aside id="infoboard">
+				<h1>Phase 1</h1>
+				<p>
+					<ul>
+						<li>Platziere deine Schiffe auf dem unteren Feld.<br><br>
+							<?php drawRemainingShips(""); ?>
+						</li>
+					</ul>
+				</p>
+			</aside>
+			<aside id="legend">
+				<span class="example_cell"></span> Wasser
+				<span class="example_cell graycol"></span> Schiff
+				<span class="example_cell darkbluecol"></span> daneben
+				<span class="example_cell redcol"></span> Treffer
+				<span class="example_cell blackcol"></span> versenkt
+			</aside>
 			<div id="enemyboard">
 				<?php createBoard(10, 10, 'enemy'); ?>
 			</div>

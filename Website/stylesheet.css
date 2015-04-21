@@ -1,12 +1,40 @@
 html {
-	font-family: sans-serif;
+	font-family: "Open Sans";
+	background-color: #eee;
 }
 
 #boardcontainer{
 	width: 700px;
 	margin-left: auto;
 	margin-right: auto;
+	background-color: white;
+	padding: 10px;
+	box-shadow: 1px 4px 5px #888888;
 	/*margin-top: 5%;*/
+}
+
+aside {
+	float: right;
+}
+
+aside ul {
+	color: #146281;
+	list-style-type: none;
+}
+
+ul li {
+	margin: 10px;
+}
+
+aside#infoboard h1{
+	font-size: 100px;
+	padding: 0px;
+	margin: 0px;
+	color: #555;
+}
+
+aside#legend {
+	margin-top: 200px;
 }
 
 table, th, td {
@@ -17,8 +45,8 @@ table, th, td {
 
 table {
 	border-collapse: collapse;
-	margin-left: auto;
-	margin-right: auto;
+	/*margin-left: auto;
+	margin-right: auto;*/
 }
 
 td {
@@ -37,6 +65,15 @@ td {
 	transition: all .15s ease;
 }
 
+.example_cell {
+	display: inline-block;
+	width: 17px;
+	height: 17px;
+	padding: 0;
+	margin: 1px;
+	background-color: #74C2E1;
+}
+
 .board_cell:hover {
 	background-color: #54a2c1;
 }
@@ -45,6 +82,22 @@ td {
 	height: 80%;
 	width: 80%;
 	background-color: #3482a1;
+}
+
+.graycol {
+	background-color: #555 !important;
+}
+
+.redcol {
+	background-color: red !important;
+}
+
+.darkbluecol {
+	background-color: #3482a1 !important;
+}
+
+.blackcol {
+	background-color: #000 !important;
 }
 
 .flipToRed {
@@ -65,10 +118,43 @@ td {
 .flipToGray {
 	animation-name: flipGray;
     animation-duration: .2s;
-	animation-fill-mode: forwards;
+	/*animation-fill-mode: forwards;*/
+}
+
+.flipToBlack {
+	animation-name: flipBlack;
+    animation-duration: .2s;
+	/*animation-fill-mode: forwards;*/
+}
+
+.flipToBlue {
+	animation-name: flipBlue;
+    animation-duration: .2s;
+	/*animation-fill-mode: forwards;*/
 }
 
 /*Keyframes*/
+
+@keyframes flipBlue {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #555;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #555;
+	}
+	51% {
+		background-color: #74C2E1;
+	}
+	100% {
+		width: 100%;
+		background-color: #74C2E1;
+		height: 100%;
+	}
+}
 
 @keyframes flipGray {
 	0% {
@@ -130,6 +216,27 @@ td {
 	100% {
 		width: 100%;
 		background-color: red;
+		height: 100%;
+	}
+}
+
+@keyframes flipBlack {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #74C2E1;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #74C2E1;
+	}
+	51% {
+		background-color: black;
+	}
+	100% {
+		width: 100%;
+		background-color: black;
 		height: 100%;
 	}
 }
