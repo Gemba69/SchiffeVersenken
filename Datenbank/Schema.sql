@@ -16,12 +16,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-
-Drop Table Spielzug;
-Drop Table Spiel;
-Drop Table Farbcode;
-Drop Table Benutzer;
-Drop Table Spielzugtyp;
 --
 -- Datenbank: `SchiffeVersenken`
 --
@@ -36,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `Benutzer` (
 `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Benutzername` varchar(40) NOT NULL,
   `Password` varchar(40) NOT NULL,
-  `Email` varchar(40) NOT NULL,
+  `Email` varchar(64) NOT NULL,
    PRIMARY KEY (`ID`),
    UNIQUE KEY `UNIQUE_NAME` (`Benutzername`),
    UNIQUE KEY `UNIQUE_EMAIL` (`Email`)
@@ -97,9 +91,9 @@ CREATE TABLE IF NOT EXISTS `Spielzug` (
 	
 CREATE TABLE IF NOT EXISTS `Farbcode` (
 `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(40) NOT NULL,
+  `Feld_Typ` varchar(40) NOT NULL,
   `Farbcode` varchar(100),
   PRIMARY KEY (`ID`), 
-  UNIQUE KEY `UNIQUE_NAME` (`Name`)
+  UNIQUE KEY `UNIQUE_NAME` (`Feld_Typ`)
 ) ;
 
