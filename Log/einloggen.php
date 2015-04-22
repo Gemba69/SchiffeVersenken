@@ -34,26 +34,20 @@
 			
 			include "verbinden.php";
 				
-			$stmt = $dbh->query("SELECT Password FROM benutzer WHERE Benutzername = :benutzername");
+			$stmt = $dbh->prepare("SELECT Password FROM benutzer WHERE Benutzername = :benutzername");
 																		
 			$stmt->bindParam(':benutzername', $Benutzername);
 			$Benutzername = $_POST['benutzername'];	
-	
-			if ($stmt->execute()){
-				echo '<p> Benutzerdaten gefunden! <p>';
+			$jifjif = $stmt->execute();
+			if($jifjif[0] == $pwHash){
+				echo '<p> Benutzerdaten gefunden! Login!! <p>';
+				$pwAbgleichFehler = true;
 			}else{
 				print_r($dbh->errorInfo());
+				echo 'penis';
 			}
 		}else{
 			echo 'KEIN ERFOLG';
-		}
-		
-		if($pwHash == $stmt){
-			echo 'Passwort stimmt überein! Login!!</br>';
-			$logIn = true;
-		}else{
-			echo 'Fehlerhafte Logindaten!</br>';
-			$pwAbgleichFehler = true;
 		}
 	  
 	}else{
