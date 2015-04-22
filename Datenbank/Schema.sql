@@ -49,6 +49,20 @@ CREATE TABLE IF NOT EXISTS `Spielzugtyp` (
    PRIMARY KEY (`ID`), 
    UNIQUE KEY `UNIQUE_NAME` (`Name`)
 ) ;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `SpielStatus`
+--
+	
+CREATE TABLE IF NOT EXISTS `SpielStatus` (
+`ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Status_Typ` varchar(40) NOT NULL,
+  `Beschreibung` varchar(100),
+  PRIMARY KEY (`ID`), 
+  UNIQUE KEY `UNIQUE_NAME` (`Status_Typ`)
+) ;
  
  -- --------------------------------------------------------
 
@@ -60,9 +74,11 @@ CREATE TABLE IF NOT EXISTS `Spiel` (
 `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Spieler_1` int(11) NOT NULL,
   `Spieler_2` int(11) NOT NULL,
+  `StatusID` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   FOREIGN KEY (`Spieler_1`) REFERENCES Benutzer (`id`),
-  FOREIGN KEY (`Spieler_2`) REFERENCES Benutzer (`id`)
+  FOREIGN KEY (`Spieler_2`) REFERENCES Benutzer (`id`),
+  FOREIGN KEY (`StatusID`) REFERENCES SpielStatus(`id`)
 ) ;
  
  -- --------------------------------------------------------
@@ -96,4 +112,5 @@ CREATE TABLE IF NOT EXISTS `Farbcode` (
   PRIMARY KEY (`ID`), 
   UNIQUE KEY `UNIQUE_NAME` (`Feld_Typ`)
 ) ;
+
 

@@ -25,10 +25,18 @@ Insert Into Farbcode (Feld_Typ, Farbcode) VALUES ('TREFFER', 'FF0000');
 Insert Into Farbcode (Feld_Typ, Farbcode) VALUES ('VERSENKT', '000000');
 
 --
+-- Testdaten SpielStatus
+--
+Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('PHASE1', 'Schiffe werden noch gesetzt');
+Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('PHASE2', 'Das Spiel befindet sich in Phase 2');
+Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('GEWONNEN_SPIELER1', 'Spieler1 hat gewonnen');
+Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('GEWONNEN_SPIELER2', 'Spieler 2 hat das Spiel gewonnen');
+
+--
 -- Testdaten Spiel
 --
-Insert Into Spiel (Spieler_1, Spieler_2) VALUES (1,2);
-Insert Into Spiel (Spieler_1, Spieler_2) VALUES (3,4);
+Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (1,2, 1);
+Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (3,4, 2);
 
 --
 -- Testdaten Spielzug
