@@ -9,7 +9,7 @@
 	define('ILLEGAL_SHIP_ALIGNMENT_WARNING', "<li>Die aktuelle Anordnung ist ungültig.<br>Verschiedene Schiffe dürfen sich nicht berühren.</li>");
 	$requiredShips =  array('10' => 0, '9' => 0, '8' => 0, '7' => 0, '6' => 0, '5' => 1, '4' => 2, '3' => 3, '2' => 4, '1' => 0); //todo: aus der datenbank auslesen
 	require_once('drawFunctions.php');
-	
+		
 	session_start();  
 	if(!isset($_SESSION['gameState']))
 		startNewSession();
@@ -47,7 +47,7 @@
 		for ($i = 1; $i < 11; $i++) { //TODO: array dynamisch auslesen!
 			$remainingShips[$i] = isset($drawnShips[$i]) ? $requiredShips[$i] - $drawnShips[$i] : $requiredShips[$i];
 			if ($remainingShips[$i] < 0) {
-				$warning = $warning."Anzahl {$i}er Schiffe überschritten.<br>"; //TODO: hard coding entfernen
+				$warning = $warning."Anzahl an {$i}er Schiffen überschritten.<br>"; //TODO: hard coding entfernen
 			}
 		}
 		return getDrawnShipsCode($remainingShips)."<br>".$warning;
