@@ -36,8 +36,14 @@ Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('GEWONNEN_SPIELER2', '
 -- Testdaten Spiel
 --
 Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (1,2, 1);
+
 Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (3,4, 2);
 
+Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (1,3, 3);
+Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (1,4, 3);
+Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (1,3, 3);
+Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (2,3, 4);
+Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (2,1, 4);
 --
 -- Testdaten Spielzug
 --

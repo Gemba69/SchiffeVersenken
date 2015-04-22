@@ -113,4 +113,33 @@ CREATE TABLE IF NOT EXISTS `Farbcode` (
   UNIQUE KEY `UNIQUE_NAME` (`Feld_Typ`)
 ) ;
 
+ -- --------------------------------------------------------
 
+--
+-- View für Statistik `Gespielte_Spiele`
+--
+	
+CREATE VIEW Highscore_Gespielte_Spiele ( Benutzername, GespielteSpiele ) 
+AS 
+Select Benutzername, count(Benutzername) as GespielteSpiele 
+from Benutzer 
+join Spiel on Benutzer.ID=Spiel.Spieler_1 
+or Benutzer.ID=Spiel.Spieler_2 
+group by Benutzername 
+order by GespielteSpiele desc
+
+ -- --------------------------------------------------------
+
+--
+-- View für Statistik `Gewonnene_Spiele`
+--
+	
+CREATE VIEW Highscore_Gewonnene_Spiele ( Benutzername, GewonneneSpiele ) 
+AS 
+Select Benutzername, count(Benutzername) as GewonneneSpiele 
+from Benutzer 
+join Spiel on Benutzer.ID=Spiel.Spieler_1 and Spiel.StatusID=3 
+or Benutzer.ID=Spiel.Spieler_2 and Spiel.StatusID=4 
+group by Benutzername 
+order by GewonneneSpiele desc
+;
