@@ -18,6 +18,7 @@ function cellClicked(i, j, idPrefix) {
 	} else {
 		return;
 	}*/
+
 	cellClickedAjaxRequest(i, j, idPrefix);
 }
 
@@ -71,7 +72,8 @@ function cellClickedAjaxRequest(i, j, idPrefix) {
 }
 
 function processCellClickedAnswer(answer) {
-	alert(answer);
+	//document.getElementById('infobox').innerHTML = answer;
+
 	var ans = jQuery.parseJSON(answer);
 	if (ans.illegal == true)
 		return;
@@ -79,9 +81,19 @@ function processCellClickedAnswer(answer) {
 	var j = ans.j;
 	var color = ans.color;
 	var idPrefix = ans.field;
+	var remainingShipCode = ans.remainingShipCode;
 	
 	if (color === "gray")
 		toggleShip(i, j, idPrefix);
 	else
 		flipTile(i, j, idPrefix, color);
+	
+	document.getElementById('remainingships').innerHTML = remainingShipCode;
+}
+
+function reset() {
+	$.post( "ajax.php", {reset:"true"})
+	.done(function(data) {
+		document.getElementById('infobox').innerHTML = data;
+	});
 }

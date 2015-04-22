@@ -4,7 +4,7 @@ html {
 }
 
 #boardcontainer{
-	width: 700px;
+	width: 720px;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: white;
@@ -26,6 +26,11 @@ ul li {
 	margin: 10px;
 }
 
+#infoboard {
+	height: 525px;
+	width: 440px;
+}
+
 aside#infoboard h1{
 	font-size: 100px;
 	padding: 0px;
@@ -34,7 +39,7 @@ aside#infoboard h1{
 }
 
 aside#legend {
-	margin-top: 200px;
+	margin-top: 10px;
 }
 
 table, th, td {
