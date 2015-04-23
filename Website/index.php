@@ -11,7 +11,7 @@
 			Schiffe versenken
 		</title>
 	</head>
-	<body>
+	<body onload="resumeSessionAjaxRequest()">
 		<div id="boardcontainer">
 			<aside id="infoboard">
 				<h1>Phase 1</h1>

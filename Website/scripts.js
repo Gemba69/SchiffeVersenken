@@ -71,33 +71,37 @@ function cellClickedAjaxRequest(i, j, idPrefix) {
 	});
 }
 
-function processCellClickedAnswer(answer) {
-	//document.getElementById('infobox').innerHTML = answer;
+function resumeSessionAjaxRequest() {
+	$.post("ajax.php", { resume: "true" })
+	.done(function(data) {
+		processCellClickedAnswer(data);
+	});
+}
 
+function processCellClickedAnswer(answer) {
+	//document.getElementById('infobox').innerHTML = answer; //debug
+	
 	var ans = jQuery.parseJSON(answer);
 	if (ans.illegal == true)
 		return;
-	var i = ans.i;
-	var j = ans.j;
-	var color = ans.color;
-	var idPrefix = ans.field;
+	
+	var cells = ans.cells;
+	for (var v = 0; v < cells.length; v++) {
+		var i = cells[v].i;
+		var j = cells[v].j;
+		var color = cells[v].color;
+		var idPrefix = cells[v].field;
+		
+		if (color === "gray")
+			toggleShip(i, j, idPrefix);
+		else
+			flipTile(i, j, idPrefix, color);
+	}
 	var remainingShipCode = ans.remainingShipCode;
-	
-	if (color === "gray")
-		toggleShip(i, j, idPrefix);
-	else
-		flipTile(i, j, idPrefix, color);
-	
 	document.getElementById('remainingships').innerHTML = remainingShipCode;
 }
 
-function processSessionLoadedAnswer(answer) {
-	
-}
-
 function reset() {
-	$.post( "ajax.php", {reset:"true"})
-	.done(function(data) {
-		document.getElementById('infobox').innerHTML = data;
-	});
+	resumeSessionAjaxRequest();
+	$.post( "ajax.php", {reset:"true" }); // a bit hacky, but this function will not be in production anyway
 }

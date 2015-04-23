@@ -11,18 +11,46 @@
 	require_once('drawFunctions.php');
 		
 	session_start();  
-	if(!isset($_SESSION['gameState']))
-		startNewSession();
 	
-	processClick();
+	if(!isset($_SESSION['gameState'])) {
+		startNewSession();
+		processClick();
+	} else if (isset($_POST['resume'])) {
+		resumeExistingSession();
+	} else
+		processClick();
 	
 	function startNewSession() {
 		$_SESSION['gameState'] = 0;
-		//$_SESSION['gameFieldSelf'] = array();
-		//$_SESSION['gameFieldEnemy'] = array();
 		
 		$_SESSION['gameFieldSelf'] = initializeOrFetchGame();
 		$_SESSION['gameFieldEnemy'] = initializeOrFetchGame();
+	}
+	
+	function resumeExistingSession() {
+		//TODO: gameState
+		$gameFieldSelf = $_SESSION['gameFieldSelf'];
+		$cell_data = array();
+		
+		$counter = 0;
+		for ($i = 0; $i < 10; $i++) {
+			for ($j = 0; $j < 10; $j++) {
+				if ($gameFieldSelf[$i][$j] === SHIP_ID) {
+					$cell = array('i' => $i,
+								  'j' => $j,
+								  'color' => 'gray',
+								  'field' => SELF_ID_PREFIX);
+					$cell_data[$counter] = $cell;
+					$counter++;
+				}
+			}
+		}
+			
+		$post_data = array('cells' => $cell_data);
+		$post_data['illegal'] = false;
+		$post_data['remainingShipCode'] = drawRemainingShips();
+		$post_data = json_encode($post_data);
+		echo($post_data);
 	}
 		
 	function initializeOrFetchGame() {
@@ -120,10 +148,14 @@
 			$idPrefix = $_POST['idPrefix'];
 			$gameFieldSelf = $_SESSION['gameFieldSelf'];
 			
-			$post_data = array('i' => $i,
-			'j' => $j,
-			'color' => 'gray',
-			'field' => $idPrefix);
+			$cell = array('i' => $i,
+				'j' => $j,
+				'color' => 'gray',
+				'field' => $idPrefix);
+			
+			$cell_data = array(0 => $cell);
+			
+			$post_data = array('cells' => $cell_data);
 			
 			if ($idPrefix == ENEMY_ID_PREFIX) {
 				$post_data['illegal'] = true;
