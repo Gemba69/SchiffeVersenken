@@ -73,21 +73,13 @@
 	
 	
 	function shipAlignmentIsValid($gameField) {
-		for ($i = 0; $i < 10; $i++) {
-			for ($j = 0; $j < 10; $j++) {
-				if ($gameField[$i][$j] == SHIP_ID) { 
-					$currentShipLength = 0;
-					
-					$iminus = ($i <= 0) ? 0: $i - 1;
-					$iplus = ($i >= 9) ? 9 : $i + 1;
-					
-					$jminus = ($j <= 0) ? 0: $j - 1;
-					$jplus = ($j >= 9) ? 9 : $j + 1;
-					
-					if ($gameField[$iplus][$jplus] == SHIP_ID || 
-						$gameField[$iminus][$jplus] == SHIP_ID ||
-						$gameField[$iminus][$jplus] == SHIP_ID ||
-						$gameField[$iminus][$jplus] == SHIP_ID) {
+		for ($i = 1; $i < 9; $i++) {
+			for ($j = 1; $j < 9; $j++) {
+				if ($gameField[$i][$j] == SHIP_ID) { 				
+					if ($gameField[$i + 1][$j + 1] == SHIP_ID || 
+						$gameField[$i - 1][$j + 1] == SHIP_ID ||
+						$gameField[$i + 1][$j - 1] == SHIP_ID ||
+						$gameField[$i - 1][$j - 1] == SHIP_ID) {
 						return false;
 					}
 				}
