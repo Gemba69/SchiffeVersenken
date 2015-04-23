@@ -108,34 +108,36 @@ td {
 .flipToRed {
 	animation-name: flipRed;
     animation-duration: .2s;
-	/*animation-iteration-count: infinite;
-	animation-direction: alternate;
-	animation-timing-function: linear;*/
-	animation-fill-mode: forwards;
+	-webkit-animation-name: flipRed;
+    -webkit-animation-duration: .2s;
 }
 
 .flipToDarkBlue {
 	animation-name: flipDarkBlue;
     animation-duration: .2s;
-	animation-fill-mode: forwards;
+	-webkit-animation-name: flipDarkBlue;
+    -webkit-animation-duration: .2s;
 }
 
 .flipToGray {
 	animation-name: flipGray;
     animation-duration: .2s;
-	/*animation-fill-mode: forwards;*/
+	-webkit-animation-name: flipGray;
+    -webkit-animation-duration: .2s;
 }
 
 .flipToBlack {
 	animation-name: flipBlack;
     animation-duration: .2s;
-	/*animation-fill-mode: forwards;*/
+	-webkit-animation-name: flipBlack;
+    -webkit-animation-duration: .2s;
 }
 
 .flipToBlue {
 	animation-name: flipBlue;
     animation-duration: .2s;
-	/*animation-fill-mode: forwards;*/
+	-webkit-animation-name: flipBlue;
+    -webkit-animation-duration: .2s;
 }
 
 /*Keyframes*/
@@ -245,3 +247,112 @@ td {
 		height: 100%;
 	}
 }
+
+/* --- Webkit --- */
+
+@-webkit-keyframes flipBlue {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #555;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #555;
+	}
+	51% {
+		background-color: #74C2E1;
+	}
+	100% {
+		width: 100%;
+		background-color: #74C2E1;
+		height: 100%;
+	}
+}
+
+@-webkit-keyframes flipGray {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #74C2E1;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #74C2E1;
+	}
+	51% {
+		background-color: #555;
+	}
+	100% {
+		width: 100%;
+		background-color: #555;
+		height: 100%;
+	}
+}
+
+
+@-webkit-keyframes flipDarkBlue {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #74C2E1;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #74C2E1;
+	}
+	51% {
+		background-color: #3482a1;
+	}
+	100% {
+		width: 100%;
+		background-color: #3482a1;
+		height: 100%;
+	}
+}
+
+@-webkit-keyframes flipRed {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #74C2E1;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #74C2E1;
+	}
+	51% {
+		background-color: red;
+	}
+	100% {
+		width: 100%;
+		background-color: red;
+		height: 100%;
+	}
+}
+
+@-webkit-keyframes flipBlack {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #74C2E1;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #74C2E1;
+	}
+	51% {
+		background-color: black;
+	}
+	100% {
+		width: 100%;
+		background-color: black;
+		height: 100%;
+	}
+}
+

@@ -91,6 +91,10 @@ function processCellClickedAnswer(answer) {
 	document.getElementById('remainingships').innerHTML = remainingShipCode;
 }
 
+function processSessionLoadedAnswer(answer) {
+	
+}
+
 function reset() {
 	$.post( "ajax.php", {reset:"true"})
 	.done(function(data) {
