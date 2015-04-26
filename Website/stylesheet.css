@@ -13,6 +13,20 @@ html {
 	/*margin-top: 5%;*/
 }
 
+button {
+	border: none;
+	font-size: 150%;
+	color: #146281;
+	background: none;
+	transition: all .2s ease;
+}
+
+button:hover {
+	margin-left: 10px;
+	color: #3482a1;
+	cursor: pointer;
+}
+
 aside {
 	float: right;
 }
@@ -79,6 +93,27 @@ td {
 	background-color: #74C2E1;
 }
 
+
+/* ---- Animations & Co. --- */
+
+.fadeoutanim {
+	animation-name: fadeout;
+	animation-duration: .2s;
+	/*animation-fill-mode: forwards;*/
+	-webkit-animation-name: fadeout;
+	-webkit-animation-duration: .2s;
+	/*-webkit-animation-fill-mode: forwards;*/
+}
+
+.fadeinanim {
+	animation-name: fadein;
+	animation-duration: .2s;
+	animation-fill-mode: forwards;
+	-webkit-animation-name: fadeout;
+	-webkit-animation-duration: .2s;
+	-webkit-animation-fill-mode: forwards;
+}
+
 .board_cell:hover {
 	background-color: #54a2c1;
 }
@@ -141,6 +176,29 @@ td {
 }
 
 /*Keyframes*/
+
+@keyframes fadeout {
+	0% {
+		margin-left: 0px;
+		opacity: 1;
+	}
+	100% {
+		margin-left: 50px;
+		opacity: 0;
+	}
+}
+
+@keyframes fadein {
+	0% {
+		margin-left: -50px;
+		opacity: 0;
+	}
+	100% {
+		margin-left: 0px;
+		opacity: 1;
+	}
+}
+
 
 @keyframes flipBlue {
 	0% {
@@ -249,6 +307,29 @@ td {
 }
 
 /* --- Webkit --- */
+
+@-webkit-keyframes fadeout {
+	0% {
+		margin-left: 0px;
+		opacity: 1;
+	}
+	100% {
+		margin-left: 50px;
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes fadein {
+	0% {
+		margin-left: -50px;
+		opacity: 0;
+	}
+	100% {
+		margin-left: 0px;
+		opacity: 1;
+	}
+}
+
 
 @-webkit-keyframes flipBlue {
 	0% {

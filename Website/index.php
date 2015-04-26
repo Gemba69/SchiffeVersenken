@@ -14,22 +14,19 @@
 	<body onload="resumeSessionAjaxRequest()">
 		<div id="boardcontainer">
 			<aside id="infoboard">
-				<h1>Phase 1</h1>
-				<p>
-					<ul>
-						<li>Platziere deine Schiffe auf dem unteren Feld.<br><br>
-							<span id="remainingships"><?php drawShips(); ?></span>
-						</li>
-						<li>
-							<span id="infobox"></span>
-						</li>
-						<li>
-							<button id="resetbutton" onclick="reset()">Destroy Session</button>
-						</li>
-					</ul>
-				</p>
+				<h1>Phase 1</h1><br>
+				<ul>
+					<li>
+						<div id="instructions">Platziere deine Schiffe auf dem unteren Feld.</div><br><br>
+						<div id="remainingships"><?php drawShips(); ?></div>
+					</li>
+					<li>
+						<span id="infobox"></span>
+					</li>
+				</ul>
 			</aside>
 			<aside id="legend">
+				<button id="resetbutton" onclick="reset()">Destroy Session</button><br>
 				<span class="example_cell"></span> Wasser
 				<span class="example_cell graycol"></span> Schiff
 				<span class="example_cell darkbluecol"></span> daneben

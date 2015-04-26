@@ -49,6 +49,7 @@
 		$post_data = array('cells' => $cell_data);
 		$post_data['illegal'] = false;
 		$post_data['remainingShipCode'] = drawRemainingShips();
+		$post_data['allShipsPlaced'] = allShipsPlaced();
 		$post_data = json_encode($post_data);
 		echo($post_data);
 	}
@@ -65,20 +66,44 @@
 	}
 	
 	function drawRemainingShips() {
-		$remainingShips = array();
 		$drawnShips = checkAmountOfShips();
 		global $requiredShips;
 		$warning = "";
+		$remainingShips = getRemainingShipsPlusWarning($drawnShips, $requiredShips, $warning);
 		if (isset($drawnShips['illegal'])) {
 			return ILLEGAL_SHIP_ALIGNMENT_WARNING;
 		}
+		
+		return getDrawnShipsCode($remainingShips)."<br>".$warning;
+	}
+	
+	function getRemainingShipsPlusWarning($drawnShips, $requiredShips, &$warning) {
+		$remainingShips = array();
+		$warning = "";
 		for ($i = 1; $i < 11; $i++) { //TODO: array dynamisch auslesen!
 			$remainingShips[$i] = isset($drawnShips[$i]) ? $requiredShips[$i] - $drawnShips[$i] : $requiredShips[$i];
 			if ($remainingShips[$i] < 0) {
 				$warning = $warning."Anzahl an {$i}er Schiffen überschritten.<br>"; //TODO: hard coding entfernen
 			}
 		}
-		return getDrawnShipsCode($remainingShips)."<br>".$warning;
+		return $remainingShips;
+	}
+	
+	function getRemainingShips($drawnShips, $requiredShips) {
+		$throwAwayWarning = "";
+		return getRemainingShipsPlusWarning($drawnShips, $requiredShips, $throwAwayWarning);
+	}
+	
+	function allShipsPlaced() {
+		$drawnShips = checkAmountOfShips();
+		global $requiredShips;
+		$remainingShips = getRemainingShips($drawnShips, $requiredShips);
+		$noShipsLeft = true;
+		for ($i = 1; $i < 11; $i++) { //todo: dynamisch auslesen!
+			if ($remainingShips[$i] != 0)
+				$noShipsLeft = false;
+		}
+		return $noShipsLeft;
 	}
 	
 	function checkAmountOfShips() {
@@ -169,6 +194,7 @@
 				$_SESSION['gameFieldSelf'] = $gameFieldSelf; 
 			}
 			$post_data['remainingShipCode'] = drawRemainingShips();
+			$post_data['allShipsPlaced'] = allShipsPlaced();
 			$post_data = json_encode($post_data);
 			echo($post_data);
 		} else {
@@ -180,12 +206,4 @@
 		session_unset(); 
 		session_destroy();
 	}
-		
-	/*$post_data = array('item_type_id' => $item_type,
-		'string_key' => $string_key,
-		'string_value' => $string_value,
-		'string_extra' => $string_extra,
-		'is_public' => $public,
-		'is_public_for_contacts' => $public_contacts);
-		$post_data = json_encode(array('item' => $post_data));*/
 ?>

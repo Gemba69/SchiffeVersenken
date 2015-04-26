@@ -18,7 +18,7 @@
 			$ships = array('5' => 1, '4' => 2, '3' => 3, '2' => 4); //todo: aus der datenbank auslesen
 		} 
 		$ret = $ret."<ul>";
-		
+
 		$ret = $ret."<li>";
 		for ($i = 0; $i < 5; $i++) {
 			$ret = $ret."$shipfragment";
