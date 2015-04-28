@@ -1,6 +1,5 @@
 
 <?php
-class verbinden{
 // Zugangsdaten zur Datenbank
 $DB_HOST = "localhost"; // Datenbank-Host
 $DB_NAME = "schiffeversenken"; // Datenbank-Name
@@ -17,6 +16,5 @@ try {
 catch (PDOException $e) {
  // Bei einer fehlerhaften Verbindung eine Nachricht ausgeben
  exit("Verbindung fehlgeschlagen! " . $e->getMessage());
-}
 }
 ?> 
