@@ -1,8 +1,7 @@
 <?php
 	if ($_SERVER['REQUEST_METHOD'] === "POST") {		
 
-		$regExBenutzername = '/^[A-Za-z0-9]{1,32}$/';
-		
+		$regExBenutzername = '/^[A-Za-z0-9]{1,32}$/';	
 		$regExEmail = '/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/';	
 		$emptyBoolean = false;
 		$regExFehlerBoolean = false;
@@ -37,18 +36,13 @@
 			$pwAbgleichFehler = true;
 		}
 
-		  
 		if(!$emptyBoolean && !$regExFehlerBoolean && !$pwAbgleichFehler){
 			
 			include "verbinden.php";
-		
-
-		
+				
 			$stmt = $dbh->prepare("INSERT INTO benutzer (Benutzername, Email, Password) 
 												VALUES (:benutzername, :email, :passwort);");
-						
-		
-						
+												
 			$stmt->bindParam(':benutzername', $Benutzername);
 			$stmt->bindParam(':email', $Email);
 			$stmt->bindParam(':passwort',$Passwort);
@@ -57,17 +51,16 @@
 			$Email = $_POST['email'];
 			$Passwort = $pwHash;
 		
-	
 			if ($stmt->execute()){
 				echo '<p> Erfolgreich registriert! <p>';
 			}else{
 				print_r($dbh->errorInfo());
 			}
 		}else{
-			echo 'KEIN ERFOLG';
+			echo 'Eingaben nicht vollständig gefüllt oder entspricht nicht den RegEx!';
 		}
 	  
 	}else{
-		echo 'ende';
+		echo 'Server nicht erreichbar!';
 	}      
 ?>

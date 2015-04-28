@@ -1,5 +1,6 @@
 
 <?php
+class verbinden{
 // Zugangsdaten zur Datenbank
 $DB_HOST = "localhost"; // Datenbank-Host
 $DB_NAME = "schiffeversenken"; // Datenbank-Name
@@ -11,10 +12,11 @@ try {
  // Verbindung zur Datenbank aufbauen
  $dbh = new PDO("mysql:host=" . $DB_HOST . ";dbname=" . $DB_NAME,
   $DB_BENUTZER, $DB_PASSWORT);
-  echo ("Verbindung! ");
+  echo "Verbindung zum Server konnte hergestellt werden!</br>";
 }
 catch (PDOException $e) {
  // Bei einer fehlerhaften Verbindung eine Nachricht ausgeben
  exit("Verbindung fehlgeschlagen! " . $e->getMessage());
+}
 }
 ?> 
