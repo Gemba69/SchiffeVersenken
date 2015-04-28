@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `Benutzer` (
 `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Benutzername` varchar(40) NOT NULL,
-  `Password` varchar(40) NOT NULL,
-  `Email` varchar(64) NOT NULL,
+  `Password` varchar(64) NOT NULL,
+  `Email` varchar(40) NOT NULL,
    PRIMARY KEY (`ID`),
    UNIQUE KEY `UNIQUE_NAME` (`Benutzername`),
    UNIQUE KEY `UNIQUE_EMAIL` (`Email`)

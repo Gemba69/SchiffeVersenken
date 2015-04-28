@@ -1,6 +1,9 @@
 var ENEMY_ID_PREFIX = "enemy";
 var SELF_ID_PREFIX = "self";
 var gamePhase = 0;
+var CONTINUE_BUTTON_CODE = "<button id='continuebutton'>Angriff beginnen</button>";
+var CONTINUE_INSTRUCTIONS_TEXT = "Sehr gut. Wenn du sicher bist, dass alle Schiffe richtig platziert sind, gehe nun zum Angriff über.";
+var FIRST_INSTRUCTIONS_TEXT = "Platziere deine Schiffe auf dem unteren Feld."; //TODO: texte nicht hardcoden
 
 function addMouseDownClassToCell(i, j, idPrefix) {
 	document.getElementById(idPrefix + "_cell_" + i + "_" + j).classList.add("mouse_down");
@@ -11,14 +14,6 @@ function removeMouseDownClassFromCell(i, j, idPrefix) {
 }
 
 function cellClicked(i, j, idPrefix) {
-	/*if (gamePhase == 0 && idPrefix === SELF_ID_PREFIX) {
-		toggleShip(i, j, idPrefix);
-	} else if (gamePhase == 1 && idPrefix == ENEMY_ID_PREFIX) {
-		
-	} else {
-		return;
-	}*/
-
 	cellClickedAjaxRequest(i, j, idPrefix);
 }
 
@@ -71,33 +66,55 @@ function cellClickedAjaxRequest(i, j, idPrefix) {
 	});
 }
 
-function processCellClickedAnswer(answer) {
-	//document.getElementById('infobox').innerHTML = answer;
+function resumeSessionAjaxRequest() {
+	$.post("ajax.php", { resume: "true" })
+	.done(function(data) {
+		processCellClickedAnswer(data);
+	});
+}
 
+function processCellClickedAnswer(answer) {
+	//document.getElementById('infobox').innerHTML = answer; //debug
+	
 	var ans = jQuery.parseJSON(answer);
 	if (ans.illegal == true)
 		return;
-	var i = ans.i;
-	var j = ans.j;
-	var color = ans.color;
-	var idPrefix = ans.field;
+	
+	var cells = ans.cells;
+	for (var v = 0; v < cells.length; v++) {
+		var i = cells[v].i;
+		var j = cells[v].j;
+		var color = cells[v].color;
+		var idPrefix = cells[v].field;
+		
+		if (color === "gray")
+			toggleShip(i, j, idPrefix);
+		else
+			flipTile(i, j, idPrefix, color);
+	}
 	var remainingShipCode = ans.remainingShipCode;
 	
-	if (color === "gray")
-		toggleShip(i, j, idPrefix);
-	else
-		flipTile(i, j, idPrefix, color);
-	
+	document.getElementById('remainingships').classList.remove('fadeinanim');
 	document.getElementById('remainingships').innerHTML = remainingShipCode;
-}
-
-function processSessionLoadedAnswer(answer) {
+	document.getElementById('instructions').classList.remove('fadeinanim');
+	document.getElementById('instructions').innerHTML = FIRST_INSTRUCTIONS_TEXT;
 	
+	if (ans.allShipsPlaced) {
+		document.getElementById('remainingships').firstChild.classList.add('fadeoutanim');
+		document.getElementById('instructions').classList.add('fadeoutanim');
+		setTimeout(function() {
+				document.getElementById('remainingships').innerHTML = CONTINUE_BUTTON_CODE;
+				document.getElementById('remainingships').classList.remove('fadeoutanim');
+				document.getElementById('remainingships').classList.add('fadeinanim');
+				
+				document.getElementById('instructions').innerHTML = CONTINUE_INSTRUCTIONS_TEXT;
+				document.getElementById('instructions').classList.remove('fadeoutanim');
+				document.getElementById('instructions').classList.add('fadeinanim');
+			}, 200);
+	}
 }
 
 function reset() {
-	$.post( "ajax.php", {reset:"true"})
-	.done(function(data) {
-		document.getElementById('infobox').innerHTML = data;
-	});
+	resumeSessionAjaxRequest();
+	$.post( "ajax.php", {reset:"true" }); // a bit hacky, but this function will not be in production anyway
 }

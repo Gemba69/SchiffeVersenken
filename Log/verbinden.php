@@ -11,7 +11,7 @@ try {
  // Verbindung zur Datenbank aufbauen
  $dbh = new PDO("mysql:host=" . $DB_HOST . ";dbname=" . $DB_NAME,
   $DB_BENUTZER, $DB_PASSWORT);
-  echo ("Verbindung! ");
+  echo "Verbindung zum Server konnte hergestellt werden!</br>";
 }
 catch (PDOException $e) {
  // Bei einer fehlerhaften Verbindung eine Nachricht ausgeben
