@@ -44,6 +44,9 @@ Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (1,4, 3);
 Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (1,3, 3);
 Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (2,3, 4);
 Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (2,1, 4);
+Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (2,1, 2);
+Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (1,3, 2);
+Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (4,1, 1);
 --
 -- Testdaten Spielzug
 --

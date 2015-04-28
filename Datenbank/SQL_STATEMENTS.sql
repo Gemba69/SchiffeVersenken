@@ -5,10 +5,14 @@ Select * from Spiel where Spieler_1='benutzer' or Spieler_2='benutzer';
 Select * from Spiel where Spieler_1='benutzer' and StatusID=3 or Spieler_2='benutzer' and StatusID=4;
 
 --Alle offenen Spiele eines Spielers abfragen
-Select Spiel.ID, StatusID, aBenutzer.Benutzername, bBenutzer.Benutzername from Spiel 
-join Benutzer aBenutzer on Spieler_1=aBenutzer.ID 
-join Benutzer bBenutzer on Spieler_2=bBenutzer.ID 
+Select SpielID, Status_Typ, Benutzername
+From
+(SELECT Spiel.ID as SpielID, Status_Typ,
+If(spieler_1=1,Spieler_2,Spieler_1)  As Gegner
+FROM Spiel left join SpielStatus on StatusID=SpielStatus.ID
 where (Spieler_1=1 or Spieler_2=1) and (StatusID='1' or StatusID='2')
+) x
+left join Benutzer on Gegner=Benutzer.ID
 ;
 
 -- Alle Benutzer auflisten
