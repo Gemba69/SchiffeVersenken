@@ -4,13 +4,27 @@ html {
 }
 
 #boardcontainer{
-	width: 700px;
+	width: 720px;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: white;
 	padding: 10px;
 	box-shadow: 1px 4px 5px #888888;
 	/*margin-top: 5%;*/
+}
+
+button {
+	border: none;
+	font-size: 150%;
+	color: #146281;
+	background: none;
+	transition: all .2s ease;
+}
+
+button:hover {
+	margin-left: 10px;
+	color: #3482a1;
+	cursor: pointer;
 }
 
 aside {
@@ -26,6 +40,11 @@ ul li {
 	margin: 10px;
 }
 
+#infoboard {
+	height: 525px;
+	width: 440px;
+}
+
 aside#infoboard h1{
 	font-size: 100px;
 	padding: 0px;
@@ -34,7 +53,7 @@ aside#infoboard h1{
 }
 
 aside#legend {
-	margin-top: 200px;
+	margin-top: 10px;
 }
 
 table, th, td {
@@ -74,6 +93,27 @@ td {
 	background-color: #74C2E1;
 }
 
+
+/* ---- Animations & Co. --- */
+
+.fadeoutanim {
+	animation-name: fadeout;
+	animation-duration: .2s;
+	/*animation-fill-mode: forwards;*/
+	-webkit-animation-name: fadeout;
+	-webkit-animation-duration: .2s;
+	/*-webkit-animation-fill-mode: forwards;*/
+}
+
+.fadeinanim {
+	animation-name: fadein;
+	animation-duration: .2s;
+	animation-fill-mode: forwards;
+	-webkit-animation-name: fadeout;
+	-webkit-animation-duration: .2s;
+	-webkit-animation-fill-mode: forwards;
+}
+
 .board_cell:hover {
 	background-color: #54a2c1;
 }
@@ -103,37 +143,62 @@ td {
 .flipToRed {
 	animation-name: flipRed;
     animation-duration: .2s;
-	/*animation-iteration-count: infinite;
-	animation-direction: alternate;
-	animation-timing-function: linear;*/
-	animation-fill-mode: forwards;
+	-webkit-animation-name: flipRed;
+    -webkit-animation-duration: .2s;
 }
 
 .flipToDarkBlue {
 	animation-name: flipDarkBlue;
     animation-duration: .2s;
-	animation-fill-mode: forwards;
+	-webkit-animation-name: flipDarkBlue;
+    -webkit-animation-duration: .2s;
 }
 
 .flipToGray {
 	animation-name: flipGray;
     animation-duration: .2s;
-	/*animation-fill-mode: forwards;*/
+	-webkit-animation-name: flipGray;
+    -webkit-animation-duration: .2s;
 }
 
 .flipToBlack {
 	animation-name: flipBlack;
     animation-duration: .2s;
-	/*animation-fill-mode: forwards;*/
+	-webkit-animation-name: flipBlack;
+    -webkit-animation-duration: .2s;
 }
 
 .flipToBlue {
 	animation-name: flipBlue;
     animation-duration: .2s;
-	/*animation-fill-mode: forwards;*/
+	-webkit-animation-name: flipBlue;
+    -webkit-animation-duration: .2s;
 }
 
 /*Keyframes*/
+
+@keyframes fadeout {
+	0% {
+		margin-left: 0px;
+		opacity: 1;
+	}
+	100% {
+		margin-left: 50px;
+		opacity: 0;
+	}
+}
+
+@keyframes fadein {
+	0% {
+		margin-left: -50px;
+		opacity: 0;
+	}
+	100% {
+		margin-left: 0px;
+		opacity: 1;
+	}
+}
+
 
 @keyframes flipBlue {
 	0% {
@@ -240,3 +305,135 @@ td {
 		height: 100%;
 	}
 }
+
+/* --- Webkit --- */
+
+@-webkit-keyframes fadeout {
+	0% {
+		margin-left: 0px;
+		opacity: 1;
+	}
+	100% {
+		margin-left: 50px;
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes fadein {
+	0% {
+		margin-left: -50px;
+		opacity: 0;
+	}
+	100% {
+		margin-left: 0px;
+		opacity: 1;
+	}
+}
+
+
+@-webkit-keyframes flipBlue {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #555;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #555;
+	}
+	51% {
+		background-color: #74C2E1;
+	}
+	100% {
+		width: 100%;
+		background-color: #74C2E1;
+		height: 100%;
+	}
+}
+
+@-webkit-keyframes flipGray {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #74C2E1;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #74C2E1;
+	}
+	51% {
+		background-color: #555;
+	}
+	100% {
+		width: 100%;
+		background-color: #555;
+		height: 100%;
+	}
+}
+
+
+@-webkit-keyframes flipDarkBlue {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #74C2E1;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #74C2E1;
+	}
+	51% {
+		background-color: #3482a1;
+	}
+	100% {
+		width: 100%;
+		background-color: #3482a1;
+		height: 100%;
+	}
+}
+
+@-webkit-keyframes flipRed {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #74C2E1;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #74C2E1;
+	}
+	51% {
+		background-color: red;
+	}
+	100% {
+		width: 100%;
+		background-color: red;
+		height: 100%;
+	}
+}
+
+@-webkit-keyframes flipBlack {
+	0% {
+		width: 80%;
+		height: 80%;
+		background-color: #74C2E1;
+	}
+	50% {
+		height: 80%;
+		width: 0%;
+		background-color: #74C2E1;
+	}
+	51% {
+		background-color: black;
+	}
+	100% {
+		width: 100%;
+		background-color: black;
+		height: 100%;
+	}
+}
+

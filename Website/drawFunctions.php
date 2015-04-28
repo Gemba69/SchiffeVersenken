@@ -1,10 +1,4 @@
 <?php
-	$placeShipsPhase = true;
-	$twoLengthShips = 4;
-	$threeLengthShips = 3;
-	$fourLengthShips = 2;
-	$fiveLengthShips = 1;
-	
 	function createBoard($rows, $columns, $idPrefix) {
 		echo("<table class='board'>");
 		for ($i = 0; $i < $rows; $i++) {
@@ -17,39 +11,45 @@
 		echo("</table>");
 	}
 	
-	function drawRemainingShips($board) {
-		//todo: schon platzierte Schiffe erkennen und vom counter abziehen
-		global $fiveLengthShips;
-		global $fourLengthShips;
-		global $threeLengthShips;
-		global $twoLengthShips;
+	function getDrawnShipsCode($ships) {
 		$shipfragment = "<span class='example_cell graycol'></span>";
-		echo("<ul>");
-		
-		echo("<li>");
+		$ret = "";
+		if (empty($ships)) {
+			$ships = array('5' => 1, '4' => 2, '3' => 3, '2' => 4); //todo: aus der datenbank auslesen
+		} 
+		$ret = $ret."<ul>";
+
+		$ret = $ret."<li>";
 		for ($i = 0; $i < 5; $i++) {
-			echo($shipfragment);
+			$ret = $ret."$shipfragment";
 		}
-		echo(" x $fiveLengthShips</li>");
+		$ret = $ret." x ".$ships['5']."</li>";
 		
-		echo("<li>");
+		$ret = $ret."<li>";
 		for ($i = 0; $i < 4; $i++) {
-			echo($shipfragment);
+			$ret = $ret."$shipfragment";
 		}
-		echo(" x $fourLengthShips</li>");
+		$ret = $ret." x {$ships["4"]}</li>";
 		
-		echo("<li>");
+		$ret = $ret."<li>";
 		for ($i = 0; $i < 3; $i++) {
-			echo($shipfragment);
+			$ret = $ret."$shipfragment";
 		}
-		echo(" x $threeLengthShips</li>");
+		$ret = $ret." x {$ships["3"]}</li>";
 		
-		echo("<li>");
+		$ret = $ret."<li>";
 		for ($i = 0; $i < 2; $i++) {
-			echo($shipfragment);
+			$ret = $ret."$shipfragment";
 		}
-		echo(" x $twoLengthShips</li>");
+		$ret = $ret." x {$ships["2"]}</li>";
 		
-		echo("</ul>");
+		$ret = $ret."</ul>";
+		
+		return $ret;
+	}
+	
+	function drawShips() {
+		$output = getDrawnShipsCode("");
+		echo $output;
 	}
 ?>
