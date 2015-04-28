@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	if ($_SERVER['REQUEST_METHOD'] === "POST") {		
 
 		$regExBenutzername = '/^[A-Za-z0-9]{1,32}$/';	
@@ -39,7 +39,7 @@
 
 		if(!$emptyBoolean && !$regExFehlerBoolean && !$pwAbgleichFehler){
 			
-			include "verbinden.php";
+			include "Verbindung.php";
 			
 			$stmt1 = $dbh->prepare("SELECT Benutzername FROM benutzer WHERE Benutzername = :benutzername");
 																		
@@ -50,7 +50,7 @@
 			
 			if ($test != NULL){
 				echo '<p> Der Benutzername existiert bereits! <p>';
-			    $template = file_get_contents("eintragen.html"); 
+			    $template = file_get_contents("Registrationsformular.html"); 
 			    echo $template;
 			}else{
 				
@@ -68,12 +68,14 @@
 				if ($stmt2->execute()){
 					echo '<p> Erfolgreich registriert! <p>';
 				}else{
-					print_r($dbh->errorInfo());
+					echo 'Bei der Registrierung ist ein unerwarteter Fehler aufgetreten!';
+					$template = file_get_contents("Registrationsformular.html"); 
+					echo $template;
 				}
 			}
 		}else{
 			echo 'Eingaben nicht vollständig gefüllt oder entspricht nicht den RegEx!';
-			$template = file_get_contents("eintragen.html"); 
+			$template = file_get_contents("Registrationsformular.html"); 
 			echo $template;
 			}	  
 	}else{

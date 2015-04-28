@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	if ($_SERVER['REQUEST_METHOD'] === "POST") {		
 
 		$regExBenutzername = '/^[A-Za-z0-9]{1,32}$/';		
@@ -24,7 +24,7 @@
 		  
 		if(!$emptyBoolean && !$regExFehlerBoolean){
 			
-			include "verbinden.php";
+			include "Verbindung.php";
 				
 			$stmt = $dbh->prepare("SELECT Password FROM benutzer WHERE Benutzername = :benutzername");
 																		
@@ -39,13 +39,13 @@
 				$logInAttempt = true;
 			}else{
 				echo 'Konto- oder Passworteingabe ist falsch!';
-				$template = file_get_contents("einloggen.html"); // Im Template eine Fehlermeldung schreiben
+				$template = file_get_contents("LogInFormular.html"); // Im Template eine Fehlermeldung schreiben
 				echo $template;
 
 			}
 		}else{
 			echo 'Eingaben nicht vollstaendig gefuellt oder entspricht nicht den RegEx!';
-			$template = file_get_contents("einloggen.html"); // Im Template eine Fehlermeldung schreiben
+			$template = file_get_contents("LogInFormular.html"); // Im Template eine Fehlermeldung schreiben
 			echo $template;
 		}
 	  

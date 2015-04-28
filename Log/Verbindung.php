@@ -1,4 +1,4 @@
-
+﻿
 <?php
 // Zugangsdaten zur Datenbank
 $DB_HOST = "localhost"; // Datenbank-Host
