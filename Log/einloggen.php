@@ -43,14 +43,13 @@
 				echo '<p> Benutzerdaten gefunden! Login!! <p>';
 				$pwAbgleichFehler = true;
 			}else{
-				print_r($dbh->errorInfo());
-				echo 'penis';
+				echo 'Konto- oder Passworteingabe ist falsch!';
 			}
 		}else{
-			echo 'KEIN ERFOLG';
+			echo 'Eingaben nicht vollständig gefüllt oder entspricht nicht den RegEx!';
 		}
 	  
 	}else{
-		echo 'ende';
+		echo 'Server nicht erreichbar!';
 	}      
 ?>
