@@ -1,4 +1,4 @@
-<?php require_once('drawFunctions.php'); ?>
+<?php require_once('classes/DrawFunctions.php'); ?>
 <!doctype html>
 <html>
 	<head>
@@ -14,7 +14,7 @@
 	<body onload="resumeSessionAjaxRequest()">
 		<div id="boardcontainer">
 			<aside id="infoboard">
-				<h1>Phase 1</h1><br>
+				<h1 id="phase">Phase 1</h1><br>
 				<ul>
 					<li>
 						<div id="instructions">Platziere deine Schiffe auf dem unteren Feld.</div><br><br>
