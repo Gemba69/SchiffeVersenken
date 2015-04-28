@@ -1,8 +1,15 @@
 -- Alle Spiele eines Spielers abfragen
-Select * from Spiel where Spieler1='benutzer' or Spieler2='benutzer';
+Select * from Spiel where Spieler_1='benutzer' or Spieler_2='benutzer';
 
 --Alle gewonnenen Spiele eines Spielers abfragen
-Select * from Spiel where Spieler1='benutzer' and StatusID=3 or Spieler2='benutzer' and StatusID=4;
+Select * from Spiel where Spieler_1='benutzer' and StatusID=3 or Spieler_2='benutzer' and StatusID=4;
+
+--Alle offenen Spiele eines Spielers abfragen
+Select Spiel.ID, StatusID, aBenutzer.Benutzername, bBenutzer.Benutzername from Spiel 
+join Benutzer aBenutzer on Spieler_1=aBenutzer.ID 
+join Benutzer bBenutzer on Spieler_2=bBenutzer.ID 
+where (Spieler_1=1 or Spieler_2=1) and (StatusID='1' or StatusID='2')
+;
 
 -- Alle Benutzer auflisten
 Select * from Benutzer;
