@@ -1,5 +1,8 @@
 
-
+/*
+ * Eine Seite zum Testen der Funktionen.
+ */
+ 
 <form action="test.php" methode="post">
     <input type="submit"></input>
 </form>

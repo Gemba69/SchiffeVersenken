@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * Die Klasse SpielzugDatenbankSchnittstelle stellt eine Verbindung zur 
+ * Datenbank her und regelt den Zugriff auf die Tabelle Spielzug indem sie
+ * Spielzüe in der Datenbank speichern kann und das geladene Spielbrett in 
+ * Arrays zu verfügung stellt.
+ */
+
 class SpielzugDatenbankSchnittstelle {
 
     private $spielbrett0 = array();
@@ -7,11 +14,13 @@ class SpielzugDatenbankSchnittstelle {
     private $feldhoehe;
     private $feldbreite;
     private $spielId;
+    private $spielzugtypDb;
+    
+    //Variablen für die Datenbankverbindung
     private $server = 'mysql:dbname=SchiffeVersenken;host=localhost';
     private $user = 'root';
     private $password = '';
     private $pdo;
-    private $spielzugtypDb;
 
     const CONST_WASSER = "WASSER";
     const CONST_MISS = "MISS";
@@ -19,6 +28,7 @@ class SpielzugDatenbankSchnittstelle {
     const CONST_TREFFER = "TREFFER";
     const CONST_VERSENKT = "VERSENKT";
 
+    //Konstruktor
     function __construct($parFeldhoehe, $parFeldbreite, $parSpielId) {
 
         $this->feldhoehe = $parFeldhoehe;
@@ -42,14 +52,24 @@ class SpielzugDatenbankSchnittstelle {
         $this->ladeSpielbrettAusDb();
     }
 
+    /*
+     * Die Funktion getSpielbrett0 gibt das erste Spielbrett zurück. 
+     */
     public function getSpielbrett0() {
         return $this->$spielbrett0;
     }
 
+    /*
+     * Die Funktion getSpielbrett1 gibt das zweite Spielbrett zurück. 
+     */
     public function getSpielbrett1() {
         return $this->$spielbrett1;
     }
 
+    /*
+     * Die Funktion ladeSpielbrettAusDb erstellt die beiden 
+     * Spielbretter aus der Spielzug-Tabelle. 
+     */
     public function ladeSpielbrettAusDb() {
         $i = 0;
         $query = $this->pdo->prepare("SELECT Spielbrett, x_Koordinate, y_Koordinate, Spielzugtyp FROM Spielzug WHERE SpielID = :spielId");
@@ -57,7 +77,7 @@ class SpielzugDatenbankSchnittstelle {
         $query->execute();
         $spielzugArray0 = $query->fetchAll(PDO::FETCH_NUM);
         $spielzugArray = $this->array_2d_to_1d($spielzugArray0);
-        print("SpielzugArraycount: " . count($spielzugArray)." Spielid: ".$this->spielId);
+        print("SpielzugArraycount: " . count($spielzugArray) . " Spielid: " . $this->spielId);
         for ($j = 0; $j < (count($spielzugArray) / 4); $j++) {
             if ($spielzugArray[$i] == 0) {
                 $i++;
@@ -140,6 +160,11 @@ class SpielzugDatenbankSchnittstelle {
         $this->versenktueberpr(1);
     }
 
+    /*
+     * Die Funktion versenktueberpr überprüft, ob irgendein Schiff auf einem 
+     * bestimmten Spielfeld versenkt ist und ändert die Felder eines 
+     * versenkten Schiffes auf VERSENKT.
+     */
     function versenktueberpr($spielbrettnr) {
         for ($i = 0; $i < $this->feldhoehe; $i++) {
             for ($j = 0; $j < $this->feldbreite; $j++) {
@@ -160,6 +185,11 @@ class SpielzugDatenbankSchnittstelle {
         }
     }
 
+    /*
+     * Die Funktion setzeVersenkt setzt setzt ein feld x/y und alle anderen des 
+     * Schiffes auf einem bestimmten Spielbrett auf VERSENKT.
+     * (Versekt ein Schiff)
+     */
     public function setzeVersenkt($spielbrettnr, $x, $y) {
         versenke($spielbrettnr, $x, $y);
         for ($i = 0; i < (count(findeAdjazenteTreffer($spielbrettnr, $x, $y))); $i++) {
@@ -167,6 +197,11 @@ class SpielzugDatenbankSchnittstelle {
         }
     }
 
+    /*
+     * Die Funktion versenke setzt setzt ein feld x/y auf einem bestimmten 
+     * Spielbrett auf VERSENKT.
+     * (Versekt ein Feld des Schiffes)
+     */
     public function versenke($spielbrettnr, $x, $y) {
         if ($spielbrettnr == 0) {
             if ($this->spielbrett0[$x][$y] == self::CONST_TREFFER) {
@@ -185,6 +220,11 @@ class SpielzugDatenbankSchnittstelle {
         }
     }
 
+    /*
+     * Die Funktion versenke setzt setzt ein feld x/y auf einem bestimmten 
+     * Spielbrett auf VERSENKT.
+     * (Versekt ein Feld des Schiffes)
+     */
     public function versenkt($spielbrettnr, $x, $y) {
         $versenkt = true;
         for ($i = 0; i < (count(findeAdjazenteTreffer($spielbrettnr, $x, $y))); $i++) {
@@ -196,7 +236,11 @@ class SpielzugDatenbankSchnittstelle {
             return false;
         }
     }
-
+    
+    /*
+     * Die Funktion findeAdjazenteSchiffe gibt alle adjazenten Felder, 
+     * die auch Schiffe sind in einem Array zurück.
+     */
     public function findeAdjazenteSchiffe($spielbrettnr, $x, $y) {
         $adjazenzen = array();
         if ($spielbrettnr == 0) {
@@ -249,6 +293,10 @@ class SpielzugDatenbankSchnittstelle {
         return $adjazenzen;
     }
 
+    /*
+     * Die Funktion findeAdjazenteTreffer gibt alle adjazenten Felder, 
+     * die auch Treffer sind in einem Array zurück.
+     */
     public function findeAdjazenteTreffer($spielbrettnr, $x, $y) {
         $adjazenzen = array();
         if ($spielbrettnr == 0) {
@@ -301,6 +349,10 @@ class SpielzugDatenbankSchnittstelle {
         return $adjazenzen;
     }
 
+    /*
+     * Die Funktion speicherSpielzugInDb speichert den übergebenen 
+     * Spielzug in der Datenbank
+     */
     public function speicherSpielzugInDb($spielbrett, $x, $y, $spielzugTyp) {
         if ($spielbrett > -1 && $spielbrett < 2) {
             if ($x > 0 && $x < $this->feldbreite) {
@@ -328,10 +380,16 @@ class SpielzugDatenbankSchnittstelle {
         }
     }
 
+    //Automatisches Laden der includes
     function __autoload($class_name) {
         include $class_name . '.php';
     }
 
+    /*
+     * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
+     * Arrays ein eindimensionales Array zurück, in dem die Zeilen/Datensätze 
+     * aus dem zweidimensionalen Array hintereiandergehängt wurden.
+     */
     function array_2d_to_1d($input_array) {
         $output_array = array();
 
