@@ -11,10 +11,21 @@
 	define('ILLEGAL_SHIP_ALIGNMENT_WARNING', "<li>Die aktuelle Anordnung ist ungültig.<br>Verschiedene Schiffe dürfen sich nicht berühren.</li>");
 	
 	class GameHelperFunctions {
+		public function utf8ize($d) {
+			if (is_array($d)) {
+				foreach ($d as $k => $v) {
+					$d[$k] = self::utf8ize($v);
+				}
+			} else if (is_string ($d)) {
+				return utf8_encode($d);
+			}
+			return $d;
+		}
+	
 		public static function initializeOrFetchGame($width, $height) {
 			$field = array();
 			for ($i = 0; $i < $width; $i++) { //TODO: feldgroesse dynamisch machen
-				for ($j = 0; $j < $heigth; $j++) {
+				for ($j = 0; $j < $height; $j++) {
 					$field[$i][$j]= WATER_ID;
 				}
 			}
@@ -23,9 +34,9 @@
 		}
 		
 		public static function drawRemainingShips($gameField, $requiredShips) {
-			$drawnShips = checkAmountOfShips($gameField);
+			$drawnShips = self::checkAmountOfShips($gameField);
 			$warning = "";
-			$remainingShips = getRemainingShipsPlusWarning($drawnShips, $requiredShips, $warning);
+			$remainingShips = self::getRemainingShipsPlusWarning($drawnShips, $requiredShips, $warning);
 			if (isset($drawnShips['illegal'])) {
 				return ILLEGAL_SHIP_ALIGNMENT_WARNING;
 			}
@@ -33,10 +44,9 @@
 			return getDrawnShipsCode($remainingShips)."<br>".$warning;
 		}
 		
-		public static function allShipsPlaced($gameField) {
-			$drawnShips = checkAmountOfShips($gameField);
-			global $requiredShips;
-			$remainingShips = getRemainingShips($drawnShips, $requiredShips);
+		public static function allShipsPlaced($gameField, $requiredShips) {
+			$drawnShips = self::checkAmountOfShips($gameField);
+			$remainingShips = self::getRemainingShips($drawnShips, $requiredShips);
 			$noShipsLeft = true;
 			for ($i = 1; $i < 11; $i++) { //todo: dynamisch auslesen!
 				if ($remainingShips[$i] != 0)
@@ -45,8 +55,8 @@
 			return $noShipsLeft;
 		}
 		
-		public static function buildCellDataStructure($gameField) {
 			//TODO: verschiedene phasen
+		public static function buildCellDataStructure($gameField, $requiredShips) {
 			$cellData = array();
 			
 			$counter = 0;
@@ -56,16 +66,16 @@
 						$cell = array('i' => $i,
 									  'j' => $j,
 									  'color' => 'gray', //TODO: farbe aus gameField auslesen
-									  'field' => SELF_ID_PREFIX);
+									  'gameField' => SELF_ID_PREFIX);
 						$cellData[$counter] = $cell;
 						$counter++;
 					}
 				}
 			}
 				
-			$postData = array('cells' => $cell_data);
-			$postData['remainingShipCode'] = drawRemainingShips($gameField);
-			$postData['allShipsPlaced'] = allShipsPlaced($gameField);
+			$postData = array('cells' => $cellData);
+			$postData['remainingShipCode'] = self::drawRemainingShips($gameField, $requiredShips);
+			$postData['allShipsPlaced'] = self::allShipsPlaced($gameField, $requiredShips);
 			return $postData;
 		}
 		
@@ -84,19 +94,19 @@
 		
 		private static function getRemainingShips($drawnShips, $requiredShips) {
 			$throwAwayWarning = "";
-			return getRemainingShipsPlusWarning($drawnShips, $requiredShips, $throwAwayWarning);
+			return self::getRemainingShipsPlusWarning($drawnShips, $requiredShips, $throwAwayWarning);
 		}
 		
 		private static function checkAmountOfShips($gameField) {
 			$result = array();
-			if(!shipAlignmentIsValid($gameField)) {
+			if(!self::shipAlignmentIsValid($gameField)) {
 				$result['illegal'] = true;
 				return $result;
 			}
 			for ($i = 0; $i < 10; $i++) {
 				for ($j = 0; $j < 10; $j++) {
 					if ($gameField[$i][$j] === SHIP_ID) {
-						$shipLength = checkShipLength($i, $j, $gameField);
+						$shipLength = self::checkShipLength($i, $j, $gameField);
 						$result[$shipLength] = isset($result[$shipLength]) ? $result[$shipLength] + 1 : 1;
 					}
 				}
@@ -131,10 +141,10 @@
 				$jminus = ($j <= 0) ? 0: $j - 1;
 				$jplus = ($j >= 9) ? 9 : $j + 1;
 				
-				$length += checkShipLength($i, $jplus, $gameField);
-				$length += checkShipLength($i, $jminus, $gameField);
-				$length += checkShipLength($iplus, $j, $gameField);
-				$length += checkShipLength($iminus, $j, $gameField);
+				$length += self::checkShipLength($i, $jplus, $gameField);
+				$length += self::checkShipLength($i, $jminus, $gameField);
+				$length += self::checkShipLength($iplus, $j, $gameField);
+				$length += self::checkShipLength($iminus, $j, $gameField);
 			} 
 			return $length;
 		}

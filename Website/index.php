@@ -21,7 +21,7 @@
 						<div id="remainingships"><?php drawShips(); ?></div>
 					</li>
 					<li>
-						<span id="infobox"></span>
+						
 					</li>
 				</ul>
 			</aside>
@@ -40,6 +40,9 @@
 			<div id="ownboard">
 				<?php createBoard(10, 10, 'self'); ?>
 			</div>
+			<aside>
+				<span id="infobox"></span>
+			</aside>
 		</div>
 	</body>
 </html>

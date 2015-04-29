@@ -3,9 +3,9 @@ var SELF_ID_PREFIX = "self";
 var PHASE_1 = "Phase 1";
 var PHASE_2 = "Phase 2";
 var INSTRUCTIONS_PHASE_2_TEXT = "Feuere die Schiffe deines Gegners ab!";
-var NO_VALID_SHIPS_WARNING = "Auf dem Server wurde keine gÃ¼ltige Schiffsanordnung erkannt. Bitte Seite neuladen und entsprechend korrigieren.";
+var NO_VALID_SHIPS_WARNING = "Auf dem Server wurde keine gültige Schiffsanordnung erkannt. Bitte Seite neuladen und entsprechend korrigieren.";
 var CONTINUE_BUTTON_CODE = "<button id='continuebutton' onclick='nextPhaseAjaxRequest()'>Angriff beginnen</button>";
-var CONTINUE_INSTRUCTIONS_TEXT = "Sehr gut. Wenn du sicher bist, dass alle Schiffe richtig platziert sind, gehe nun zum Angriff Ã¼ber.";
+var CONTINUE_INSTRUCTIONS_TEXT = "Sehr gut. Wenn du sicher bist, dass alle Schiffe richtig platziert sind, gehe nun zum Angriff über.";
 var FIRST_INSTRUCTIONS_TEXT = "Platziere deine Schiffe auf dem unteren Feld."; //TODO: texte nicht hardcoden
 
 var nextRequestFile = "ajax.php";
@@ -58,20 +58,40 @@ function flipTile(i, j, idPrefix, newColor) {
 	}, 300);
 }
 
+function hasClass(element, cls) { 
+    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1; 
+} 
+
+
 //-------------/tile flip functions-----------
 
 //-------------ajax functions----------------
 function cellClickedAjaxRequest(i, j, idPrefix) {
-	$.post(nextRequestFile, { i: i, j: j, gameField: idPrefix })
-	.done(function(data) {
-		processAnswer(data);
+	$.ajax({
+		type: 'POST',
+		url: nextRequestFile,
+		data: { i: i, j: j, gameField: idPrefix },
+		dataType: 'html',
+		success: function(data) {
+			processAnswer(data);
+		},
+		error: function(data, a, b) {
+			alert(data + a + b);
+		}
 	});
 }
 
 function resumeSessionAjaxRequest() {
-	$.post("ajax.php", { })
-	.done(function(data) {
-		processAnswer(data);
+	$.ajax({
+		type: 'GET',
+		url: 'ajax.php',
+		dataType: 'html',
+		success: function(data) {
+			processAnswer(data);
+		},
+		error: function(data, a, b) {
+			alert(data + a + b);
+		}
 	});
 }
 
@@ -83,34 +103,40 @@ function nextPhaseAjaxRequest() {
 }
 
 function processAnswer(answer) {
-	document.getElementById('infobox').innerHTML = answer; //debug
+	//alert(answer);
+	//window.clipboardData.setData("Text",answer);
+	//document.getElementById('infobox').innerHTML = answer; //debug
 	
-	var ans = jQuery.parseJSON(answer);
-	if (ans.illegal == true)
+	answer = $.parseJSON(answer);
+	if (answer.illegal == true)
 		return;
+
+	nextRequestFile = answer.nextRequest;
 	
-	nextRequestFile = ans.nextRequest;
+	if (answer.cells == null) {
+		return;
+	}
 	
-	var cells = ans.cells;
+	var cells = answer.cells;
 	for (var v = 0; v < cells.length; v++) {
 		var i = cells[v].i;
 		var j = cells[v].j;
 		var color = cells[v].color;
-		var idPrefix = cells[v].field;
+		var idPrefix = cells[v].gameField;
 		
 		if (color === "gray")
 			toggleShip(i, j, idPrefix);
 		else
 			flipTile(i, j, idPrefix, color);
 	}
-	var remainingShipCode = ans.remainingShipCode;
+	var remainingShipCode = answer.remainingShipCode;
 	
 	document.getElementById('remainingships').classList.remove('fadeinanim');
 	document.getElementById('remainingships').innerHTML = remainingShipCode;
 	document.getElementById('instructions').classList.remove('fadeinanim');
 	document.getElementById('instructions').innerHTML = FIRST_INSTRUCTIONS_TEXT;
 	
-	if (ans.allShipsPlaced) {
+	if (answer.allShipsPlaced) {
 		document.getElementById('remainingships').firstChild.classList.add('fadeoutanim');
 		document.getElementById('instructions').classList.add('fadeoutanim');
 		setTimeout(function() {
@@ -136,6 +162,6 @@ function processNextPhaseAnswer(data) {
 }
 
 function reset() {
-	resumeSessionAjaxRequest();
+	//resumeSessionAjaxRequest();
 	$.post( "ajax.php", {reset:"true" }); // a bit hacky, but this function will not be in production anyway
 }

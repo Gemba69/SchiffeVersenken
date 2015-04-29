@@ -17,11 +17,11 @@
 		}
 		
 		public function toggleShip($i, $j) {
-			if ($gameField[$i][$j] === WATER_ID) {
-				$gameField[$i][$j] = SHIP_ID;
+			if ($this->gameField[$i][$j] === WATER_ID) {
+				$this->gameField[$i][$j] = SHIP_ID;
 				return SHIP_ID;
-			} elseif ($gameField[$i][$j] === SHIP_ID) {
-				$gameField[$i][$j] = WATER_ID;
+			} elseif ($this->gameField[$i][$j] === SHIP_ID) {
+				$this->gameField[$i][$j] = WATER_ID;
 				return WATER_ID;
 			}
 		}

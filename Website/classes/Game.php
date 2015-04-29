@@ -11,7 +11,7 @@
 			$this->requiredShips = $fRequiredShips;
 			$gameField1 = new GameField(GameHelperFunctions::initializeOrFetchGame($fieldWidth, $fieldHeight));
 			$gameField2 = new GameField(GameHelperFunctions::initializeOrFetchGame($fieldWidth, $fieldHeight));
-
+			
 			$fPlayer1->setGameField($gameField1);
 			$fPlayer2->setGameField($gameField2);
 
@@ -44,9 +44,13 @@
 			$this->phase = $fPhase;
 		}
 		
+		public function getRequiredShips() {
+			return $this->requiredShips;
+		}
+		
 		public function playPhase1() {
-			$player1.placeShips($requiredShips);
-			$player2.placeShips($requiredShips);
+			$this->player1 -> placeShips($this->requiredShips);
+			$this->player2 -> placeShips($this->requiredShips);
 		}
 		
 		public function playPhase2() {
