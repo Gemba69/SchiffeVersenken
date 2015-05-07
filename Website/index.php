@@ -15,13 +15,10 @@
 		<div id="boardcontainer">
 			<aside id="infoboard">
 				<h1 id="phase">Phase 1</h1><br>
-				<ul>
+				<ul id="instructions">
 					<li>
-						<div id="instructions">Platziere deine Schiffe auf dem unteren Feld.</div><br><br>
-						<div id="remainingships"><?php drawShips(); ?></div>
-					</li>
-					<li>
-						
+						Platziere deine Schiffe auf dem unteren Feld.<br><br>
+						<?php drawShips(); ?>
 					</li>
 				</ul>
 			</aside>

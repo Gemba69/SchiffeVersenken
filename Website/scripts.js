@@ -105,19 +105,20 @@ function nextPhaseAjaxRequest() {
 function processAnswer(answer) {
 	//alert(answer);
 	//window.clipboardData.setData("Text",answer);
-	//document.getElementById('infobox').innerHTML = answer; //debug
+	document.getElementById('infobox').innerHTML = answer; //debug
 	
 	answer = $.parseJSON(answer);
 	if (answer.illegal == true)
 		return;
-
 	nextRequestFile = answer.nextRequest;
-	
-	if (answer.cells == null) {
+	if (answer.cells == null) 
 		return;
-	}
 	
 	var cells = answer.cells;
+	var title = answer.title;
+	var instructions = answer.instructions;
+	var animations = answer.animations;
+	
 	for (var v = 0; v < cells.length; v++) {
 		var i = cells[v].i;
 		var j = cells[v].j;
@@ -129,9 +130,10 @@ function processAnswer(answer) {
 		else
 			flipTile(i, j, idPrefix, color);
 	}
-	var remainingShipCode = answer.remainingShipCode;
 	
-	document.getElementById('remainingships').classList.remove('fadeinanim');
+	document.getElementById('instructions').innerHTML = instructions;
+	
+	/*document.getElementById('remainingships').classList.remove('fadeinanim');
 	document.getElementById('remainingships').innerHTML = remainingShipCode;
 	document.getElementById('instructions').classList.remove('fadeinanim');
 	document.getElementById('instructions').innerHTML = FIRST_INSTRUCTIONS_TEXT;
@@ -148,7 +150,7 @@ function processAnswer(answer) {
 				document.getElementById('instructions').classList.remove('fadeoutanim');
 				document.getElementById('instructions').classList.add('fadeinanim');
 			}, 200);
-	}
+	}*/
 }
 
 function processNextPhaseAnswer(data) {

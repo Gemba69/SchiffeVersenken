@@ -34,7 +34,7 @@
 		$player2 = new AI("2", "CPU"); //TODO: s.o.
 		$requiredShips =  array('10' => 0, '9' => 0, '8' => 0, '7' => 0, '6' => 0, '5' => 1, '4' => 2, '3' => 3, '2' => 4, '1' => 0); //todo: aus der datenbank auslesen
 		
-		$game = new Game($requiredShips, 10, 10, $player1, $player2); //TODO: Spielfeldgröße irgendwo herholen
+		$game = new Game($requiredShips, 10, 10, $player1, $player2); //TODO: SpielfeldgrÃ¶ÃŸe irgendwo herholen
 		$_SESSION['game'] = $game;
 		
 		$game -> playPhase1();

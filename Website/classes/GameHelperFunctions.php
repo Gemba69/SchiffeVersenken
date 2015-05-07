@@ -9,6 +9,8 @@
 	define('HIT_ID', "TREFFER");
 	define('DESTROYED_ID', "VERSENKT");
 	define('ILLEGAL_SHIP_ALIGNMENT_WARNING', "<li>Die aktuelle Anordnung ist ungültig.<br>Verschiedene Schiffe dürfen sich nicht berühren.</li>");
+	define("PHASE_1_TITLE", "Phase 1");
+	define("PHASE_1_MAJOR_INSTRUCTIONS", "Platziere deine Schiffe auf dem unteren Feld."); //TODO: nicht hardcoden
 	
 	class GameHelperFunctions {
 		public function utf8ize($d) {
@@ -41,7 +43,7 @@
 				return ILLEGAL_SHIP_ALIGNMENT_WARNING;
 			}
 			
-			return getDrawnShipsCode($remainingShips)."<br>".$warning;
+			return getDrawnShipsCode($remainingShips)."</li><li>".$warning."</li>";
 		}
 		
 		public static function allShipsPlaced($gameField, $requiredShips) {
@@ -74,8 +76,11 @@
 			}
 				
 			$postData = array('cells' => $cellData);
-			$postData['remainingShipCode'] = self::drawRemainingShips($gameField, $requiredShips);
-			$postData['allShipsPlaced'] = self::allShipsPlaced($gameField, $requiredShips);
+			$remainingShips = self::drawRemainingShips($gameField, $requiredShips); //TODO: siehe oben
+			$instructions = "<li>".PHASE_1_MAJOR_INSTRUCTIONS."</li>".$remainingShips;
+			$postData['instructions'] = $instructions;
+			$postData['title'] = PHASE_1_TITLE;
+			//$postData['allShipsPlaced'] = self::allShipsPlaced($gameField, $requiredShips);
 			return $postData;
 		}
 		
