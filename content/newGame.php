@@ -7,7 +7,6 @@
 	<body>
 </br> </br>
 <form>
-
 <input type="radio" id="KI" name="Player" value="KI">KI</input>
 <input type="radio" id="Real" name="Player" value="REAK>realer Gegner">realer Gegner</input>
 </br> </br>
@@ -23,12 +22,12 @@ $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
 
 $query = $dbh->prepare("Select * from Benutzer where Benutzername LIKE :Search;");
 
-$searchTerm = 'Gem';
+$searchTerm = '';
 $like = '%'.$searchTerm.'%';
 $query->bindParam(':Search', $like);
 
 $query->execute();
-$rank =  $query->fetchAll();
+$rank = $query->fetchAll();
 
 ?>
 <form action="test.php" method="POST">
