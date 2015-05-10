@@ -3,14 +3,26 @@
   <head>
       <meta charset="UTF-8">
       <title>SchiffeVersenkenFormularEinloggen</title>
+	  <script src="Script.js"></script>
+	  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	  <link href='Anmeldebild.css' rel='stylesheet' type='text/css'>
   </head>
   <body>
 	
     <form action="LogIn.php" method="POST">
-      Benutzername: <input name="benutzername" type="text"> </br>
-      Passwort: <input name="passwort" type="password"> </br>
-       <input type="submit"> </input>
-	   <span></span>
+	<div id="wrapper">
+		<input class="Eingabefeld" name="benutzername" placeholder="Benutzername" type="text"> </br>
+		<input class="Eingabefeld" name="passwort" placeholder="Passwort" type="password"> </br>
+		<input class="submit" type="submit" disabled></input>
+		<a class="linkToLoginNRegistration" href="Registrierungsformular.html">Noch nicht registriert?</a> 
+		<span></span>
+		<audio id="audio" autoplay loop>
+			<source src="DrownThemLikeADemon.ogg" type="audio/ogg">
+			<source src="DrownThemLikeADemon.mp3" type="audio/mpeg">
+		</audio>
+	</div>
+	<input class="checkbox" id="c1" name="soundbutton" type="checkbox" onclick="soundSetter()"/>
+	<label for="c1">Sound</label>
     </form>	
 
 </html>
