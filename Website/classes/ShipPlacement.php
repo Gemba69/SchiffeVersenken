@@ -23,6 +23,7 @@
 		$fakeGameField = GameHelperFunctions::initializeOrFetchGame(10, 10); //TODO: Wenn Fetch Game implementiert ist, geht das nicht mehr
 		$fakeGameField[$i][$j] = SHIP_ID;
 		$postData = array_merge($postData, GameHelperFunctions::generateReturnArray($game->getPlayer1()->getGameField()->getAsArray(), $game->getRequiredShips(), $fakeGameField));
+		
 		/*$cell = array('i' => $i,
 					  'j' => $j,
 					  'color' => 'gray',

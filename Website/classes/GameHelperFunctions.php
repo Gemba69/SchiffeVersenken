@@ -59,8 +59,10 @@
 		
 			//TODO: verschiedene phasen
 		public static function generateReturnArray($gameField, $requiredShips, $gameFieldJustPressed) {
-			$cellData = array();
+			//if (self::allShipsPlaced)
 			
+			
+			$cellData = array();
 			$counter = 0;
 			for ($i = 0; $i < count($gameFieldJustPressed); $i++) {
 				for ($j = 0; $j < count($gameFieldJustPressed[$i]); $j++) {
