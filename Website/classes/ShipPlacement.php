@@ -20,9 +20,9 @@
 		echo json_encode($postData);
 	} else {
 		$game->getPlayer1()->getGameField()->toggleShip($i, $j); //TODO: hier muss noch erkannt werden, um welchen Spieler es sich eigentlich handelt. Es wird davon ausgegangen, dass immer Spieler 1 menschlich ist.
-		$fakeField = GameHelperFunctions::initializeOrFetchGame(10, 10);
-		$fakeField[$i][$j] = SHIP_ID;
-		$postData = array_merge($postData, GameHelperFunctions::buildCellDataStructure($fakeField, $game->getRequiredShips()));
+		$fakeGameField = GameHelperFunctions::initializeOrFetchGame(10, 10); //TODO: Wenn Fetch Game implementiert ist, geht das nicht mehr
+		$fakeGameField[$i][$j] = SHIP_ID;
+		$postData = array_merge($postData, GameHelperFunctions::generateReturnArray($game->getPlayer1()->getGameField()->getAsArray(), $game->getRequiredShips(), $fakeGameField));
 		/*$cell = array('i' => $i,
 					  'j' => $j,
 					  'color' => 'gray',

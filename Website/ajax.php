@@ -17,10 +17,10 @@
 	//session_unset();
 	//session_destroy();
 	function resumeSession() {
-		//TODO: gameState
+		//TODO: gameStatexampp
 		$game = $_SESSION['game'];
 		$gameFieldArray = $game->getPlayer1()->getGameField()->getAsArray();
-		$postData = GameHelperFunctions::buildCellDataStructure($gameFieldArray, $game->getRequiredShips());
+		$postData = GameHelperFunctions::generateReturnArray($gameFieldArray, $game->getRequiredShips(), $gameFieldArray);
 		if ($game->getPhase() == 0)
 			$postData['nextRequest'] = "classes/ShipPlacement.php"; //TODO: hard coding entfernen
 		else
