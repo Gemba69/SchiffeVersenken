@@ -90,6 +90,19 @@ function soundSetter(){
 	}
 }
 
+function checkNecessaryLoginInput(){
+	var p1 = document.getElementById("loginUser").value;
+	var p2 = document.getElementById("loginPassword").value;
+	
+	if (p1 !== "" && p2 !== ""){
+		document.getElementById("loginSubmit").disabled = false;
+		document.getElementById("loginSubmit").classList.add("blueBorder");
+	} else {
+		document.getElementById("loginSubmit").disabled = true;
+		document.getElementById("loginSubmit").classList.remove("blueBorder");
+	}
+}
+
 
 
 

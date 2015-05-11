@@ -37,9 +37,13 @@
 			$temp = $stmt1->fetchAll(PDO::FETCH_NUM);
 			
 			if ($temp != NULL){
-				echo '<p> Der Benutzername existiert bereits! <p>';
-			    $template = file_get_contents("Registrieungsformular.html"); 
-			    echo $template;
+				$fehlermeldung = "<span class='Fehler'> Der Benutzername existiert bereits! </span>";
+				$repString = "<form action=\"Registrierung.php\" method=\"POST\">";
+				$fehlermeldung = $repString.$fehlermeldung;
+			    $template = file_get_contents("Registrierungsformular.html"); 
+				$count = 1;
+				$retVal = str_replace($repString, $fehlermeldung, $template, $count);
+			    echo $retVal;
 			}else{
 				
 				$stmt2 = $dbh->prepare("INSERT INTO benutzer (Benutzername, Email, Password) 

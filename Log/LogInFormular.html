@@ -11,9 +11,9 @@
 	
     <form action="LogIn.php" method="POST">
 	<div id="wrapper">
-		<input class="Eingabefeld" name="benutzername" placeholder="Benutzername" type="text"> </br>
-		<input class="Eingabefeld" name="passwort" placeholder="Passwort" type="password"> </br>
-		<input class="submit" type="submit" disabled></input>
+		<input id='loginUser' class="Eingabefeld" name="benutzername" placeholder="Benutzername" type="text" onkeyup="checkNecessaryLoginInput()" onload="checkNecessaryLoginInput()"> </br>
+		<input id='loginPassword' class="Eingabefeld" name="passwort" placeholder="Passwort" type="password" onkeyup="checkNecessaryLoginInput()" onload="checkNecessaryLoginInput()"> </br>
+		<input id='loginSubmit' class="submit" type="submit" disabled></input>
 		<a class="linkToLoginNRegistration" href="Registrierungsformular.html">Noch nicht registriert?</a> 
 		<span></span>
 		<audio id="audio" autoplay loop>

@@ -10,9 +10,21 @@ body {
 	background-size: cover;
 }
 
-div#wrapper {
+#wrapper {
 	background-color: white;
 	width: 280px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10%;
+	padding: 10px;
+	box-shadow: 1px 4px 5px #888888;
+	border-radius: 3px;
+	text-align: center;
+}
+
+#agb-wrapper{
+	background-color: white;
+	width: 600px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10%;
@@ -45,8 +57,8 @@ div#wrapper {
 	border-color: blue;
 }
 
-.redErrorBorder{
-	border-color: red;
+.redErrorBorder{ 
+	border-color: red !important; 
 }
 
 .Eingabefeld:hover, .Eingabefeld:focus {
@@ -69,6 +81,17 @@ div#wrapper {
 
 .checkbox {
 	margin-top: 20%;	
+}
+
+.Fehler {
+	background-color: white;
+	width: 280px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	box-shadow: 5px 4px 5px #555;
+	border-radius: 3px;
+	text-align: center;
 }
 
 
