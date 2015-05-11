@@ -14,7 +14,7 @@
 	<body onload="resumeSessionAjaxRequest()">
 		<div id="boardcontainer">
 			<aside id="infoboard">
-				<h1 id="phase">Phase 1</h1><br>
+				<h1 id="title">Phase 1</h1><br>
 				<ul id="instructions">
 					<li>
 						Platziere deine Schiffe auf dem unteren Feld.<br><br>
@@ -23,7 +23,10 @@
 				</ul>
 			</aside>
 			<aside id="legend">
-				<button id="resetbutton" onclick="reset()">Destroy Session</button><br>
+				<div class="buttondiv">
+					<img class="buttonimg" src="images/arrow.png" alt="arrow">
+					<button id="resetbutton" onclick="reset()">Destroy Session</button><br>
+				</div>
 				<span class="example_cell"></span> Wasser
 				<span class="example_cell graycol"></span> Schiff
 				<span class="example_cell darkbluecol"></span> daneben

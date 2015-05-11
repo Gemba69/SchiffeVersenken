@@ -10,7 +10,13 @@
 	define('DESTROYED_ID', "VERSENKT");
 	define('ILLEGAL_SHIP_ALIGNMENT_WARNING', "<li>Die aktuelle Anordnung ist ungültig.<br>Verschiedene Schiffe dürfen sich nicht berühren.</li>");
 	define("PHASE_1_TITLE", "Phase 1");
+	define("PHASE_2_TITLE", "Phase 2");
 	define("PHASE_1_MAJOR_INSTRUCTIONS", "Platziere deine Schiffe auf dem unteren Feld."); //TODO: nicht hardcoden
+	define("PHASE_2_MAJOR_INSTRUCTIONS", "Feuere die Schiffe deines Gegners auf dem oberen Feld ab."); //TODO: nicht hardcoden
+	define("CONTINUE_BUTTON_CODE", "<div class='buttondiv fadeinanim'><img class='buttonimg' src='./images/arrow.png'><button id='continuebutton' onclick='nextPhaseAjaxRequest()'>Angriff beginnen</button></div>");
+	define("CONTINUE_INSTRUCTIONS", "Sehr gut. Wenn du sicher bist, dass alle Schiffe richtig platziert sind, gehe nun zum Angriff über.");
+	define("SHIP_PLACEMENT_FILE", "classes/ShipPlacement.php");
+	define("SHOT_FIRING_FILE", "classes/ShotFiring.php");
 	
 	class GameHelperFunctions {
 		public function utf8ize($d) {
@@ -58,31 +64,45 @@
 		}
 		
 			//TODO: verschiedene phasen
-		public static function generateReturnArray($gameField, $requiredShips, $gameFieldJustPressed) {
-			//if (self::allShipsPlaced)
+		public static function generateReturnArray($gameField, $requiredShips, $gameFieldJustPressed, $phase) {
 			
-			
-			$cellData = array();
-			$counter = 0;
-			for ($i = 0; $i < count($gameFieldJustPressed); $i++) {
-				for ($j = 0; $j < count($gameFieldJustPressed[$i]); $j++) {
-					if ($gameFieldJustPressed[$i][$j] === SHIP_ID) {
-						$cell = array('i' => $i,
-									  'j' => $j,
-									  'color' => 'gray', //TODO: farbe aus gameField auslesen
-									  'gameField' => SELF_ID_PREFIX);
-						$cellData[$counter] = $cell;
-						$counter++;
+	
+				$cellData = array();
+				$counter = 0;
+				for ($i = 0; $i < count($gameFieldJustPressed); $i++) {
+					for ($j = 0; $j < count($gameFieldJustPressed[$i]); $j++) {
+						if ($gameFieldJustPressed[$i][$j] === SHIP_ID) {
+							$cell = array('i' => $i,
+										  'j' => $j,
+										  'color' => 'gray', //TODO: farbe aus gameField auslesen
+										  'gameField' => SELF_ID_PREFIX);
+							$cellData[$counter] = $cell;
+							$counter++;
+						}
 					}
 				}
-			}
+					
+				$postData = array('cells' => $cellData);
 				
-			$postData = array('cells' => $cellData);
-			$remainingShips = self::drawRemainingShips($gameField, $requiredShips); //TODO: siehe oben
-			$instructions = "<li>".PHASE_1_MAJOR_INSTRUCTIONS."</li>".$remainingShips;
-			$postData['instructions'] = $instructions;
-			$postData['title'] = PHASE_1_TITLE;
-			//$postData['allShipsPlaced'] = self::allShipsPlaced($gameField, $requiredShips);
+				if ($phase == 0) {
+					if (self::allShipsPlaced($gameField, $requiredShips)) {
+						$postData['instructions'] = CONTINUE_INSTRUCTIONS."<br><br>".CONTINUE_BUTTON_CODE;
+						$postData['title'] = PHASE_1_TITLE;
+					} else {
+						$remainingShips = self::drawRemainingShips($gameField, $requiredShips); //TODO: siehe oben
+						$instructions = "<li>".PHASE_1_MAJOR_INSTRUCTIONS."</li>".$remainingShips;
+						$postData['instructions'] = $instructions;
+						$postData['title'] = PHASE_1_TITLE;
+					}
+				} else if ($phase == 1) {
+					$postData['title'] = PHASE_2_TITLE;
+					$postData['instructions'] = PHASE_2_MAJOR_INSTRUCTIONS;
+				}
+				
+				
+				$postData['nextRequest'] = ($phase == 0) ? SHIP_PLACEMENT_FILE : SHOT_FIRING_FILE;
+
+				//$postData['allShipsPlaced'] = self::allShipsPlaced($gameField, $requiredShips);
 			return $postData;
 		}
 		

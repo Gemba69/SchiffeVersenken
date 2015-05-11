@@ -19,20 +19,6 @@ body {
 	/*margin-top: 5%;*/
 }
 
-button {
-	border: none;
-	font-size: 150%;
-	color: #146281;
-	background: none;
-	transition: all .2s ease;
-}
-
-button:hover {
-	margin-left: 10px;
-	color: #3482a1;
-	cursor: pointer;
-}
-
 aside {
 	float: right;
 }
@@ -81,6 +67,36 @@ td {
 	text-align: center;
 }
 
+.buttonimg {
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin-right: 2px;
+}
+
+.buttondiv {
+	transition: all .2s ease;
+}
+
+.buttondiv:hover{
+	margin-left: 10px;
+	color: #3482a1;
+	cursor: pointer;
+}
+
+.buttondiv button {
+	margin-left: 2px;
+	border: none;
+	font-size: 150%;
+	color: #146281;
+	background: none;
+	padding: 0;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
 .board_cell {
 	display: inline-block;
 	width: 100%;
@@ -114,10 +130,8 @@ td {
 .fadeinanim {
 	animation-name: fadein;
 	animation-duration: .2s;
-	animation-fill-mode: forwards;
 	-webkit-animation-name: fadeout;
 	-webkit-animation-duration: .2s;
-	-webkit-animation-fill-mode: forwards;
 }
 
 .board_cell:hover {
