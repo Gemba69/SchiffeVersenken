@@ -58,13 +58,15 @@
 		}
 		
 			//TODO: verschiedene phasen
-		public static function buildCellDataStructure($gameField, $requiredShips) {
-			$cellData = array();
+		public static function generateReturnArray($gameField, $requiredShips, $gameFieldJustPressed) {
+			//if (self::allShipsPlaced)
 			
+			
+			$cellData = array();
 			$counter = 0;
-			for ($i = 0; $i < 10; $i++) {
-				for ($j = 0; $j < 10; $j++) {
-					if ($gameField[$i][$j] === SHIP_ID) {
+			for ($i = 0; $i < count($gameFieldJustPressed); $i++) {
+				for ($j = 0; $j < count($gameFieldJustPressed[$i]); $j++) {
+					if ($gameFieldJustPressed[$i][$j] === SHIP_ID) {
 						$cell = array('i' => $i,
 									  'j' => $j,
 									  'color' => 'gray', //TODO: farbe aus gameField auslesen
