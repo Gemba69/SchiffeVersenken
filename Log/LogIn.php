@@ -14,9 +14,9 @@
 		}
 		
 		if(!$emptyBoolean && preg_match($regExBenutzername, $_POST['benutzername'])){
-			echo 'Benutzername entspricht den Vorgaben</br>'; 
+			//echo 'Benutzername entspricht den Vorgaben</br>'; 
 		}elseif(!$emptyBoolean){
-			echo 'Benutzername entspricht nicht den Vorgaben</br>';
+			//echo 'Benutzername entspricht nicht den Vorgaben</br>';
 			$regExFehlerBoolean = true;
 		}
 		
@@ -38,11 +38,15 @@
 				$pwAbgleichFehler = true;
 				$logInAttempt = true;
 			}else{
-				echo 'Konto- oder Passworteingabe ist falsch!';
-				$template = file_get_contents("LogInFormular.html"); // Im Template eine Fehlermeldung schreiben
-				echo $template;
-
+				$loginFehlermeldung = "<span class='Fehler'> Konto- oder Passworteingabe ist falsch! </span>";
+				$repString = "<form action=\"LogIn.php\" method=\"POST\">";
+				$loginFehlermeldung = $repString.$loginFehlermeldung;
+			    $template = file_get_contents("LogInFormular.html"); 
+				$count = 1;
+				$retVal = str_replace($repString, $loginFehlermeldung, $template, $count);
+			    echo $retVal;
 			}
+			
 		}else{
 			echo 'Eingaben nicht vollstaendig gefuellt oder entspricht nicht den RegEx!';
 			$template = file_get_contents("LogInFormular.html"); // Im Template eine Fehlermeldung schreiben

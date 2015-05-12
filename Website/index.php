@@ -15,13 +15,10 @@
 		<div id="boardcontainer">
 			<aside id="infoboard">
 				<h1 id="phase">Phase 1</h1><br>
-				<ul>
+				<ul id="instructions">
 					<li>
-						<div id="instructions">Platziere deine Schiffe auf dem unteren Feld.</div><br><br>
-						<div id="remainingships"><?php drawShips(); ?></div>
-					</li>
-					<li>
-						<span id="infobox"></span>
+						Platziere deine Schiffe auf dem unteren Feld.<br><br>
+						<?php drawShips(); ?>
 					</li>
 				</ul>
 			</aside>
@@ -40,6 +37,9 @@
 			<div id="ownboard">
 				<?php createBoard(10, 10, 'self'); ?>
 			</div>
+			<aside>
+				<span id="infobox"></span>
+			</aside>
 		</div>
 	</body>
 </html>

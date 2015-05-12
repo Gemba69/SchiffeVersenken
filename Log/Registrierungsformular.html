@@ -3,16 +3,30 @@
   <head>
       <meta charset="UTF-8">
       <title>SchiffeVersenkenFormular</title>
+	  <script src="Script.js"></script>
+	  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href='Anmeldebild.css' rel='stylesheet' type='text/css'>
   </head>
   <body>
-
-    <form action="Registrierung.php" method="POST">
-      Benutzername: <input name="benutzername" type="text"> </br>
-	  Email: <input name="email" type="text"> </br>
-      Passwort: <input name="passwort" type="password"> </br>
-	  Passwort bestätigen: <input name="passwortBestaetigen" type="password"> </br>
-       <input type="submit"> </input>
-    </form>	
+	
+		<form action="Registrierung.php" method="POST">
+		<div id="wrapper">
+		  <input id="user"	class="Eingabefeld"	name="benutzername"			placeholder="Benutzername" 			type="text" 	onkeyup="checkUser()" onload="checkUser()"></input> </br>
+		  <input id="email"	class="Eingabefeld" name="email" 				placeholder="E-Mail" 				type="text" 	onkeyup="checkEmail()" onload="checkUser()"></input> </br>
+		  <input id="pw1" 	class="Eingabefeld" name="passwort" 			placeholder="Passwort" 				type="password" onkeyup="checkPasswords()" onload="checkUser()"></input></br>
+		  <input id="pw2" 	class="Eingabefeld" name="passwortBestaetigen" 	placeholder="Passwort bestätigen"	type="password" onkeyup="checkPasswords()" onload="checkUser()"></input> </br>
+		  <input id="agb" 	class="agb" 		name="agb" 														type="checkbox" onclick="checkAccept()"/>
+		  <label for="agb"><a target="popup" id="linkToAgb"href="AGB.html">AGB akzeptieren</a></label>
+		  <input id="submit" class="submit" type="submit" disabled> </input>
+		  <a class="linkToLoginNRegistration" href="LogInFormular.html">Zurück zum Login</a> 
+		  <audio id="audio" autoplay loop>
+			<source src="DrownThemLikeADemon.ogg" type="audio/ogg">
+			<source src="DrownThemLikeADemon.mp3" type="audio/mpeg">
+		  </audio>
+		</div>
+		  <input class="checkbox" id="c1" name="soundbutton" type="checkbox" onclick="soundSetter()"/>
+		  <label for="c1">Sound</label>
+		</form>	
 	
   </body>
 </html>

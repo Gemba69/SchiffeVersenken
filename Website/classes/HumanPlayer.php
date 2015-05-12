@@ -1,7 +1,7 @@
 <?php
 	require_once('IPlayer.php');
 	require_once('GameHelperFunctions.php');
-	
+		
 	class HumanPlayer implements IPlayer {
 		private $id = "";
 		private $name = "";
@@ -22,7 +22,7 @@
 		}
 		
 		public function placeShips($requiredShips) {
-			$postData = array('nextRequest' => 'ShipPlacement.php');
+			$postData = array('nextRequest' => 'classes/ShipPlacement.php');
 			echo json_encode($postData);
 		}
 		
