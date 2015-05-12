@@ -14,6 +14,7 @@
 		
 	if (isset($_POST['nextPhase'])) {
 		$game->setPhase(1);
+		$game->getPlayer1()->setWaiting(false);
 		$_SESSION['game'] = $game;
 		$postData = GameHelperFunctions::generateReturnArray($game->getPlayer1()->getGameField()->getAsArray(), $game->getRequiredShips(), null, 1);
 		echo json_encode(GameHelperFunctions::utf8ize($postData));

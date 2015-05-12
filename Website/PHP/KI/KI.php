@@ -9,6 +9,7 @@ class KI {
 
     private $name;
     private $spielerID;
+    private $getroffen = false;
 
 //Konstruktor
     function __construct($name, $spielerID) {
@@ -53,7 +54,12 @@ class KI {
      * Schiffe und gibt das mit Schiffen besetzte Feld zurück.
      */
 
+<<<<<<< HEAD
     function schiffeSetzten($feld, $schiffe) {
+        //$feld= $this->gameField->getAsArray();
+=======
+    public function schiffeSetzten($feld, $schiffe) {
+>>>>>>> 94df7d86fd60e9c558c9dcd56b5abf35f6bff142
         $outerzaehler = 0;
         do {
             $tempfeld = $feld;
@@ -99,7 +105,7 @@ class KI {
 //ausrichtung 0: waagerecht; ausrichung 1: senkrecht;
         $tempfeld = $feld;
         if ($ausrichtung == 0) {
-            if ($tempfeld[$x + $schiff][$y] == NULL) {
+            if ($tempfeld[$x + $schiff][$y] == 0) {
                 $temp[0] = $feld;
                 $temp[1] = false;
                 return($temp);
@@ -118,7 +124,7 @@ class KI {
                 }
             }
         } else if ($ausrichtung == 1) {
-            if ($tempfeld[$x][$y + $schiff] == NULL) {
+            if ($tempfeld[$x][$y + $schiff] == 0) {
                 $temp[0] = $feld;
                 $temp[1] = false;
                 return($temp);
@@ -147,7 +153,7 @@ class KI {
     private function schiffePrüfung($feld) {
         for ($i = 0; $i < (sizeof($feld)); $i++) {
             for ($j = 0; $j < (sizeof($feld, 1) / sizeof($feld)); $j++) {
-                if ($feld[$i][$j] == SHIP_ID) {
+                if ($feld[$i][$j] == "SCHIFF") {
                     if (($feld[$i + 1][$j + 1] <> NULL && $feld[$i + 1][$j + 1] == SHIP_ID) ||
                             ($feld[$i + 1][$j + 1] <> NULL && $feld[$i - 1][$j + 1] == SHIP_ID) ||
                             ($feld[$i + 1][$j + 1] <> NULL && $feld[$i + 1][$j - 1] == SHIP_ID) ||
@@ -165,7 +171,7 @@ class KI {
      * Angriff sinnvoll ist.
      */
 
-    function angriff($feld, $schiffe) {
+    public function angriff($feld, $schiffe) {
         $wasser = 0;
         $miss = 0;
         $treffer = 0;
@@ -297,7 +303,7 @@ class KI {
                     }
                 }
             }
-            $feldnummer = rand(0, sizeof($felder)-1);
+            $feldnummer = rand(0, sizeof($felder) - 1);
             $stelle[0] = $felder[$feldnummer][0]; //x-koordinate
             $stelle[1] = $felder[$feldnummer][1]; //y-koordinate
             return $stelle;
@@ -309,7 +315,7 @@ class KI {
      * belegt ist mit "MISS", "VERSENKT" oder "TREFFER"
      */
 
-    function plausibel($feld, $x, $y) {
+    private function plausibel($feld, $x, $y) {
         if ($feld[$x][$y] == "WASSER") {
             return true;
         }
@@ -317,11 +323,21 @@ class KI {
     }
 
     /*
+     * Die Funktion fireShot gibt zurück, ob der letzte angriff ein Teffer war
+     * oder nicht und führt den angriff aus.
+     */
+
+    public function fireShot(&$gameField, $requiredShips) {
+        $koordinaten = angriff(gameField,$requiredShips);
+        return $gameField->attack(koordinaten[0],koordinaten[1]);
+    }
+
+    /*
      * Die Funktion findeAdjazenteTreffer gibt alle adjazenten Felder, 
      * die auch Treffer sind in einem Array zurück.
      */
 
-    function findeAdjazenteTreffer($x, $y, $feld) {
+    private function findeAdjazenteTreffer($x, $y, $feld) {
         $adjazenzen = array();
         $i = 0;
         if ($feld[$x + 1][$y] == "TREFFER") {
@@ -353,7 +369,7 @@ class KI {
      * aus dem zweidimensionalen Array hintereiandergehängt wurden.
      */
 
-    function array_2d_to_1d($input_array) {
+   private function array_2d_to_1d($input_array) {
         $output_array = array();
         for ($i = 0; $i < count($input_array); $i++) {
             for ($j = 0; $j < count($input_array[$i]); $j++) {
