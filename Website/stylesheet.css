@@ -5,6 +5,10 @@ html {
 
 body {
 	background: url("../Layout/titelbild.jpg") no-repeat center center fixed;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 }
 
 #boardcontainer{
@@ -93,7 +97,7 @@ td {
 	padding: 0;
 }
 
-button:hover {
+.buttondiv button:hover {
 	cursor: pointer;
 }
 

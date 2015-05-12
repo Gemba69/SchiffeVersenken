@@ -99,10 +99,7 @@
 					$postData['instructions'] = PHASE_2_MAJOR_INSTRUCTIONS;
 				}
 				
-				
 				$postData['nextRequest'] = ($phase == 0) ? SHIP_PLACEMENT_FILE : SHOT_FIRING_FILE;
-
-				//$postData['allShipsPlaced'] = self::allShipsPlaced($gameField, $requiredShips);
 			return $postData;
 		}
 		
