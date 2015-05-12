@@ -54,35 +54,35 @@ class KI {
      * Schiffe und gibt das mit Schiffen besetzte Feld zurück.
      */
 
-<<<<<<< HEAD
-    function schiffeSetzten($feld, $schiffe) {
-        //$feld= $this->gameField->getAsArray();
-=======
-    public function schiffeSetzten($feld, $schiffe) {
->>>>>>> 94df7d86fd60e9c558c9dcd56b5abf35f6bff142
+    //function schiffeSetzten($feld, $schiffe) {
+    function schiffeSetzten($schiffe) {
+        $feld= $this->gameField->getAsArray();
         $outerzaehler = 0;
         do {
             $tempfeld = $feld;
             $outerwhile = false;
-            foreach ($schiffe as $schiff) {
-                $innerwhile = true;
-                $innerzaehler = 0;
-                while ($innerwhile) {
-                    $x = rand(0, sizeof($tempfeld));
-                    $y = rand(0, (sizeof($tempfeld, 1) / sizeof($tempfeld)));
-                    $ausrichtung = rand(0, 1);
-                    $temp = $this->schiffsetzen($x, $y, $ausrichtung, $tempfeld, $schiff);
-                    if ($temp[1] == true) {
-                        $tempfeld = $temp[0];
-                        $innerwhile = false;
-                    } else if ($innerzaehler > 1000) {
-                        $innerwhile = false;
-                        $outerwhile = true;
+            for ($s = 0; $s < count(array_keys($schiffe)); $s++) {
+                for ($si = 0; $si < $schiffe[array_keys($schiffe)[$s]]; $si++) {
+                    $schiff = array_keys($schiffe)[$s];
+                    $innerwhile = true;
+                    $innerzaehler = 0;
+                    while ($innerwhile) {
+                        $x = rand(0, sizeof($tempfeld));
+                        $y = rand(0, (sizeof($tempfeld, 1) / sizeof($tempfeld)));
+                        $ausrichtung = rand(0, 1);
+                        $temp = $this->schiffsetzen($x, $y, $ausrichtung, $tempfeld, $schiff);
+                        if ($temp[1] == true) {
+                            $tempfeld = $temp[0];
+                            $innerwhile = false;
+                        } else if ($innerzaehler > 1000) {
+                            $innerwhile = false;
+                            $outerwhile = true;
+                        }
+                        $innerzaehler++;
                     }
-                    $innerzaehler++;
-                }
-                if ($outerwhile) {
-                    break;
+                    if ($outerwhile) {
+                        break;
+                    }
                 }
             }
             $outerzaehler++;
@@ -92,7 +92,8 @@ class KI {
         } else {
             $feld = $tempfeld;
         }
-        return $feld;
+        $this->gameField= $feld;
+        return $feld();
     }
 
     /*
@@ -105,7 +106,7 @@ class KI {
 //ausrichtung 0: waagerecht; ausrichung 1: senkrecht;
         $tempfeld = $feld;
         if ($ausrichtung == 0) {
-            if ($tempfeld[$x + $schiff][$y] == 0) {
+            if (!isset($tempfeld[$x + $schiff][$y])) {
                 $temp[0] = $feld;
                 $temp[1] = false;
                 return($temp);
@@ -124,7 +125,7 @@ class KI {
                 }
             }
         } else if ($ausrichtung == 1) {
-            if ($tempfeld[$x][$y + $schiff] == 0) {
+            if (!isset($tempfeld[$x][$y + $schiff])) {
                 $temp[0] = $feld;
                 $temp[1] = false;
                 return($temp);
@@ -150,14 +151,14 @@ class KI {
      * plausibel/richtig sind.
      */
 
-    private function schiffePrüfung($feld) {
+    function schiffePrüfung($feld) {
         for ($i = 0; $i < (sizeof($feld)); $i++) {
-            for ($j = 0; $j < (sizeof($feld, 1) / sizeof($feld)); $j++) {
+            for ($j = 0; $j < (max(array_map('count', $feld))); $j++) {
                 if ($feld[$i][$j] == "SCHIFF") {
-                    if (($feld[$i + 1][$j + 1] <> NULL && $feld[$i + 1][$j + 1] == SHIP_ID) ||
-                            ($feld[$i + 1][$j + 1] <> NULL && $feld[$i - 1][$j + 1] == SHIP_ID) ||
-                            ($feld[$i + 1][$j + 1] <> NULL && $feld[$i + 1][$j - 1] == SHIP_ID) ||
-                            ($feld[$i + 1][$j + 1] <> NULL && $feld[$i - 1][$j - 1] == SHIP_ID)) {
+                    if ((isset($feld[$i + 1][$j + 1]) && $feld[$i + 1][$j + 1] == "SCHIFF") ||
+                            (isset($feld[$i - 1][$j + 1]) && $feld[$i - 1][$j + 1] == "SCHIFF") ||
+                            (isset($feld[$i + 1][$j - 1]) && $feld[$i + 1][$j - 1] == "SCHIFF") ||
+                            (isset($feld[$i - 1][$j - 1]) && $feld[$i - 1][$j - 1] == "SCHIFF")) {
                         return false;
                     }
                 }
@@ -178,7 +179,7 @@ class KI {
         $versenkt = 0;
         $schiff = 0;
         for ($i = 0; $i < (sizeof($feld)); $i++) {
-            for ($j = 0; $j < (sizeof($feld, 1) / sizeof($feld)); $j++) {
+            for ($j = 0; $j < (max(array_map('count', $feld))); $j++) {
                 if ($feld[$i][$j] == "WASSEER") {
                     $wasser++;
                 } else if ($feld[$i][$j] == "MISS") {
@@ -196,12 +197,12 @@ class KI {
         if ($treffer == 0 && $versenkt == 0) {
             do {
                 $stelle[0] = rand(0, sizeof($feld) - 1); //x-koordinate
-                $stelle[1] = rand(0, (sizeof($feld, 1) / sizeof($feld)) - 1); //y-koordinate
+                $stelle[1] = rand(0, (max(array_map('count', $feld))) - 1); //y-koordinate
             } while (!($this->plausibel($feld, $stelle[0], $stelle[1])));
             return $stelle;
         } else if ($treffer > 0) {
             for ($i = 0; $i < (sizeof($feld)); $i++) {
-                for ($j = 0; $j < (sizeof($feld, 1) / sizeof($feld)); $j++) {
+                for ($j = 0; $j < (max(array_map('count', $feld))); $j++) {
                     if ($feld[$i][$j] == "TREFFER") {
                         if (sizeof(($adjazenzen = $this->findeAdjazenteTreffer($i, $j, $feld)), 1) / 2 > 1) {
                             if ($adjazenzen[0][1] < $i || $adjazenzen[0][1] > $i) {
@@ -295,7 +296,7 @@ class KI {
             $felderanzahl = 0;
             $felder = array();
             for ($i = 0; $i < (sizeof($feld)); $i++) {
-                for ($j = 0; $j < (sizeof($feld, 1) / sizeof($feld)); $j++) {
+                for ($j = 0; $j < (max(array_map('count', $feld))); $j++) {
                     if ($feld[$i][$j] == "WASSER" && count($this->findeAdjazenteTreffer($i, $j, $feld)) == 0) {
                         $felder[$felderanzahl][0] = $i;
                         $felder[$felderanzahl][1] = $j;
@@ -328,8 +329,8 @@ class KI {
      */
 
     public function fireShot(&$gameField, $requiredShips) {
-        $koordinaten = angriff(gameField,$requiredShips);
-        return $gameField->attack(koordinaten[0],koordinaten[1]);
+        $koordinaten = angriff(gameField, $requiredShips);
+        return $gameField->attack(koordinaten[0], koordinaten[1]);
     }
 
     /*
@@ -369,7 +370,7 @@ class KI {
      * aus dem zweidimensionalen Array hintereiandergehängt wurden.
      */
 
-   private function array_2d_to_1d($input_array) {
+    private function array_2d_to_1d($input_array) {
         $output_array = array();
         for ($i = 0; $i < count($input_array); $i++) {
             for ($j = 0; $j < count($input_array[$i]); $j++) {
