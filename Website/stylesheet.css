@@ -40,7 +40,7 @@ body {
 	/*margin-top: 5%;*/
 }
 
-.menueContent{
+.menuContent{
 	margin-left: 60px;
 	margin-right: auto;
 	margin-top: 150px;
@@ -60,11 +60,6 @@ button {
 	transition: all .2s ease;
 }
 
-button:hover {
-	margin-left: 10px;
-	color: #3482a1;
-	cursor: pointer;
-}
 aside {
 	float: right;
 	clear:right;

@@ -13,12 +13,14 @@
 	</head>
 	<body onload="resumeSessionAjaxRequest()">
 		<div id="hamburgercontainer" class="hamburger">
-			<a class='menueContent' href="Startseite.html">Zurück zur Startseite</a></br></br>
-			<a class='menueContent' href="Spielauswahl.html">Spielauswahl</a></br></br>
-			<a class='menueContent' href="Spielregeln.html">Spielregeln</a></br></br>
-			<a class='menueContent' href="Statistik.html">Statistik</a></br></br>
-			<a class='menueContent' href="Impressum.html">Impressum</a></br></br></br></br></br></br></br></br>
-			<button id="Logoff" class="button menueContent" type='submit'>Logoff</button>
+			
+			<button class="hamburgerButton" ><span>toggle menu</span></button>
+			<a class='menuContent' href="Startseite.html">Zurück zur Startseite</a></br></br>
+			<a class='menuContent' href="Spielauswahl.html">Spielauswahl</a></br></br>
+			<a class='menuContent' href="Spielregeln.html">Spielregeln</a></br></br>
+			<a class='menuContent' href="Statistik.html">Statistik</a></br></br>
+			<a class='menuContent' href="Impressum.html">Impressum</a></br></br></br></br></br></br></br></br>
+			<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
 		</div>
 		<div id="boardcontainer">
 			<aside id="infoboard">
