@@ -7,6 +7,23 @@ body {
 	background: url("../Layout/titelbild.jpg") no-repeat center center fixed;
 }
 
+#hamburgercontainer{
+	float:left;
+	margin-left: -50px;
+	margin-right: auto;
+	margin-top: -50px;
+	margin-bottom: -50px;
+	position: fixed;
+	height: 120%;
+	width: 80px;	
+	background-color: rgba(255, 255, 255, .8);
+	padding: 10px;
+	border-radius: 5px;
+	
+	/*box-shadow: 1px 4px 5px #888888;*/
+	/*margin-top: 5%;*/
+}
+
 #boardcontainer{
 	width: 720px;
 	margin-left: auto;
@@ -17,6 +34,18 @@ body {
 	
 	/*box-shadow: 1px 4px 5px #888888;*/
 	/*margin-top: 5%;*/
+}
+
+.menueContent{
+	margin-left: 60px;
+	margin-right: auto;
+	margin-top: 150px;
+	margin-bottom: 50px;
+	position: fixed;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	
+
 }
 
 button {
@@ -35,6 +64,8 @@ button:hover {
 
 aside {
 	float: right;
+	clear:right;
+	
 }
 
 aside ul {
@@ -101,6 +132,26 @@ td {
 
 
 /* ---- Animations & Co. --- */
+
+.hamburger {
+	animation-name: hamburgerani;
+	animation-duration: .5s;
+	animation-fill-mode: forwards;
+	-webkit-animation-name: hamburgerani;
+	-webkit-animation-duration: .5s;
+	animation-fill-mode: forwards;
+
+}
+
+.hamburgerback {
+	animation-name: hamburgerani;
+	animation-duration: .5s;
+	animation-direction: reverse;
+	-webkit-animation-name: hamburgerani;
+	-webkit-animation-duration: .5s;
+	-webkit-animation-direction: reverse;
+
+}
 
 .fadeoutanim {
 	animation-name: fadeout;
@@ -182,6 +233,15 @@ td {
 }
 
 /*Keyframes*/
+
+@keyframes hamburgerani {
+	0% {
+		width: 80px;
+	}
+	100% {
+		width: 300px;
+	}
+}
 
 @keyframes fadeout {
 	0% {
@@ -313,6 +373,17 @@ td {
 }
 
 /* --- Webkit --- */
+
+
+@-webkit-keyframes hamburgerani {
+	0% {
+		width: 80px;
+	}
+	100% {
+		width: 300px;
+	}
+}
+
 
 @-webkit-keyframes fadeout {
 	0% {

@@ -12,6 +12,14 @@
 		</title>
 	</head>
 	<body onload="resumeSessionAjaxRequest()">
+		<div id="hamburgercontainer" class="hamburger">
+			<a class='menueContent' href="Startseite.html">Zurück zur Startseite</a></br></br>
+			<a class='menueContent' href="Spielauswahl.html">Spielauswahl</a></br></br>
+			<a class='menueContent' href="Spielregeln.html">Spielregeln</a></br></br>
+			<a class='menueContent' href="Statistik.html">Statistik</a></br></br>
+			<a class='menueContent' href="Impressum.html">Impressum</a></br></br></br></br></br></br></br></br>
+			<button id="Logoff" class="button menueContent" type='submit'>Logoff</button>
+		</div>
 		<div id="boardcontainer">
 			<aside id="infoboard">
 				<h1 id="phase">Phase 1</h1><br>
@@ -41,5 +49,6 @@
 				<span id="infobox"></span>
 			</aside>
 		</div>
+	
 	</body>
 </html>
