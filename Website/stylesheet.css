@@ -5,6 +5,10 @@ html {
 
 body {
 	background: url("../Layout/titelbild.jpg") no-repeat center center fixed;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 }
 
 #hamburgercontainer{
@@ -61,7 +65,6 @@ button:hover {
 	color: #3482a1;
 	cursor: pointer;
 }
-
 aside {
 	float: right;
 	clear:right;
@@ -110,6 +113,36 @@ td {
 	height: 25px;
 	padding: 1px;
 	text-align: center;
+}
+
+.buttonimg {
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin-right: 2px;
+}
+
+.buttondiv {
+	transition: all .2s ease;
+}
+
+.buttondiv:hover{
+	margin-left: 10px;
+	color: #3482a1;
+	cursor: pointer;
+}
+
+.buttondiv button {
+	margin-left: 2px;
+	border: none;
+	font-size: 150%;
+	color: #146281;
+	background: none;
+	padding: 0;
+}
+
+.buttondiv button:hover {
+	cursor: pointer;
 }
 
 .board_cell {
@@ -165,10 +198,8 @@ td {
 .fadeinanim {
 	animation-name: fadein;
 	animation-duration: .2s;
-	animation-fill-mode: forwards;
 	-webkit-animation-name: fadeout;
 	-webkit-animation-duration: .2s;
-	-webkit-animation-fill-mode: forwards;
 }
 
 .board_cell:hover {

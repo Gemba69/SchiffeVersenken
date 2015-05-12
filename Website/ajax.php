@@ -20,11 +20,7 @@
 		//TODO: gameStatexampp
 		$game = $_SESSION['game'];
 		$gameFieldArray = $game->getPlayer1()->getGameField()->getAsArray();
-		$postData = GameHelperFunctions::generateReturnArray($gameFieldArray, $game->getRequiredShips(), $gameFieldArray);
-		if ($game->getPhase() == 0)
-			$postData['nextRequest'] = "classes/ShipPlacement.php"; //TODO: hard coding entfernen
-		else
-			$postData['nextRequest'] = "classes/ShotFiring.php"; //TODO: hard coding entfernen
+		$postData = GameHelperFunctions::generateReturnArray($gameFieldArray, $game->getRequiredShips(), $gameFieldArray, $game->getPhase());
 				
 		echo json_encode(GameHelperFunctions::utf8ize($postData));
 	}
