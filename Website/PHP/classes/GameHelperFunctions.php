@@ -9,14 +9,14 @@
 	define('HIT_ID', "TREFFER");
 	define('DESTROYED_ID', "VERSENKT");
 	define('ILLEGAL_SHIP_ALIGNMENT_WARNING', "<li>Die aktuelle Anordnung ist ungültig.<br>Verschiedene Schiffe dürfen sich nicht berühren.</li>");
-	define("PHASE_1_TITLE", "Phase 1");
-	define("PHASE_2_TITLE", "Phase 2");
+	define("PHASE_1_TITLE", "Planung");
+	define("PHASE_2_TITLE", "Angriff");
 	define("PHASE_1_MAJOR_INSTRUCTIONS", "Platziere deine Schiffe auf dem unteren Feld."); //TODO: nicht hardcoden
 	define("PHASE_2_MAJOR_INSTRUCTIONS", "Feuere die Schiffe deines Gegners auf dem oberen Feld ab."); //TODO: nicht hardcoden
 	define("CONTINUE_BUTTON_CODE", "<div class='buttondiv fadeinanim'><img class='buttonimg' src='./images/arrow.png'><button id='continuebutton' onclick='nextPhaseAjaxRequest()'>Angriff beginnen</button></div>");
 	define("CONTINUE_INSTRUCTIONS", "Sehr gut. Wenn du sicher bist, dass alle Schiffe richtig platziert sind, gehe nun zum Angriff über.");
-	define("SHIP_PLACEMENT_FILE", "classes/ShipPlacement.php");
-	define("SHOT_FIRING_FILE", "classes/ShotFiring.php");
+	define("SHIP_PLACEMENT_FILE", "PHP/classes/ShipPlacement.php");
+	define("SHOT_FIRING_FILE", "PHP/classes/ShotFiring.php");
 	
 	class GameHelperFunctions {
 		public function utf8ize($d) {
@@ -98,8 +98,7 @@
 					$postData['title'] = PHASE_2_TITLE;
 					$postData['instructions'] = PHASE_2_MAJOR_INSTRUCTIONS;
 				}
-				
-				$postData['nextRequest'] = ($phase == 0) ? SHIP_PLACEMENT_FILE : SHOT_FIRING_FILE;
+	
 			return $postData;
 		}
 		
