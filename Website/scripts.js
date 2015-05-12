@@ -96,9 +96,9 @@ function resumeSessionAjaxRequest() {
 }
 
 function nextPhaseAjaxRequest() {
-	$.post("ajax.php", { nextPhase: "true" })
+	$.post(nextRequestFile, { nextPhase: "true" })
 	.done(function(data) {
-		processNextPhaseAnswer(data);
+		processAnswer(data);
 	});
 }
 
@@ -117,7 +117,6 @@ function processAnswer(answer) {
 	var cells = answer.cells;
 	var title = answer.title;
 	var instructions = answer.instructions;
-	var animations = answer.animations;
 	
 	for (var v = 0; v < cells.length; v++) {
 		var i = cells[v].i;
@@ -132,6 +131,7 @@ function processAnswer(answer) {
 	}
 	
 	document.getElementById('instructions').innerHTML = instructions;
+	document.getElementById('title').innerHTML = title;
 	
 	/*document.getElementById('remainingships').classList.remove('fadeinanim');
 	document.getElementById('remainingships').innerHTML = remainingShipCode;
@@ -151,16 +151,6 @@ function processAnswer(answer) {
 				document.getElementById('instructions').classList.add('fadeinanim');
 			}, 200);
 	}*/
-}
-
-function processNextPhaseAnswer(data) {
-	if (data) {
-		document.getElementById('phase').innerHTML = PHASE_2;
-		document.getElementById('instructions').innerHTML = INSTRUCTIONS_PHASE_2_TEXT;
-		document.getElementById('remainingships').innerHTML = "";
-	} else {
-		document.getElementById('infobox').innerHTML = NO_VALID_SHIPS_WARNING;
-	}
 }
 
 function reset() {

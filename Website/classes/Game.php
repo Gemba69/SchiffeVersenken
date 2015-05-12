@@ -55,8 +55,8 @@
 		
 		public function playPhase2() {
 			while (!$player1.isWon() && !$player2.isWon()) {
-				while ($player1.fireShot($player2.getGameFieldSelf(), $requiredShips)) {}
-				while ($player2.fireShot($player1.getGameFieldSelf(), $requiredShips)) {}
+				while ($player1->fireShot($player2->getGameFieldSelf()->getAsArray(), $requiredShips)) {}
+				while ($player2->fireShot($player1->getGameFieldSelf()->getAsArray(), $requiredShips)) {}
 			}
 			//TODO: Etwas mit dem Gewinner machen
 		}

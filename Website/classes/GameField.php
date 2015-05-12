@@ -39,11 +39,11 @@
 		public function attack($i, $j) {
 			if ($gameField[$i][$j] === WATER_ID) {
 				$gameField[$i][$j] = MISS_ID;
-				return MISS_ID;
+				return false;
 			} else if ($gameField[$i][$j] === SHIP_ID) {
 				$gameField[$i][$j] = HIT_ID;
 				//TODO: check if destroyed
-				return HIT_ID;
+				return true;
 			} else 
 				return "INVALID";
 		}

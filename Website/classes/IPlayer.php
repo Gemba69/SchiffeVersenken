@@ -5,7 +5,7 @@
 		
 		public function placeShips($requiredShips);
 		
-		public function fireShot($gameField, $requiredShips);
+		public function fireShot(&$gameField, $requiredShips);
 		
 		public function isWon();
 	}

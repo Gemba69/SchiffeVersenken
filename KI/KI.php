@@ -54,8 +54,12 @@ class KI {
      * Schiffe und gibt das mit Schiffen besetzte Feld zurück.
      */
 
+<<<<<<< HEAD
     function schiffeSetzten($feld, $schiffe) {
         //$feld= $this->gameField->getAsArray();
+=======
+    public function schiffeSetzten($feld, $schiffe) {
+>>>>>>> 94df7d86fd60e9c558c9dcd56b5abf35f6bff142
         $outerzaehler = 0;
         do {
             $tempfeld = $feld;
@@ -167,7 +171,7 @@ class KI {
      * Angriff sinnvoll ist.
      */
 
-    function angriff($feld, $schiffe) {
+    public function angriff($feld, $schiffe) {
         $wasser = 0;
         $miss = 0;
         $treffer = 0;
@@ -311,7 +315,7 @@ class KI {
      * belegt ist mit "MISS", "VERSENKT" oder "TREFFER"
      */
 
-    function plausibel($feld, $x, $y) {
+    private function plausibel($feld, $x, $y) {
         if ($feld[$x][$y] == "WASSER") {
             return true;
         }
@@ -333,7 +337,7 @@ class KI {
      * die auch Treffer sind in einem Array zurück.
      */
 
-    function findeAdjazenteTreffer($x, $y, $feld) {
+    private function findeAdjazenteTreffer($x, $y, $feld) {
         $adjazenzen = array();
         $i = 0;
         if ($feld[$x + 1][$y] == "TREFFER") {
@@ -365,7 +369,7 @@ class KI {
      * aus dem zweidimensionalen Array hintereiandergehängt wurden.
      */
 
-    function array_2d_to_1d($input_array) {
+   private function array_2d_to_1d($input_array) {
         $output_array = array();
         for ($i = 0; $i < count($input_array); $i++) {
             for ($j = 0; $j < count($input_array[$i]); $j++) {
