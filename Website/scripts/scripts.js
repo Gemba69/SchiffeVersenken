@@ -1,15 +1,3 @@
-var ENEMY_ID_PREFIX = "enemy";
-var SELF_ID_PREFIX = "self";
-var PHASE_1 = "Phase 1";
-var PHASE_2 = "Phase 2";
-var INSTRUCTIONS_PHASE_2_TEXT = "Feuere die Schiffe deines Gegners ab!";
-var NO_VALID_SHIPS_WARNING = "Auf dem Server wurde keine gültige Schiffsanordnung erkannt. Bitte Seite neuladen und entsprechend korrigieren.";
-var CONTINUE_BUTTON_CODE = "<button id='continuebutton' onclick='nextPhaseAjaxRequest()'>Angriff beginnen</button>";
-var CONTINUE_INSTRUCTIONS_TEXT = "Sehr gut. Wenn du sicher bist, dass alle Schiffe richtig platziert sind, gehe nun zum Angriff über.";
-var FIRST_INSTRUCTIONS_TEXT = "Platziere deine Schiffe auf dem unteren Feld."; //TODO: texte nicht hardcoden
-
-var nextRequestFile = "ajax.php";
-
 function addMouseDownClassToCell(i, j, idPrefix) {
 	document.getElementById(idPrefix + "_cell_" + i + "_" + j).classList.add("mouse_down");
 }
@@ -69,8 +57,8 @@ function hasClass(element, cls) {
 function cellClickedAjaxRequest(i, j, idPrefix) {
 	$.ajax({
 		type: 'POST',
-		url: nextRequestFile,
-		data: { i: i, j: j, gameField: idPrefix },
+		url: 'PHP/ajax.php',
+		data: { requestType: 'cellClicked', i: i, j: j, gameField: idPrefix },
 		dataType: 'html',
 		success: function(data) {
 			processAnswer(data);
@@ -83,9 +71,10 @@ function cellClickedAjaxRequest(i, j, idPrefix) {
 
 function resumeSessionAjaxRequest() {
 	$.ajax({
-		type: 'GET',
-		url: 'ajax.php',
+		type: 'POST',
+		url: 'PHP/ajax.php',
 		dataType: 'html',
+		data: { requestType: 'resumeSession' },
 		success: function(data) {
 			processAnswer(data);
 		},
@@ -96,28 +85,45 @@ function resumeSessionAjaxRequest() {
 }
 
 function nextPhaseAjaxRequest() {
-	$.post(nextRequestFile, { nextPhase: "true" })
-	.done(function(data) {
-		processAnswer(data);
+	$.ajax({
+		type: 'POST',
+		url: 'PHP/ajax.php',
+		dataType: 'html',
+		data: { requestType: 'nextPhase' },
+		success: function(data) {
+			processAnswer(data);
+		},
+		error: function(data, a, b) {
+			alert(data + a + b);
+		}
 	});
 }
 
+function resetAjaxRequest() {
+	$.ajax({
+		type: 'POST',
+		url: 'PHP/ajax.php',
+		dataType: 'html',
+		data: { requestType: 'reset' },
+		success: function(data) {
+			//processAnswer(data);
+		},
+		error: function(data, a, b) {
+			alert(data + a + b);
+		}
+	});
+}
+
+
 function processAnswer(answer) {
-	//alert(answer);
-	//window.clipboardData.setData("Text",answer);
 	document.getElementById('infobox').innerHTML = answer; //debug
-	
+
 	answer = $.parseJSON(answer);
-	if (answer.illegal == true)
+	if (answer.illegal)
 		return;
-	nextRequestFile = answer.nextRequest;
-	if (answer.cells == null) 
-		return;
-	
+	document.getElementById('instructions').innerHTML = answer.instructions;
+	document.getElementById('title').innerHTML = answer.title;
 	var cells = answer.cells;
-	var title = answer.title;
-	var instructions = answer.instructions;
-	
 	for (var v = 0; v < cells.length; v++) {
 		var i = cells[v].i;
 		var j = cells[v].j;
@@ -129,31 +135,6 @@ function processAnswer(answer) {
 		else
 			flipTile(i, j, idPrefix, color);
 	}
-	
-	document.getElementById('instructions').innerHTML = instructions;
-	document.getElementById('title').innerHTML = title;
-	
-	/*document.getElementById('remainingships').classList.remove('fadeinanim');
-	document.getElementById('remainingships').innerHTML = remainingShipCode;
-	document.getElementById('instructions').classList.remove('fadeinanim');
-	document.getElementById('instructions').innerHTML = FIRST_INSTRUCTIONS_TEXT;
-	
-	if (answer.allShipsPlaced) {
-		document.getElementById('remainingships').firstChild.classList.add('fadeoutanim');
-		document.getElementById('instructions').classList.add('fadeoutanim');
-		setTimeout(function() {
-				document.getElementById('remainingships').innerHTML = CONTINUE_BUTTON_CODE;
-				document.getElementById('remainingships').classList.remove('fadeoutanim');
-				document.getElementById('remainingships').classList.add('fadeinanim');
-				
-				document.getElementById('instructions').innerHTML = CONTINUE_INSTRUCTIONS_TEXT;
-				document.getElementById('instructions').classList.remove('fadeoutanim');
-				document.getElementById('instructions').classList.add('fadeinanim');
-			}, 200);
-	}*/
+
 }
 
-function reset() {
-	//resumeSessionAjaxRequest();
-	$.post( "ajax.php", {reset:"true" }); // a bit hacky, but this function will not be in production anyway
-}
