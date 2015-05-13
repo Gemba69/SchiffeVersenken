@@ -5,4 +5,4 @@ Framework
 raffinierte Interaktion in der Oberfläche
 
 Installation: Anmeldung mit einem bestimmten Benutzer
-Beschreibung der Anwendung mit Screenshots (Funktionen)
+Beschreibung der Anwendung mit Screenshots (Funktionen) (Benutzerhandbuch)
