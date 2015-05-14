@@ -245,44 +245,44 @@ class SpielzugDatenbankSchnittstelle {
         $adjazenzen = array();
         if ($spielbrettnr == 0) {
             $i = 0;
-            if ($this->spielbrett0[$x + 1][$y] == self::CONST_SCHIFF) {
+            if (isset($this->spielbrett0[$x + 1][$y])&&$this->spielbrett0[$x + 1][$y] == self::CONST_SCHIFF) {
                 $adjazenzen[$i][1] = $x + 1;
                 $adjazenzen[$i][2] = $y;
                 $i++;
             }
-            if ($this->spielbrett0[$x - 1][$y] == self::CONST_SCHIFF) {
+            if (isset($this->spielbrett0[$x - 1][$y])&&$this->spielbrett0[$x - 1][$y] == self::CONST_SCHIFF) {
                 $adjazenzen[$i][1] = $x - 1;
                 $adjazenzen[$i][2] = $y;
                 $i++;
             }
-            if ($this->spielbrett0[$x][$y + 1] == self::CONST_SCHIFF) {
+            if (isset($this->spielbrett0[$x][$y+1])&&$this->spielbrett0[$x][$y + 1] == self::CONST_SCHIFF) {
                 $adjazenzen[$i][1] = $x;
                 $adjazenzen[$i][2] = $y + 1;
                 $i++;
             }
-            if ($this->spielbrett0[$x][$y - 1] == self::CONST_SCHIFF) {
+            if (isset($this->spielbrett0[$x][$y-1])&&$this->spielbrett0[$x][$y - 1] == self::CONST_SCHIFF) {
                 $adjazenzen[$i][1] = $x;
                 $adjazenzen[$i][2] = $y - 1;
                 $i++;
             }
         } elseif ($spielbrettnr == 1) {
             $i = 0;
-            if ($this->spielbrett1[$x + 1][$y] == self::CONST_SCHIFF) {
+            if (isset($this->spielbrett1[$x + 1][$y])&&$this->spielbrett1[$x + 1][$y] == self::CONST_SCHIFF) {
                 $adjazenzen[$i][1] = $x + 1;
                 $adjazenzen[$i][2] = $y;
                 $i++;
             }
-            if ($this->spielbrett1[$x - 1][$y] == self::CONST_SCHIFF) {
+            if (isset($this->spielbrett1[$x - 1][$y])&&$this->spielbrett1[$x - 1][$y] == self::CONST_SCHIFF) {
                 $adjazenzen[$i][1] = $x - 1;
                 $adjazenzen[$i][2] = $y;
                 $i++;
             }
-            if ($this->spielbrett1[$x][$y + 1] == self::CONST_SCHIFF) {
+            if (isset($this->spielbrett1[$x][$y+1])&&$this->spielbrett1[$x][$y + 1] == self::CONST_SCHIFF) {
                 $adjazenzen[$i][1] = $x;
                 $adjazenzen[$i][2] = $y + 1;
                 $i++;
             }
-            if ($this->spielbrett1[$x][$y - 1] == self::CONST_SCHIFF) {
+            if (isset($this->spielbrett1[$x][$y-1])&&$this->spielbrett1[$x][$y - 1] == self::CONST_SCHIFF) {
                 $adjazenzen[$i][1] = $x;
                 $adjazenzen[$i][2] = $y - 1;
                 $i++;
@@ -301,44 +301,44 @@ class SpielzugDatenbankSchnittstelle {
         $adjazenzen = array();
         if ($spielbrettnr == 0) {
             $i = 0;
-            if ($this->spielbrett0[$x + 1][$y] == self::CONST_TREFFER) {
+            if (isset($this->spielbrett0[$x + 1][$y])&&$this->spielbrett0[$x + 1][$y] == self::CONST_TREFFER) {
                 $adjazenzen[$i][1] = $x + 1;
                 $adjazenzen[$i][2] = $y;
                 $i++;
             }
-            if ($this->spielbrett0[$x - 1][$y] == self::CONST_TREFFER) {
+            if (isset($this->spielbrett0[$x - 1][$y])&&$this->spielbrett0[$x - 1][$y] == self::CONST_TREFFER) {
                 $adjazenzen[$i][1] = $x - 1;
                 $adjazenzen[$i][2] = $y;
                 $i++;
             }
-            if ($this->spielbrett0[$x][$y + 1] == self::CONST_TREFFER) {
+            if (isset($this->spielbrett0[$x][$y+1])&&$this->spielbrett0[$x][$y + 1] == self::CONST_TREFFER) {
                 $adjazenzen[$i][1] = $x;
                 $adjazenzen[$i][2] = $y + 1;
                 $i++;
             }
-            if ($this->spielbrett0[$x][$y - 1] == self::CONST_TREFFER) {
+            if (isset($this->spielbrett0[$x][$y-1])&&$this->spielbrett0[$x][$y - 1] == self::CONST_TREFFER) {
                 $adjazenzen[$i][1] = $x;
                 $adjazenzen[$i][2] = $y - 1;
                 $i++;
             }
         } elseif ($spielbrettnr == 1) {
             $i = 0;
-            if ($this->spielbrett1[$x + 1][$y] == self::CONST_TREFFER) {
+            if (isset($this->spielbrett1[$x + 1][$y])&&$this->spielbrett1[$x + 1][$y] == self::CONST_TREFFER) {
                 $adjazenzen[$i][1] = $x + 1;
                 $adjazenzen[$i][2] = $y;
                 $i++;
             }
-            if ($this->spielbrett1[$x - 1][$y] == self::CONST_TREFFER) {
+            if (isset($this->spielbrett1[$x - 1][$y])&&$this->spielbrett1[$x - 1][$y] == self::CONST_TREFFER) {
                 $adjazenzen[$i][1] = $x - 1;
                 $adjazenzen[$i][2] = $y;
                 $i++;
             }
-            if ($this->spielbrett1[$x][$y + 1] == self::CONST_TREFFER) {
+            if (isset($this->spielbrett1[$x][$y+1])&&$this->spielbrett1[$x][$y + 1] == self::CONST_TREFFER) {
                 $adjazenzen[$i][1] = $x;
                 $adjazenzen[$i][2] = $y + 1;
                 $i++;
             }
-            if ($this->spielbrett1[$x][$y - 1] == self::CONST_TREFFER) {
+            if (isset($this->spielbrett1[$x][$y-1])&&$this->spielbrett1[$x][$y - 1] == self::CONST_TREFFER) {
                 $adjazenzen[$i][1] = $x;
                 $adjazenzen[$i][2] = $y - 1;
                 $i++;

@@ -56,7 +56,7 @@ class KI {
 
     //function schiffeSetzten($feld, $schiffe) {
     function schiffeSetzten($schiffe) {
-        $feld= $this->gameField->getAsArray();
+        $feld = $this->gameField->getAsArray();
         $outerzaehler = 0;
         do {
             $tempfeld = $feld;
@@ -71,9 +71,12 @@ class KI {
                         $y = rand(0, (sizeof($tempfeld, 1) / sizeof($tempfeld)));
                         $ausrichtung = rand(0, 1);
                         $temp = $this->schiffsetzen($x, $y, $ausrichtung, $tempfeld, $schiff);
+                        //$this->ausgabe($temp[0]);
+                        print("<br>");
                         if ($temp[1] == true) {
                             $tempfeld = $temp[0];
                             $innerwhile = false;
+                            print("schiff gesetzt: " . $schiff . "<br>");
                         } else if ($innerzaehler > 1000) {
                             $innerwhile = false;
                             $outerwhile = true;
@@ -84,6 +87,9 @@ class KI {
                         break;
                     }
                 }
+                if ($outerwhile) {
+                    break;
+                }
             }
             $outerzaehler++;
         } while ($outerwhile && $outerzaehler < 1000);
@@ -92,8 +98,8 @@ class KI {
         } else {
             $feld = $tempfeld;
         }
-        $this->gameField= $feld;
-        return $feld();
+        $this->gameField = $feld;
+        return $feld;
     }
 
     /*
@@ -111,8 +117,14 @@ class KI {
                 $temp[1] = false;
                 return($temp);
             } else {
+
                 for ($i = 0; $i < $schiff; $i++) {
                     $tempfeld[$x + $i][$y] = "SCHIFF";
+                    if (count($this->findeAdjazenteSchiffe($x + $i, $y, $feld)) > 0) {
+                        $temp[0] = $feld;
+                        $temp[1] = false;
+                        return($temp);
+                    }
                 }
                 if ($this->schiffePrüfung($tempfeld)) {
                     $temp[0] = $tempfeld;
@@ -130,8 +142,14 @@ class KI {
                 $temp[1] = false;
                 return($temp);
             } else {
+
                 for ($i = 0; $i < $schiff; $i++) {
                     $tempfeld[$x][$y + $i] = "SCHIFF";
+                    if (count($this->findeAdjazenteSchiffe($x, $y + $i, $feld)) > 0) {
+                        $temp[0] = $feld;
+                        $temp[1] = false;
+                        return($temp);
+                    }
                 }
                 if ($this->schiffePrüfung($tempfeld)) {
                     $temp[0] = $tempfeld;
@@ -190,7 +208,6 @@ class KI {
                     $versenkt++;
                 } else if ($feld[$i][$j] == "SCHIFF") {
                     $schiff++;
-                    print("Fehler!! Ein Feld SCHIFF würde dem Gegner übergeben");
                 }
             }
         }
@@ -204,22 +221,22 @@ class KI {
             for ($i = 0; $i < (sizeof($feld)); $i++) {
                 for ($j = 0; $j < (max(array_map('count', $feld))); $j++) {
                     if ($feld[$i][$j] == "TREFFER") {
-                        if (sizeof(($adjazenzen = $this->findeAdjazenteTreffer($i, $j, $feld)), 1) / 2 > 1) {
+                        if (count(($adjazenzen = $this->findeAdjazenteTreffer($i, $j, $feld))) > 0) {
                             if ($adjazenzen[0][1] < $i || $adjazenzen[0][1] > $i) {
                                 $stelle[1] = $j; //y-koordinate
                                 $x = 1;
-                                while ($feld[$i + $x][$j] == "TREFFER") {
+                                while (isset($feld[$i + $x][$j]) && $feld[$i + $x][$j] == "TREFFER") {
                                     $x++;
                                 }
-                                if ($feld[$i + $x][$j] == "WASSER") {
+                                if (isset($feld[$i + $x][$j]) && ($feld[$i + $x][$j] == "WASSER" || $feld[$i + $x][$j] == "SCHIFF")) {
                                     $stelle[0] = $i + $x;
                                     return $stelle;
                                 } else {
                                     $x = -1;
-                                    while ($feld[$i + $x][$j] == "TREFFER") {
+                                    while (isset($feld[$i + $x][$j]) && $feld[$i + $x][$j] == "TREFFER") {
                                         $x--;
                                     }
-                                    if ($feld[$i + $x][$j] == "WASSER") {
+                                    if (isset($feld[$i + $x][$j]) && ($feld[$i + $x][$j] == "WASSER" || $feld[$i + $x][$j] == "SCHIFF")) {
                                         $stelle[0] = $i + $x;
                                         return $stelle;
                                     } else {
@@ -229,18 +246,18 @@ class KI {
                             } else {
                                 $stelle[0] = $i; //x-koordinate
                                 $y = 1;
-                                while ($feld[$i][$j + $y] == "TREFFER") {
+                                while (isset($feld[$i][$j + $y]) && $feld[$i][$j + $y] == "TREFFER") {
                                     $y++;
                                 }
-                                if ($feld[$i][$j + $y] == "WASSER") {
+                                if (isset($feld[$i][$j + $y]) && ($feld[$i][$j + $y] == "WASSER" || $feld[$i][$j + $y] == "SCHIFF")) {
                                     $stelle[1] = $j + $y;
                                     return $stelle;
                                 } else {
                                     $y = -1;
-                                    while ($feld[$i][$j + $y] == "TREFFER") {
+                                    while (isset($feld[$i][$j + $y]) && $feld[$i][$j + $y] == "TREFFER") {
                                         $y--;
                                     }
-                                    if ($feld[$i][$j + $y] == "WASSER") {
+                                    if (isset($feld[$i][$j + $y]) && ($feld[$i][$j + $y] == "WASSER" || $feld[$i][$j + $y] == "SCHIFF")) {
                                         $stelle[1] = $j + $y;
                                         return $stelle;
                                     } else {
@@ -248,45 +265,29 @@ class KI {
                                     }
                                 }
                             }
-                        } else if (sizeof(($adjazenzen = $this->findeAdjazenteTreffer($i, $j, $feld)), 1) / 2 > 0) {
-                            if ($adjazenzen[0][1] < $i) {
-                                $stelle[0] = $i + 1; //x-koordinate
-                                $stelle[1] = $j; //y-koordinate
-                                return $stelle;
-                            } else if ($adjazenzen[0][1] > $i) {
-                                $stelle[0] = $i - 1; //x-koordinate
-                                $stelle[1] = $j; //y-koordinate
-                                return $stelle;
-                            } else if ($adjazenzen[0][2] < $j) {
-                                $stelle[0] = $i; //x-koordinate
-                                $stelle[1] = $j + 1; //y-koordinate
-                                return $stelle;
-                            } else if ($adjazenzen[0][2] > $j) {
-                                $stelle[0] = $i; //x-koordinate
-                                $stelle[1] = $j - 1; //y-koordinate
-                                return $stelle;
-                            }
                         } else {
-                            $richtung = rand(0, 3);
-                            if ($richtung == 0) {
-                                $stelle[0] = $i + 1; //x-koordinate
-                                $stelle[1] = $j; //y-koordinate
-                                return $stelle;
-                            }
-                            if ($richtung == 1) {
-                                $stelle[0] = $i - 1; //x-koordinate
-                                $stelle[1] = $j; //y-koordinate
-                                return $stelle;
-                            }
-                            if ($richtung == 2) {
-                                $stelle[0] = $i; //x-koordinate
-                                $stelle[1] = $j + 1; //y-koordinate
-                                return $stelle;
-                            }
-                            if ($richtung == 3) {
-                                $stelle[0] = $i; //x-koordinate
-                                $stelle[1] = $j - 1; //y-koordinate
-                                return $stelle;
+                            while (true) {
+                                $richtung = rand(0, 3);
+                                if ($richtung == 0 && isset($feld[$i + 1][$j]) && ($feld[$i + 1][$j] == "WASSER" || $feld[$i + 1][$j] == "SCHIFF")) {
+                                    $stelle[0] = $i + 1; //x-koordinate
+                                    $stelle[1] = $j; //y-koordinate
+                                    return $stelle;
+                                }
+                                if ($richtung == 1 && isset($feld[$i - 1][$j]) && ($feld[$i - 1][$j] == "WASSER" || $feld[$i - 1][$j] == "SCHIFF")) {
+                                    $stelle[0] = $i - 1; //x-koordinate
+                                    $stelle[1] = $j; //y-koordinate
+                                    return $stelle;
+                                }
+                                if ($richtung == 2 && isset($feld[$i][$j + 1]) && ($feld[$i][$j + 1] == "WASSER" || $feld[$i][$j + 1] == "SCHIFF")) {
+                                    $stelle[0] = $i; //x-koordinate
+                                    $stelle[1] = $j + 1; //y-koordinate
+                                    return $stelle;
+                                }
+                                if ($richtung == 3 && isset($feld[$i][$j - 1]) && ($feld[$i][$j - 1] == "WASSER" || $feld[$i][$j - 1] == "SCHIFF")) {
+                                    $stelle[0] = $i; //x-koordinate
+                                    $stelle[1] = $j - 1; //y-koordinate
+                                    return $stelle;
+                                }
                             }
                         }
                     }
@@ -297,7 +298,7 @@ class KI {
             $felder = array();
             for ($i = 0; $i < (sizeof($feld)); $i++) {
                 for ($j = 0; $j < (max(array_map('count', $feld))); $j++) {
-                    if ($feld[$i][$j] == "WASSER" && count($this->findeAdjazenteTreffer($i, $j, $feld)) == 0) {
+                    if (($feld[$i][$j] == "WASSER" || $feld[$i][$j] == "SCHIFF") && count($this->findeAdjazenteVersenkt($i, $j, $feld)) == 0) {
                         $felder[$felderanzahl][0] = $i;
                         $felder[$felderanzahl][1] = $j;
                         $felderanzahl++;
@@ -317,7 +318,7 @@ class KI {
      */
 
     private function plausibel($feld, $x, $y) {
-        if ($feld[$x][$y] == "WASSER") {
+        if ($feld[$x][$y] <> "MISS" && $feld[$x][$y] <> "TREFFER" && $feld[$x][$y] <> "VERSENKT") {
             return true;
         }
         return false;
@@ -334,34 +335,115 @@ class KI {
     }
 
     /*
+     * Die Funktion findeAdjazenteVersekt gibt alle adjazenten Felder, 
+     * die auch Versenkt sind in einem Array zurück.
+     */
+
+    private function findeAdjazenteVersenkt($x, $y, $feld) {
+        $adjazenzen = array();
+        $i = 0;
+        if (isset($feld[$x + 1][$y + 1]) && $feld[$x + 1][$y + 1] == "TREFFER") {
+            $adjazenzen[$i][1] = $x + 1;
+            $adjazenzen[$i][2] = $y + 1;
+            $i++;
+        }
+        if (isset($feld[$x - 1][$y - 1]) && $feld[$x - 1][$y - 1] == "TREFFER") {
+            $adjazenzen[$i][1] = $x - 1;
+            $adjazenzen[$i][2] = $y - 1;
+            $i++;
+        }
+        if (isset($feld[$x - 1][$y + 1]) && $feld[$x - 1][$y + 1] == "TREFFER") {
+            $adjazenzen[$i][1] = $x - 1;
+            $adjazenzen[$i][2] = $y + 1;
+            $i++;
+        }
+        if (isset($feld[$x + 1][$y - 1]) && $feld[$x + 1][$y - 1] == "TREFFER") {
+            $adjazenzen[$i][1] = $x + 1;
+            $adjazenzen[$i][2] = $y - 1;
+            $i++;
+        }
+        return $adjazenzen;
+    }
+
+    /*
      * Die Funktion findeAdjazenteTreffer gibt alle adjazenten Felder, 
-     * die auch Treffer sind in einem Array zurück.
+     * die auch getroffen sind in einem Array zurück.
      */
 
     private function findeAdjazenteTreffer($x, $y, $feld) {
         $adjazenzen = array();
         $i = 0;
-        if ($feld[$x + 1][$y] == "TREFFER") {
+        if (isset($feld[$x + 1][$y]) && $feld[$x + 1][$y] == "TREFFER") {
             $adjazenzen[$i][1] = $x + 1;
             $adjazenzen[$i][2] = $y;
             $i++;
         }
-        if ($feld[$x - 1][$y] == "TREFFER") {
+        if (isset($feld[$x - 1][$y]) && $feld[$x - 1][$y] == "TREFFER") {
             $adjazenzen[$i][1] = $x - 1;
             $adjazenzen[$i][2] = $y;
             $i++;
         }
-        if ($feld[$x][$y + 1] == "TREFFER") {
+        if (isset($feld[$x][$y + 1]) && $feld[$x][$y + 1] == "TREFFER") {
             $adjazenzen[$i][1] = $x;
             $adjazenzen[$i][2] = $y + 1;
             $i++;
         }
-        if ($feld[$x][$y - 1] == "TREFFER") {
+        if (isset($feld[$x][$y - 1]) && $feld[$x][$y - 1] == "TREFFER") {
             $adjazenzen[$i][1] = $x;
             $adjazenzen[$i][2] = $y - 1;
             $i++;
         }
         return $adjazenzen;
+    }
+
+    /*
+     * Die Funktion findeAdjazenteSchiffe gibt alle adjazenten Felder, 
+     * die auch ein Schiff sind in einem Array zurück.
+     */
+
+    private function findeAdjazenteSchiffe($x, $y, $feld) {
+        $adjazenzen = array();
+        $i = 0;
+        if (isset($feld[$x + 1][$y]) && $feld[$x + 1][$y] == "SCHIFF") {
+            $adjazenzen[$i][1] = $x + 1;
+            $adjazenzen[$i][2] = $y;
+            $i++;
+        }
+        if (isset($feld[$x - 1][$y]) && $feld[$x - 1][$y] == "SCHIFF") {
+            $adjazenzen[$i][1] = $x - 1;
+            $adjazenzen[$i][2] = $y;
+            $i++;
+        }
+        if (isset($feld[$x][$y + 1]) && $feld[$x][$y + 1] == "SCHIFF") {
+            $adjazenzen[$i][1] = $x;
+            $adjazenzen[$i][2] = $y + 1;
+            $i++;
+        }
+        if (isset($feld[$x][$y - 1]) && $feld[$x][$y - 1] == "SCHIFF") {
+            $adjazenzen[$i][1] = $x;
+            $adjazenzen[$i][2] = $y - 1;
+            $i++;
+        }
+        return $adjazenzen;
+    }
+
+    function ausgabe($feld) {
+        for ($i = 0; $i < 10; $i++) {
+            for ($j = 0; $j < 10; $j++) {
+                if ($feld[$i][$j] == "WASSER") {
+                    print("W ");
+                } elseif ($feld[$i][$j] == "SCHIFF") {
+                    print("S ");
+                } elseif ($feld[$i][$j] == "TREFFER") {
+                    print("T ");
+                } elseif ($feld[$i][$j] == "VERSENKT") {
+                    print("V ");
+                } elseif ($feld[$i][$j] == "MISS") {
+                    print("M ");
+                }
+            }
+            echo "<br>";
+        }
     }
 
     /*
