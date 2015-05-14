@@ -39,6 +39,10 @@ $rank =  $query->fetchAll();
 
 
 ?>
+
+Welches Spiel soll geladen werden?
+</br>
+</br>
 <form action="test.php" method="POST">
 <table border="1">
 	<tr>
