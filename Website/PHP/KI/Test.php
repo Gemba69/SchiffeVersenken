@@ -6,28 +6,66 @@
 <form action="test.php" methode="post">
     <input type="submit"></input>
 </form>
+<span style="font-family:Courier; font-size:20px">
+    <?php
 
-<?php
+    function __autoload($class_name) {
+        include $class_name . '.php';
+    }
 
-function __autoload($class_name) {
-    include $class_name . '.php';
-}
+    $feld = array();
 
-$feld = array();
-$feld[0][0] = "WASSER";
-$feld[0][1] = "WASSER";
-$feld[0][2] = "WASSER";
-$feld[1][0] = "WASSER";
-$feld[1][1] = "WASSER";
-$feld[1][2] = "WASSER";
-$feld[2][0] = "WASSER";
-$feld[2][1] = "WASSER";
-$feld[2][2] = "WASSER";
+    for ($i = 0; $i < 10; $i++) {
+        for ($j = 0; $j < 10; $j++) {
+            $feld[$i][$j] = "WASSER";
+        }
+    }
 
-$schiffe = array('10' => 0, '9' => 0, '8' => 0, '7' => 0, '6' => 0, '5' => 0, '4' => 0, '3' => 0, '2' => 2, '1' => 0); //todo: aus der datenbank auslesen
+    $schiffe = array('10' => 0, '9' => 0, '8' => 0, '7' => 0, '6' => 0, '5' => 1, '4' => 2, '3' => 3, '2' => 4, '1' => 0); //todo: aus der datenbank auslesen
 
-$ki = new KI("Dieter", 1);
-$ki->schiffePrüfung($feld);
-$ki->schiffeSetzten($feld, $schiffe);
-$ki->angriff($feld, $schiffe);
-?>
+    $ki = new KI("Dieter", 1);
+    $ki->schiffePrüfung($feld);
+    echo "Schiffe setzen: <br><br>";
+    $feld = $ki->schiffeSetzten($feld, $schiffe);
+    ausgabe($feld);
+    for ($i = 0; $i < 100; $i++) {
+        $punkt = $ki->angriff($feld, $schiffe);
+        if ($feld[$punkt[0]][$punkt[1]] == "WASSER") {
+            print("W getroffen <br>");
+            $feld[$punkt[0]][$punkt[1]] = "MISS";
+        } elseif ($feld[$punkt[0]][$punkt[1]] == "SCHIFF") {
+            print("S getroffen <br>");
+            $feld[$punkt[0]][$punkt[1]] = "TREFFER";
+        } elseif ($feld[$punkt[0]][$punkt[1]] == "TREFFER") {
+            print("T getroffen <br>");
+            $feld[$punkt[0]][$punkt[1]] = "TREFFER";
+        } elseif ($feld[$punkt[0]][$punkt[1]] == "VERSENKT") {
+            print("V getroffen <br>");
+            $feld[$punkt[0]][$punkt[1]] = "VERSENKT";
+        } elseif ($feld[$punkt[0]][$punkt[1]] == "MISS") {
+            print("M getroffen <br>");
+            $feld[$punkt[0]][$punkt[1]] = "MISS";
+        }
+        ausgabe($feld);
+    }
+
+    function ausgabe($feld) {
+        for ($i = 0; $i < 10; $i++) {
+            for ($j = 0; $j < 10; $j++) {
+                if ($feld[$i][$j] == "WASSER") {
+                    print("W ");
+                } elseif ($feld[$i][$j] == "SCHIFF") {
+                    print("S ");
+                } elseif ($feld[$i][$j] == "TREFFER") {
+                    print("T ");
+                } elseif ($feld[$i][$j] == "VERSENKT") {
+                    print("V ");
+                } elseif ($feld[$i][$j] == "MISS") {
+                    print("M ");
+                }
+            }
+            echo "<br>";
+        }
+    }
+    ?>
+</span>
