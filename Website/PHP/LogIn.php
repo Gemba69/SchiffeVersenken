@@ -41,7 +41,7 @@
 				$loginFehlermeldung = "<span class='Fehler'> Konto- oder Passworteingabe ist falsch! </span>";
 				$repString = "<form action=\"LogIn.php\" method=\"POST\">";
 				$loginFehlermeldung = $repString.$loginFehlermeldung;
-			    $template = file_get_contents("LogInFormular.html"); 
+			    $template = file_get_contents("../LogInFormular.html"); 
 				$count = 1;
 				$retVal = str_replace($repString, $loginFehlermeldung, $template, $count);
 			    echo $retVal;
