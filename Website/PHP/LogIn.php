@@ -49,7 +49,7 @@
 			
 		}else{
 			echo 'Eingaben nicht vollstaendig gefuellt oder entspricht nicht den RegEx!';
-			$template = file_get_contents("LogInFormular.html"); // Im Template eine Fehlermeldung schreiben
+			$template = file_get_contents("../LogInFormular.html"); // Im Template eine Fehlermeldung schreiben
 			echo $template;
 		}
 	  
