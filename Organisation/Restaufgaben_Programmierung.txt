@@ -1,0 +1,43 @@
+Programmierung Restaufgaben
+
+Phase 2 fertig implementieren + DAO einbinden
+Phasen in DB speichern -> Pöppelmann
+
+Session: Timeout, auf Seiten nachfragen ob eine besteht (Alle bis auf Startseite), Spiel laden In Session über Ajax setzen
+Spiel speichern + laden
+
+Mergen
+CSS Dateien Pöppelmann + Klabunde merken
+JS Datei von Pöppelmann (kann die Weg?)
+
+Bugfixes
+Fix: Fehlerhafter Login (kein css mehr wenn Login fehl schlägt und co mehr?)
+Logoff aktiv setzen (session beenden)
+Fix: Registrierung Fehlerhafte Email? Warum auch immer…
+Bezeichnungen „Logoff“ „Zurück zur Startseite“
+
+Seitenaufbau aufhübschen (Statistik, Spiel, etc.)
+
+Testen (u. A. auch Sarah)
+Pöppelmann Debug Sachen rausnehmen
+
+
+
+
+
+
+
+
+
+Refactor/Schöner machen (falls noch Zeit ist)
+- MehrspielerModi
+- Anzeige RestlichenSpiele
+- Verbidnung.php zentral includen (DAO, Statistik, Spielauswahl, etc. -> auf anderen DB User wechseln (in Skript dann mit einbinden)
+- Statistik eigenen Spieler markieren
+- Spielzuwahl eigenen Spieler rausnehmen
+
+
+	session_start();
+	var_dump($_SESSION);
+	echo "</br> </br>";
+	var_dump($_SESSION['BenutzerID']);

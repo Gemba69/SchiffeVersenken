@@ -9,3 +9,7 @@ Beschreibung der Anwendung mit Screenshots (Funktionen) (Benutzerhandbuch)
 Architektur
 Websiteprogrammierung
 (Javascript Anwendung)
+-> PHPDoc generieren bzw. noch machen
+
+
+Anforderungen: Was bedeutet „Benutzer verwalten“
