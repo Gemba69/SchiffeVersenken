@@ -59,6 +59,7 @@
 		
 				if ($stmt2->execute()){
 					echo '<p> Erfolgreich registriert! <p>';
+					header("Location: Registrierung_successfully.php");
 				}else{
 					echo 'Bei der Registrierung ist ein unerwarteter Fehler aufgetreten!';
 					$template = file_get_contents("../Registrierungsformular.html"); 

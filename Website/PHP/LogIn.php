@@ -37,6 +37,15 @@
 				echo '<p> Benutzerdaten gefunden! Login!! <p>';
 				$pwAbgleichFehler = true;
 				$logInAttempt = true;
+				session_start();
+				$_SESSION['login'] = true;
+				$_SESSION['Benutzer'] = $Benutzername;
+				$stmt = $dbh->prepare("SELECT ID FROM benutzer WHERE Benutzername = :benutzername");
+				$stmt->bindParam(':benutzername', $Benutzername);
+				$stmt->execute();
+				$BenutzerID = $stmt->fetchAll(PDO::FETCH_NUM);
+				$_SESSION['BenutzerID'] = $BenutzerID[0][0];
+				header("Location: ../Startseite.html");
 			}else{
 				$loginFehlermeldung = "<span class='Fehler'> Konto- oder Passworteingabe ist falsch! </span>";
 				$repString = "<form action=\"LogIn.php\" method=\"POST\">";
@@ -44,7 +53,7 @@
 			    $template = file_get_contents("../LogInFormular.html"); 
 				$count = 1;
 				$retVal = str_replace($repString, $loginFehlermeldung, $template, $count);
-			    echo $retVal;
+			    //header("Location: ../LoginFormular.html"); -> Test von Benni
 			}
 			
 		}else{

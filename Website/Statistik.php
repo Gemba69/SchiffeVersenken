@@ -1,3 +1,4 @@
+<?php require_once 'PHP/auth.php'; ?>
 <!doctype html>
 <html>
 	<head>
@@ -14,7 +15,9 @@
 			<a class='menuContent' href="Spielregeln.html">Spielregeln</a></br></br>
 			<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
 			<a class='menuContent' href="Impressum.html">Impressum</a></br></br></br></br></br></br></br></br>
+			<form action="PHP/Logout.php" method="post">
 			<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
+			</form>
 	</div>
 
 <?php
@@ -107,6 +110,8 @@ on a.Benutzername=b.Benutzername
 ?>
 </table>
 </div>
+
+
 
 	</body>
 </html>
