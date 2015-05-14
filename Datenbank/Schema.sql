@@ -127,6 +127,7 @@ join Spiel on Benutzer.ID=Spiel.Spieler_1
 or Benutzer.ID=Spiel.Spieler_2 
 group by Benutzername 
 order by GespielteSpiele desc
+;
 
  -- --------------------------------------------------------
 

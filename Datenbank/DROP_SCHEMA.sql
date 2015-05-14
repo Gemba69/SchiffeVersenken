@@ -4,3 +4,5 @@ Drop Table Farbcode;
 Drop Table Benutzer;
 Drop Table Spielzugtyp;
 Drop Table SpielStatus;
+Drop View highscore_gespielte_Spiele;
+Drop View highscore_gewonenne_Spiele;
