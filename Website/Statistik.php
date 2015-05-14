@@ -3,8 +3,19 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Statistiken</title>
+		<link href='stylesheets/Anmeldebild.css' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
 	</head>
 	<body>
+	<div id="hamburgercontainer" class='hamburger'>			
+			<a class='menuContent' href="Startseite.html">Zurück zur Startseite</a></br></br>
+			<a class='menuContent' href="LogInFormular.html">Zum Login</a></br></br>
+			<a class='menuContent' href="Spielauswahl.php">Spielauswahl</a></br></br>
+			<a class='menuContent' href="Spielregeln.html">Spielregeln</a></br></br>
+			<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
+			<a class='menuContent' href="Impressum.html">Impressum</a></br></br></br></br></br></br></br></br>
+			<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
+	</div>
 
 <?php
 
@@ -12,6 +23,7 @@ $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
 
 $rank = $dbh->query("Select * from highscore_gewonnene_Spiele;")->fetchAll();
 ?>
+<div id="page-wrapper">
 <table border="1">
 	<tr>
 		<td>Benutzername</td>
@@ -94,6 +106,7 @@ on a.Benutzername=b.Benutzername
 	}
 ?>
 </table>
+</div>
 
 	</body>
 </html>
