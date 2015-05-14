@@ -1,11 +1,12 @@
 --
 -- Testdaten Benutzer
+-- Gemba: 123; Klaubautermann: password; admin: admin; test: test
 --
 
-Insert Into Benutzer (Benutzername, Password, Email) VALUES ('Gemba', '123', 'bluhn@web.de');
-Insert Into Benutzer (Benutzername, Password, Email) VALUES ('Klabautermann', 'password', 'klaubautermann@web.de');
-Insert Into Benutzer (Benutzername, Password, Email) VALUES ('admin', 'admin', 'admin@web.de');
-Insert Into Benutzer (Benutzername, Password, Email) VALUES ('test', 'test', 'test@web.de');
+Insert Into Benutzer (Benutzername, Password, Email) VALUES ('Gemba', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'bluhn@web.de');
+Insert Into Benutzer (Benutzername, Password, Email) VALUES ('Klabautermann', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'klaubautermann@web.de');
+Insert Into Benutzer (Benutzername, Password, Email) VALUES ('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin@web.de');
+Insert Into Benutzer (Benutzername, Password, Email) VALUES ('test', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'test@web.de');
 
 --
 -- Testdaten Spielzugtyp
