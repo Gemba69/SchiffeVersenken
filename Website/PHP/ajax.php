@@ -24,16 +24,11 @@
 	}
 	
 	function resumeSession() {
-		//TODO: gameStatexampp
-		if ($_SESSION['gamePhase'] == 0) {
 			$gameFieldSelfArray = $_SESSION['gameFieldSelf']->getAsArray();
-			$postData = GameHelperFunctions::generateReturnArray($gameFieldSelfArray, $_SESSION['requiredShips'], $gameFieldSelfArray, $_SESSION['gamePhase']);
+			$gameFieldEnemyArray = $_SESSION['gameFieldSelf']->getAsArray();
+
+			$postData = GameHelperFunctions::generateResumeSessionArray($gameFieldSelfArray, $gameFieldEnemyArray, $_SESSION['requiredShips'], $_SESSION['gamePhase']);
 			echo json_encode(GameHelperFunctions::utf8ize($postData));
-		} else if ($_SESSION['gamePhase'] == 1) {
-			$gameFieldSelfArray = $_SESSION['gameFieldSelf']->getAsArray();
-			$postData = GameHelperFunctions::generateReturnArray($gameFieldSelfArray, $_SESSION['requiredShips'], $gameFieldSelfArray, $_SESSION['gamePhase']);
-			echo json_encode(GameHelperFunctions::utf8ize($postData));
-		}	
 	}
 	
 	function createNewSession() {
@@ -57,7 +52,7 @@
 	function advancePhase() {
 		$_SESSION['gamePhase'] = 1;
 		$gameFieldSelfArray = $_SESSION['gameFieldSelf']->getAsArray();
-		$postData = GameHelperFunctions::generateReturnArray($gameFieldSelfArray, $_SESSION['requiredShips'], null, 1);
+		$postData = GameHelperFunctions::generateClickResponseArray($gameFieldSelfArray, $_SESSION['requiredShips'], 1, null, null, null, null);
 		$_SESSION['gameFieldEnemy'] = AI::placeShips($_SESSION['requiredShips'], 10, 10); // TODO: 10x10 zentral auslesen
 		echo json_encode(GameHelperFunctions::utf8ize($postData));
 	}
@@ -79,9 +74,8 @@
 		$j = $_POST['j'];
 		
 		$gameFieldSelf->toggleShip($i, $j);
-		$fakeGameField = GameHelperFunctions::initializeOrFetchGame(10, 10); //TODO: Wenn Fetch Game implementiert ist, geht das nicht mehr
-		$fakeGameField[$i][$j] = SHIP_ID; // Extrem hackige Art, das gewünschte zu tun...
-		$postData = GameHelperFunctions::generateReturnArray($gameFieldSelf->getAsArray(), $_SESSION['requiredShips'], $fakeGameField, 0);
+		$_SESSION['gameFieldSelf'] = $gameFieldSelf;
+		$postData = GameHelperFunctions::generateClickResponseArray($gameFieldSelf->getAsArray(), $_SESSION['requiredShips'], 0, $i, $j, SELF_ID_PREFIX, SHIP_ID);
 		echo json_encode(GameHelperFunctions::utf8ize($postData));
 	}
 	

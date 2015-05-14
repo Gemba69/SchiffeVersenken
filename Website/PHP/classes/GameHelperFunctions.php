@@ -64,44 +64,97 @@
 		}
 		
 			//TODO: verschiedene phasen
-		public static function generateReturnArray($gameField, $requiredShips, $gameFieldJustPressed, $phase) {
-			
-	
-				$cellData = array();
-				$counter = 0;
-				for ($i = 0; $i < count($gameFieldJustPressed); $i++) {
-					for ($j = 0; $j < count($gameFieldJustPressed[$i]); $j++) {
-						if ($gameFieldJustPressed[$i][$j] === SHIP_ID) {
-							$cell = array('i' => $i,
-										  'j' => $j,
-										  'color' => 'gray', //TODO: farbe aus gameField auslesen
-										  'gameField' => SELF_ID_PREFIX);
-							$cellData[$counter] = $cell;
-							$counter++;
-						}
-					}
+		public static function generateResumeSessionArray($gameFieldSelf, $gameFieldEnemy, $requiredShips, $phase) {
+			$cellData = self::generateCellDataArray($gameFieldSelf, SELF_ID_PREFIX);
+			$cellData = array_merge($cellData, self::generateCellDataArray($gameFieldEnemy, ENEMY_ID_PREFIX));
+			$postData = array('cells' => $cellData);
+			if ($phase == 0) {
+				if (self::allShipsPlaced($gameField, $requiredShips)) {
+					$postData['instructions'] = CONTINUE_INSTRUCTIONS."<br><br>".CONTINUE_BUTTON_CODE;
+					$postData['title'] = PHASE_1_TITLE;
+				} else {
+					$remainingShips = self::drawRemainingShips($gameField, $requiredShips); //TODO: siehe oben
+					$instructions = "<li>".PHASE_1_MAJOR_INSTRUCTIONS."</li>".$remainingShips;
+					$postData['instructions'] = $instructions;
+					$postData['title'] = PHASE_1_TITLE;
 				}
-					
-				$postData = array('cells' => $cellData);
-				
-				if ($phase == 0) {
-					if (self::allShipsPlaced($gameField, $requiredShips)) {
-						$postData['instructions'] = CONTINUE_INSTRUCTIONS."<br><br>".CONTINUE_BUTTON_CODE;
-						$postData['title'] = PHASE_1_TITLE;
-					} else {
-						$remainingShips = self::drawRemainingShips($gameField, $requiredShips); //TODO: siehe oben
-						$instructions = "<li>".PHASE_1_MAJOR_INSTRUCTIONS."</li>".$remainingShips;
-						$postData['instructions'] = $instructions;
-						$postData['title'] = PHASE_1_TITLE;
-					}
-				} else if ($phase == 1) {
-					$postData['title'] = PHASE_2_TITLE;
-					$postData['instructions'] = PHASE_2_MAJOR_INSTRUCTIONS;
-				}
-	
+			} else if ($phase == 1) {
+				$postData['title'] = PHASE_2_TITLE;
+				$postData['instructions'] = PHASE_2_MAJOR_INSTRUCTIONS;
+			}
+
 			return $postData;
 		}
 		
+		public static function generateClickResponseArray($gameFieldSelf, $requiredShips, $phase, $iJustClicked, $jJustClicked, $fieldJustClicked, $colorJustClicked) {
+			$cellData = self::generateCellDataArrayForSingleClick($iJustClicked, $jJustClicked, $colorJustClicked, $fieldJustClicked);
+			$postData = array('cells' => $cellData);
+			if ($phase == 0) {
+				if (self::allShipsPlaced($gameFieldSelf, $requiredShips)) {
+					$postData['instructions'] = CONTINUE_INSTRUCTIONS."<br><br>".CONTINUE_BUTTON_CODE;
+					$postData['title'] = PHASE_1_TITLE;
+				} else {
+					$remainingShips = self::drawRemainingShips($gameFieldSelf, $requiredShips); //TODO: siehe oben
+					$instructions = "<li>".PHASE_1_MAJOR_INSTRUCTIONS."</li>".$remainingShips;
+					$postData['instructions'] = $instructions;
+					$postData['title'] = PHASE_1_TITLE;
+				}
+			} else if ($phase == 1) {
+				$postData['title'] = PHASE_2_TITLE;
+				$postData['instructions'] = PHASE_2_MAJOR_INSTRUCTIONS;
+			}
+			return $postData;
+		}
+		
+		public static function generateCellDataArray($gameFieldArray, $selfEnemy) {
+			$cellData = array();
+			$counter = 0;
+			for ($i = 0; $i < count($gameFieldArray); $i++) {
+				for ($j = 0; $j < count($gameFieldArray[$i]); $j++) {
+					$color = self::convertColor($gameFieldArray[$i][$j]);
+					if ($gameFieldArray[$i][$j] === SHIP_ID) {
+						$cell = array('i' => $i,
+									  'j' => $j,
+									  'color' => $color,
+									  'gameField' => $selfEnemy);
+						$cellData[$counter] = $cell;
+						$counter++;
+					}
+				}
+			}
+			return $cellData;
+		}
+		
+		public static function generateCellDataArrayForSingleClick($i, $j, $color, $gameField) {
+			$jsColor = self::convertColor($color);
+
+			$cell = array('i' => $i,
+					  'j' => $j,
+					  'color' => $jsColor,
+					  'gameField' => $gameField);
+			$cellData = array(0 => $cell);
+			return $cellData;
+		}
+		
+		public static function convertColor($colorConstant) {
+			//var_dump ($colorConstant);
+			$color = "";
+			switch($colorConstant) { ///TODO: farben nicht hardcoden
+				case SHIP_ID:
+					$color = "gray";
+					break;
+				case MISS_ID:
+					$color = "darkblue";
+					break;
+				case HIT_ID:
+					$color = "red";
+					break;
+				case DESTROYED_ID:
+					$color = "black";
+					break;
+			}
+			return $color;
+		}
 		
 		private static function getRemainingShipsPlusWarning($drawnShips, $requiredShips, &$warning) {
 			$remainingShips = array();
