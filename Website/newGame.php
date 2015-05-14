@@ -3,11 +3,14 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Neues Spiel</title>
-		<script src="newGame.js"></script>
+		<script src="scripts/newGame.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href='stylesheets/Anmeldebild.css' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
 </br> </br>
 <form>
+<div id="page-wrapper">
 <input type="radio" id="KI" name="Player" value="KI" onclick="checkEnemy()">KI</input>
 <input type="radio" id="Real" name="Player" value="realer Gegner" onclick="checkEnemy()">realer Gegner</input>
 </br> </br>
@@ -51,7 +54,8 @@ $rank = $query->fetchAll();
   
 </table>
 </br></br><br/>
- <input type="submit" name="StartNewGame" value="Neues Spiel starten"></input>
+  <input type="submit" name="StartNewGame" value="Neues Spiel starten"></input>
+ </div>
  </form>
 
 	</body>
