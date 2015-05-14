@@ -52,8 +52,8 @@ Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (4,1, 1);
 --
 
 -- SPIEL1: Schiffe setzen Spieler 1
-Insert Into Spielzug (SpielID, Spielbrett, X_Koordinate, Y_Koordinate, Spielzugtyp) VALUES (0,1,1,7,1);
-Insert Into Spielzug (SpielID, Spielbrett, X_Koordinate, Y_Koordinate, Spielzugtyp) VALUES (0,1,1,8,1);
+Insert Into Spielzug (SpielID, Spielbrett, X_Koordinate, Y_Koordinate, Spielzugtyp) VALUES (1,1,1,7,1);
+Insert Into Spielzug (SpielID, Spielbrett, X_Koordinate, Y_Koordinate, Spielzugtyp) VALUES (1,1,1,8,1);
 
 Insert Into Spielzug (SpielID, Spielbrett, X_Koordinate, Y_Koordinate, Spielzugtyp) VALUES (1,1,1,0,1);
 Insert Into Spielzug (SpielID, Spielbrett, X_Koordinate, Y_Koordinate, Spielzugtyp) VALUES (1,1,2,0,1);
