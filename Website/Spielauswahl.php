@@ -3,18 +3,25 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Spielauswahl</title>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href='stylesheets/Anmeldebild.css' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
 	</head>
 	<body>
+		<form action="newGame.php">
+		<div id="hamburgercontainer" class='hamburger'>			
+			<a class='menuContent' href="Startseite.html">Zurück zur Startseite</a></br></br>
+			<a class='menuContent' href="Spielauswahl.php">Spielauswahl</a></br></br>
+			<a class='menuContent' href="Spielregeln.html">Spielregeln</a></br></br>
+			<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
+			<a class='menuContent' href="Impressum.html">Impressum</a></br></br></br></br></br></br></br></br>
+			<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
+		</div>
+			<div id="page-wrapper">
+			<input type="submit" name="newGame" value="Neues Spiel"></input>
+			</div>
+		</form>
 
-
-</br> </br>
-<form action="newGame.php">
-
-<input type="submit" name="newGame" value="Neues Spiel"></input>
-
-</form>
-
-</br> </br>
 
 <?php
 
@@ -39,18 +46,15 @@ $rank =  $query->fetchAll();
 
 
 ?>
-
-Welches Spiel soll geladen werden?
-</br>
-</br>
-<form action="test.php" method="POST">
+<form action="index.php" method="POST">
+<div id="page-wrapper">
 <table border="1">
 	<tr>
 		<td>SpielID</td>
 		<td>Gegner</td>
 		<td>Spieplphase</td>	
 	</tr>
-
+</div>
 <?php
 	foreach($rank as $row) {
 		$SpielID=$row["SpielID"];
@@ -70,6 +74,7 @@ Welches Spiel soll geladen werden?
 </table>
 </br></br><br/>
  <input type="submit" name="StartGame" value="Spiel starten"></input>
+ </div>
  </form>
 
 	</body>

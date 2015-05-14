@@ -1,8 +1,11 @@
 Dokumentation SchiffeVersenken TODOs
 
 Klassenaufbau (Simon, Pöppelmann)
-Framework
 raffinierte Interaktion in der Oberfläche
 
-Installation: Anmeldung mit einem bestimmten Benutzer
+Installation: Anmeldung mit einem bestimmten Benutzer und Verweis Auf 
 Beschreibung der Anwendung mit Screenshots (Funktionen) (Benutzerhandbuch)
+
+Architektur
+Websiteprogrammierung
+(Javascript Anwendung)

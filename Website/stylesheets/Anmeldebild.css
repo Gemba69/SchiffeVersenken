@@ -3,7 +3,7 @@ html {
 }
 
 body {
-	background: url("titelbild.jpg") no-repeat center center fixed;
+	background: url("../resources/titelbild.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;	
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -22,7 +22,7 @@ body {
 	text-align: center;
 }
 
-#agb-wrapper{
+#page-wrapper{
 	background-color: white;
 	width: 600px;
 	margin-left: auto;

@@ -1,22 +1,22 @@
 <!doctype html>
 <html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="style.css">		
+  <head>	
     <meta charset="UTF-8">							
-    <title>Spielregeln</title>						
+    <title>Spielregeln</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='stylesheets/Anmeldebild.css' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
   </head>
  	<body>
- 	<img src="Startbild.jpg" alt="Startbild" style="width:900px;height:350px">
-		<nav>
- 		<ul class=menu>
- 			<li class=active><a href=Index.html>Startseite</a> </li>
- 			<li><a href=Login.html>Login</a> </li>
-			<li><a href=Spiel.html>Spiel</a> </li>
- 			<li><a href=Spielregeln.html>Spielregeln</a> </li>
- 			<li><a href=Statistiken.html>Statistiken</a> </li>
-			<li><a href=Impressum.html>Impressum</a> </li>
- 		</ul>
-		</nav>
+	<div id="hamburgercontainer" class='hamburger'>			
+			<a class='menuContent' href="Startseite.html">Zurück zur Startseite</a></br></br>
+			<a class='menuContent' href="Spielauswahl.php">Spielauswahl</a></br></br>
+			<a class='menuContent' href="Spielregeln.html">Spielregeln</a></br></br>
+			<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
+			<a class='menuContent' href="Impressum.html">Impressum</a></br></br></br></br></br></br></br></br>
+			<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
+	</div>
+	 <div id="page-wrapper">
   
         <div class='spielregeln'><h1>Spielregeln</h1>
 
@@ -52,5 +52,6 @@
 		
 		<p>Gewonnen hat der Spieler, welcher zuerst alle Schiffe der gegnerischen Flotte versenkt hat.</p>
         </div>
+	 </div>
     </body>
 </html>
