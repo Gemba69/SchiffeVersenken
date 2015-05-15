@@ -39,18 +39,44 @@
 		public function attack($i, $j) {
 			if ($this->gameField[$i][$j] === WATER_ID) {
 				$this->gameField[$i][$j] = MISS_ID;
-				return false;
+				return MISS_ID;
 			} else if ($this->gameField[$i][$j] === SHIP_ID) {
 				$this->gameField[$i][$j] = HIT_ID;
-				
-				//TODO: check if destroyed
-				return true;
+				if ($this->checkIfDestroyed($i, $j, $this->gameField))
+					return DESTROYED_ID;
+				else
+					return HIT_ID;
 			} else 
 				return "INVALID";
 		}
 		
-		private function checkIfDestroyed($i, $j) {
+		
+		/**
+		*
+		*
+		*/
+		private function checkIfDestroyed($i, $j, $gameField) {
+		
+
+			$destroyed = true;
+			if ($gameField[$i][$j] == HIT_ID) {				
+				$iminus = ($i <= 0) ? 0: $i - 1;
+				$iplus = ($i >= 9) ? 9 : $i + 1;
+				$jminus = ($j <= 0) ? 0: $j - 1;
+				$jplus = ($j >= 9) ? 9 : $j + 1;
+					
+				$gameField[$i][$j] = WATER_ID;
 			
+				$destroyed = $this->checkIfDestroyed($i, $jplus, $gameField) &&
+							$this->checkIfDestroyed($i, $jminus, $gameField) &&
+							$this->checkIfDestroyed($iplus, $j, $gameField) &&
+							$this->checkIfDestroyed($iminus, $j, $gameField);
+			} else if ($gameField[$i][$j] == SHIP_ID) {
+				$destroyed = false;
+				$gameField[$i][$j] = WATER_ID;
+			}
+			return $destroyed;
 		}
+		
 	}
 ?>

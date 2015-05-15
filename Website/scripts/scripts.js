@@ -114,6 +114,20 @@ function resetAjaxRequest() {
 	});
 }
 
+function sendAiComboAjaxRequest() {
+	$.ajax({
+		type: 'POST',
+		url: 'PHP/ajax.php',
+		dataType: 'html',
+		data: { requestType: 'aiCombo' },
+		success: function(data) {
+			processAnswer(data);
+		},
+		error: function(data, a, b) {
+			alert(data + a + b);
+		}
+	});
+}
 
 function processAnswer(answer) {
 	document.getElementById('infobox').innerHTML = answer; //debug
@@ -121,8 +135,10 @@ function processAnswer(answer) {
 	answer = $.parseJSON(answer);
 	if (answer.illegal)
 		return;
-	document.getElementById('instructions').innerHTML = answer.instructions;
-	document.getElementById('title').innerHTML = answer.title;
+	if (answer.instructions != null)
+		document.getElementById('instructions').innerHTML = answer.instructions;
+	if (answer.title != null) 
+		document.getElementById('title').innerHTML = answer.title;
 	var cells = answer.cells;
 	for (var v = 0; v < cells.length; v++) {
 		var i = cells[v].i;
@@ -135,6 +151,8 @@ function processAnswer(answer) {
 		else
 			flipTile(i, j, idPrefix, color);
 	}
+	if (answer.sendAnotherRequest) 
+		setTimeout(function() { sendAiComboAjaxRequest(); }, 500);
 
 }
 
