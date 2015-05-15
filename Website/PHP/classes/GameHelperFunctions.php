@@ -156,6 +156,16 @@
 			return $color;
 		}
 		
+		public static function checkWin($gameField) {
+			for ($i = 0; $i < count($gameField); $i++) {
+				for ($j = 0; $j < count($gameField); $j++) {
+					if ($gameField[$i][$j] == SHIP_ID)
+						return false;
+				}
+			}
+			return true;
+		}
+		
 		private static function getRemainingShipsPlusWarning($drawnShips, $requiredShips, &$warning) {
 			$remainingShips = array();
 			$warning = "";

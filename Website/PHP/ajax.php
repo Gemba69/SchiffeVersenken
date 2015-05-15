@@ -16,10 +16,13 @@
 				createNewSession();
 			break;
 		case 'nextPhase':
-				advancePhase();
+			advancePhase();
 			break;
 		case 'cellClicked':
-				processCellClicked();
+			processCellClicked();
+			break;
+		case 'aiCombo':
+			aiPlays();
 			break;
 	}
 	
@@ -53,7 +56,7 @@
 		$_SESSION['gamePhase'] = 1;
 		$gameFieldSelfArray = $_SESSION['gameFieldSelf']->getAsArray();
 		$postData = GameHelperFunctions::generateClickResponseArray($gameFieldSelfArray, $_SESSION['requiredShips'], 1, null, null, null, null);
-		$_SESSION['gameFieldEnemy'] = AI::placeShips($_SESSION['requiredShips'], 10, 10); // TODO: 10x10 zentral auslesen
+		$_SESSION['gameFieldEnemy'] = new GameField(AI::schiffeSetzen(GameHelperFunctions::initializeOrFetchGame(10, 10), $_SESSION['requiredShips'])); // TODO: 10x10 zentral auslesen
 		echo json_encode(GameHelperFunctions::utf8ize($postData));
 	}
 	
@@ -85,23 +88,64 @@
 		$j = $_POST['j'];
 		
 		$instructions = PHASE_2_MAJOR_INSTRUCTIONS;
+		$aiTurn = false;
 		
-		$postData = array('title' => PHASE_2_TITLE);
-		if ($gameFieldEnemy->attack($i, $j)) {
-			$postData['instructions'] = $instructions.'<ul><li class="fadeinanim">Treffer! Du darfst noch einmal schießen.</li></ul>';
-			$color = 'red'; //TODO: Farbe irgendwoher beziehen.
-		} else {
+		$result = $gameFieldEnemy->attack($i, $j);
+		if ($result == HIT_ID) {
+			$postData['instructions'] = $instructions.'<ul><li class="fadeinanim">Treffer! Noch einmal!</li></ul>';
+			$ship = HIT_ID; //TODO: Farbe irgendwoher beziehen.
+		} else if ($result == MISS_ID) {
 			$postData['instructions'] = $instructions.'<ul><li class="fadeinanim">Daneben. Der Gegner ist an der Reihe.</li></ul>';
 			$_SESSION['turn'] = ENEMY_ID_PREFIX;
-			$color = 'darkblue'; //TODO: Farbe irgendwoher beziehen.
-			//ai spielt
+			$ship = MISS_ID; //TODO: Farbe irgendwoher beziehen.
+			$aiTurn = true;
+		} else if ($result == DESTROYED_ID) {
+			$postData['instructions'] = $instructions.'<ul><li class="fadeinanim">Versenkt! Und weiter geht\'s!</li></ul>';
+			$ship = DESTROYED_ID;
+		} else {
+			$postData['instructions'] = $instructions.'<ul><li class="fadeinanim">Dort wurde schon hingeschossen. </li></ul>';
+			echo json_encode(GameHelperFunctions::utf8ize($postData));
+			return;
 		}
-		$cell = array('i' => $i,
-					  'j' => $j,
-					  'color' => $color,
-					  'gameField' => ENEMY_ID_PREFIX);
-		$cellData = array(0 => $cell);
+		$cellData = GameHelperFunctions::generateCellDataArrayForSingleClick($i, $j, $ship, ENEMY_ID_PREFIX);
 		$postData['cells'] = $cellData;
+		if (GameHelperFunctions::checkWin($gameFieldEnemy->getAsArray())) {
+			$postData['instructions'] = "Gewonnen!";
+			$postData['title'] = "Sieg";
+			$_SESSION['turn'] = "lolnope, nobody";
+		}
+		if ($aiTurn) 
+			$postData['sendAnotherRequest'] = true;
+		echo json_encode(GameHelperFunctions::utf8ize($postData));
+	}
+	
+	function aiPlays() {
+		$gameFieldSelf = $_SESSION['gameFieldSelf'];
+		$gameFieldEnemy = $_SESSION['gameFieldEnemy'];
+		
+		
+		$koords = AI::angriff($gameFieldSelf->getAsArray(), $_SESSION['requiredShips']);
+		$i = $koords[0];
+		$j = $koords[1];
+		$ship = $gameFieldSelf->attack($i, $j);
+		if ($ship == MISS_ID) {
+			$postData['instructions'] = PHASE_2_MAJOR_INSTRUCTIONS;
+		}
+		$cellData = GameHelperFunctions::generateCellDataArrayForSingleClick($i, $j, $ship, SELF_ID_PREFIX);
+
+		$postData['cells'] = $cellData;
+		$_SESSION['gameFieldSelf'] = $gameFieldSelf;
+		
+		if ($ship == HIT_ID || $ship == DESTROYED_ID) 
+			$postData['sendAnotherRequest'] = true;
+		else 
+			$_SESSION['turn'] = SELF_ID_PREFIX;
+		
+		if (GameHelperFunctions::checkWin($gameFieldEnemy->getAsArray())) {
+			$postData['instructions'] = "Du hast verloren.";
+			$postData['title'] = "Niederlage";
+			$_SESSION['turn'] = "lolnope, nobody";
+		}
 		echo json_encode(GameHelperFunctions::utf8ize($postData));
 	}
 	
