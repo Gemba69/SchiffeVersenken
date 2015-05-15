@@ -47,19 +47,21 @@
 				$_SESSION['BenutzerID'] = $BenutzerID[0][0];
 				header("Location: ../Startseite.html");
 			}else{
-				$loginFehlermeldung = "<span class='Fehler'> Konto- oder Passworteingabe ist falsch! </span>";
-				$repString = "<form action=\"LogIn.php\" method=\"POST\">";
-				$loginFehlermeldung = $repString.$loginFehlermeldung;
-			    $template = file_get_contents("../LogInFormular.html"); 
-				$count = 1;
-				$retVal = str_replace($repString, $loginFehlermeldung, $template, $count);
-			    //header("Location: ../LoginFormular.html"); -> Test von Benni
+				//$loginFehlermeldung = "<span class='Fehler'> Konto- oder Passworteingabe ist falsch! </span>";
+				//$repString = "<form action=\"PHP/LogIn.php\" method=\"POST\">";
+				//$loginFehlermeldung = $repString.$loginFehlermeldung;
+			    //$template = file_get_contents("../LogInFormular.html"); 
+				//$count = 1;
+				//$retVal = str_replace($repString, $loginFehlermeldung, $template, $count);
+				//echo $retVal;
+				header("Location: WrongLogin.php");
 			}
 			
 		}else{
-			echo 'Eingaben nicht vollstaendig gefuellt oder entspricht nicht den RegEx!';
-			$template = file_get_contents("../LogInFormular.html"); // Im Template eine Fehlermeldung schreiben
-			echo $template;
+			//echo 'Eingaben nicht vollstaendig gefuellt oder entspricht nicht den RegEx!';
+			//$template = file_get_contents("../LogInFormular.html"); // Im Template eine Fehlermeldung schreiben
+			//echo $template;
+			header("Location: MissingData.php");
 		}
 	  
 	}else{

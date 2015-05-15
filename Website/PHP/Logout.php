@@ -6,6 +6,6 @@
   
   echo '<p/> Sie werden in wenigen Sekunden zur LoginSeite weitergeleitet</p>';
 	
-  echo '<meta http-equiv="refresh" content="3; URL=../LogInFormular.html">';
+  echo '<meta http-equiv="refresh" content="2; URL=../LogInFormular.html">';
 
 ?>
