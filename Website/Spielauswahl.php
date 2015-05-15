@@ -47,7 +47,7 @@ $rank =  $query->fetchAll();
 
 
 ?>
-<form action="index.php" method="POST">
+<form action="PHP/LoadGame.php" method="POST" id="table">
 <div id="page-wrapper">
 <table border="1">
 	<tr>
@@ -66,15 +66,17 @@ $rank =  $query->fetchAll();
 			<td><?php echo $SpielID ?></td>
 			<td><?php echo $Gegner ?></td>
 			<td><?php echo $spielphase ?></td>
-			<td><input type="radio" id="<?php echo $SpielID ?>" name="Spiel" value="<?php echo $SpielID ?>"></td>
+			<td><input type="radio" id="<?php echo $SpielID ?>" name="Spiel" value="<?php echo $SpielID ?>" onclick="checkGame()"></td>
 		</tr>
 		<?php
 	}
+session_start();
+
 ?>
   
 </table>
 </br></br><br/>
- <input type="submit" name="StartGame" value="Spiel starten"></input>
+ <input type="submit" id="StartGame" name="StartGame" disabled ></input>
  </div>
  </form>
 
