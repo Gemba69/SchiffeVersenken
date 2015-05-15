@@ -30,6 +30,8 @@ Pöppelmann Debug Sachen rausnehmen
 
 
 Refactor/Schöner machen (falls noch Zeit ist)
+- Spieler verwalten: freischalten (Mit Tabelle?)
+- KI schlauer machen
 - MehrspielerModi
 - Anzeige RestlichenSpiele
 - Verbidnung.php zentral includen (DAO, Statistik, Spielauswahl, etc. -> auf anderen DB User wechseln (in Skript dann mit einbinden)
