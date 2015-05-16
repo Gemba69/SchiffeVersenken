@@ -7,9 +7,5 @@ Installation: Anmeldung mit einem bestimmten Benutzer und Verweis Auf
 Beschreibung der Anwendung mit Screenshots (Funktionen) (Benutzerhandbuch)
 
 Architektur
-Websiteprogrammierung
-(Javascript Anwendung)
+-> Websiteprogrammierung
 -> PHPDoc generieren bzw. noch machen
-
-
-Anforderungen: Was bedeutet „Benutzer verwalten“

@@ -1,19 +1,17 @@
 Programmierung Restaufgaben
 
+KI fixen
 Phase 2 fertig implementieren + DAO einbinden
 Phasen in DB speichern -> Pöppelmann
+Markierung wenn Schiff versenkt
+index.php umbenennen
+Session Pöppelmann rausnehmen
 
-Session: Timeout, auf Seiten nachfragen ob eine besteht (Alle bis auf Startseite), Spiel laden In Session über Ajax setzen
+Session: Timeout, 
 Spiel speichern + laden
 
-Mergen
-CSS Dateien Pöppelmann + Klabunde merken
-JS Datei von Pöppelmann (kann die Weg?)
 
 Bugfixes
-Fix: Fehlerhafter Login (kein css mehr wenn Login fehl schlägt und co mehr?)
-Logoff aktiv setzen (session beenden)
-Fix: Registrierung Fehlerhafte Email? Warum auch immer…
 Bezeichnungen „Logoff“ „Zurück zur Startseite“
 
 Seitenaufbau aufhübschen (Statistik, Spiel, etc.)
@@ -22,7 +20,9 @@ Testen (u. A. auch Sarah)
 Pöppelmann Debug Sachen rausnehmen
 
 
-
+Ich:
+- Startseite, Spielregeln, Impressum in geschützten Bereich? -> dynamsisch
+- Oder Verlinkung Login Startseite 
 
 
 
