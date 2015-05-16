@@ -55,7 +55,6 @@
 				//$retVal = str_replace($repString, $loginFehlermeldung, $template, $count);
 				//echo $retVal;
 				header("Location: WrongLogin.php");
->>>>>>> f8d87b2d0911f9b23ac24d319e5fc74a5a91be66
 			}
 			
 		}else{
