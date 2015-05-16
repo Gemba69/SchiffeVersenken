@@ -54,9 +54,9 @@ class KI {
      * Schiffe und gibt das mit Schiffen besetzte Feld zurück.
      */
 
-    //function schiffeSetzten($feld, $schiffe) {
-    function schiffeSetzten($schiffe) {
-        $feld = $this->gameField->getAsArray();
+    function schiffeSetzten($feld, $schiffe) {
+    //function schiffeSetzten($schiffe) {
+        //$feld = $this->gameField->getAsArray();
         $outerzaehler = 0;
         do {
             $tempfeld = $feld;
@@ -72,11 +72,11 @@ class KI {
                         $ausrichtung = rand(0, 1);
                         $temp = $this->schiffsetzen($x, $y, $ausrichtung, $tempfeld, $schiff);
                         //$this->ausgabe($temp[0]);
-                        print("<br>");
+                        echo("<br>");
                         if ($temp[1] == true) {
                             $tempfeld = $temp[0];
                             $innerwhile = false;
-                            print("schiff gesetzt: " . $schiff . "<br>");
+                            echo("schiff gesetzt: " . $schiff . "<br>");
                         } else if ($innerzaehler > 1000) {
                             $innerwhile = false;
                             $outerwhile = true;
@@ -94,7 +94,7 @@ class KI {
             $outerzaehler++;
         } while ($outerwhile && $outerzaehler < 1000);
         if ($outerzaehler > 998) {
-            print("Schiffe können nicht gesetzt werden!! (zu viele)");
+            echo("Schiffe können nicht gesetzt werden!! (zu viele)");
         } else {
             $feld = $tempfeld;
         }
@@ -212,12 +212,14 @@ class KI {
             }
         }
         if ($treffer == 0 && $versenkt == 0) {
+            echo("1.Schussfall: ");
             do {
                 $stelle[0] = rand(0, sizeof($feld) - 1); //x-koordinate
                 $stelle[1] = rand(0, (max(array_map('count', $feld))) - 1); //y-koordinate
             } while (!($this->plausibel($feld, $stelle[0], $stelle[1])));
             return $stelle;
         } else if ($treffer > 0) {
+            echo("2.Schussfall: ");
             for ($i = 0; $i < (sizeof($feld)); $i++) {
                 for ($j = 0; $j < (max(array_map('count', $feld))); $j++) {
                     if ($feld[$i][$j] == "TREFFER") {
@@ -240,7 +242,7 @@ class KI {
                                         $stelle[0] = $i + $x;
                                         return $stelle;
                                     } else {
-                                        print("Fehler! Schiff ist schon versenkt!");
+                                        echo("Fehler! Schiff ist schon versenkt!");
                                     }
                                 }
                             } else {
@@ -261,7 +263,7 @@ class KI {
                                         $stelle[1] = $j + $y;
                                         return $stelle;
                                     } else {
-                                        print("Fehler! Schiff ist schon versenkt!");
+                                        echo("Fehler! Schiff ist schon versenkt!");
                                     }
                                 }
                             }
@@ -294,6 +296,7 @@ class KI {
                 }
             }
         } else {
+            echo("3.Schussfall: ");
             $felderanzahl = 0;
             $felder = array();
             for ($i = 0; $i < (sizeof($feld)); $i++) {
@@ -308,6 +311,7 @@ class KI {
             $feldnummer = rand(0, sizeof($felder) - 1);
             $stelle[0] = $felder[$feldnummer][0]; //x-koordinate
             $stelle[1] = $felder[$feldnummer][1]; //y-koordinate
+            echo("Schussadjazenzen: ".count($this->findeAdjazenteVersenkt($stelle[0], $stelle[1], $feld)));
             return $stelle;
         }
     }
@@ -359,6 +363,26 @@ class KI {
         }
         if (isset($feld[$x + 1][$y - 1]) && $feld[$x + 1][$y - 1] == "VERSENKT") {
             $adjazenzen[$i][1] = $x + 1;
+            $adjazenzen[$i][2] = $y - 1;
+            $i++;
+        }
+        if (isset($feld[$x + 1][$y]) && $feld[$x + 1][$y] == "VERSENKT") {
+            $adjazenzen[$i][1] = $x + 1;
+            $adjazenzen[$i][2] = $y;
+            $i++;
+        }
+        if (isset($feld[$x - 1][$y]) && $feld[$x - 1][$y] == "VERSENKT") {
+            $adjazenzen[$i][1] = $x - 1;
+            $adjazenzen[$i][2] = $y;
+            $i++;
+        }
+        if (isset($feld[$x][$y + 1]) && $feld[$x][$y + 1] == "VERSENKT") {
+            $adjazenzen[$i][1] = $x;
+            $adjazenzen[$i][2] = $y + 1;
+            $i++;
+        }
+        if (isset($feld[$x][$y - 1]) && $feld[$x][$y - 1] == "VERSENKT") {
+            $adjazenzen[$i][1] = $x;
             $adjazenzen[$i][2] = $y - 1;
             $i++;
         }
@@ -431,15 +455,15 @@ class KI {
         for ($i = 0; $i < 10; $i++) {
             for ($j = 0; $j < 10; $j++) {
                 if ($feld[$i][$j] == "WASSER") {
-                    print("W ");
+                    echo("W ");
                 } elseif ($feld[$i][$j] == "SCHIFF") {
-                    print("S ");
+                    echo("S ");
                 } elseif ($feld[$i][$j] == "TREFFER") {
-                    print("T ");
+                    echo("T ");
                 } elseif ($feld[$i][$j] == "VERSENKT") {
-                    print("V ");
+                    echo("V ");
                 } elseif ($feld[$i][$j] == "MISS") {
-                    print("M ");
+                    echo("M ");
                 }
             }
             echo "<br>";

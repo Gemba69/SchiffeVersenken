@@ -20,13 +20,19 @@
             $feld[$i][$j] = "WASSER";
         }
     }
+    
+    $feld[2][2] = "VERSENKT";
+    $feld[2][3] = "VERSENKT";
+    $feld[2][4] = "VERSENKT";
+    $feld[2][5] = "VERSENKT";
+    
 
     $schiffe = array('10' => 0, '9' => 0, '8' => 0, '7' => 0, '6' => 0, '5' => 1, '4' => 2, '3' => 3, '2' => 4, '1' => 0); //todo: aus der datenbank auslesen
 
     $ki = new KI("Dieter", 1);
     $ki->schiffePrüfung($feld);
     echo "Schiffe setzen: <br><br>";
-    $feld = $ki->schiffeSetzten($feld, $schiffe);
+    //$feld = $ki->schiffeSetzten($feld, $schiffe);
     ausgabe($feld);
     for ($i = 0; $i < 100; $i++) {
         $punkt = $ki->angriff($feld, $schiffe);
