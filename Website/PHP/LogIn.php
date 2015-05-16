@@ -48,11 +48,12 @@
 				header("Location: ../Startseite.html");
 			}else{
 				$loginFehlermeldung = "<span class='Fehler'> Konto- oder Passworteingabe ist falsch! </span>";
-				$repString = "<form action=\"LogIn.php\" method=\"POST\">";
+				$repString = "<form action=\"PHP/LogIn.php\" method=\"POST\">";
 				$loginFehlermeldung = $repString.$loginFehlermeldung;
 			    $template = file_get_contents("../LogInFormular.html"); 
 				$count = 1;
 				$retVal = str_replace($repString, $loginFehlermeldung, $template, $count);
+				echo $retVal;
 			    //header("Location: ../LoginFormular.html"); -> Test von Benni
 			}
 			
