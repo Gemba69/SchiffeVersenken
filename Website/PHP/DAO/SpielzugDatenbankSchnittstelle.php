@@ -192,8 +192,10 @@ class SpielzugDatenbankSchnittstelle {
      */
     public function setzeVersenkt($spielbrettnr, $x, $y) {
         versenke($spielbrettnr, $x, $y);
-        for ($i = 0; i < (count(findeAdjazenteTreffer($spielbrettnr, $x, $y))); $i++) {
-            setzeVersenkt($spielbrettnr, findeAdjazenteTreffer($spielbrettnr, $x, $y)[$i][1], findeAdjazenteTreffer($spielbrettnr, $x, $y)[$i][2]);
+        $adjazenzen=findeAdjazenteTreffer($spielbrettnr, $x, $y);
+        for ($i = 0; i < (count($adjazenzen)); $i++) {
+            $this->setzeVersenkt($spielbrettnr, $adjazenzen[$i][1], $adjazenzen[$i][2]);
+            $this->versenke($feld, $adjazenzen[$i][1], $adjazenzen[$i][2]);    
         }
     }
 
@@ -226,15 +228,52 @@ class SpielzugDatenbankSchnittstelle {
      * (Versekt ein Feld des Schiffes)
      */
     public function versenkt($spielbrettnr, $x, $y) {
-        $versenkt = true;
-        for ($i = 0; i < (count(findeAdjazenteTreffer($spielbrettnr, $x, $y))); $i++) {
-            $versenkt = versenkt($spielbrettnr, findeAdjazenteTreffer($spielbrettnr, $x, $y)[$i][1], findeAdjazenteTreffer($spielbrettnr, $x, $y)[$i][2]);
-        }
-        if (count(findeAdjazenteSchiffe($spielbrettnr, $x, $y)) == 0) {
-            return (true && $versenkt);
+        if($spielbrettnr==0){
+            $feld=$this->spielbrett0;
+        } else if ($spielbrettnr == 1) {
+            $feld=$this->spielbrett1;
         } else {
-            return false;
+            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
         }
+        if (count(($adjazenzen = $this->findeAdjazenteTreffer($i, $j, $feld))) > 0) {
+        if ($adjazenzen[0][1] < $i || $adjazenzen[0][1] > $i) {
+            $x = 1;
+            while (isset($feld[$i + $x][$j]) && $feld[$i + $x][$j] == "TREFFER") {
+                $x++;
+            }
+            if (isset($feld[$i + $x][$j]) && ($feld[$i + $x][$j] == "SCHIFF")) {
+                return false;
+            } else {
+                $x = -1;
+                while (isset($feld[$i + $x][$j]) && $feld[$i + $x][$j] == "TREFFER") {
+                    $x--;
+                }
+                if (isset($feld[$i + $x][$j]) && ($feld[$i + $x][$j] == "SCHIFF")) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        } else {
+            $y = 1;
+            while (isset($feld[$i][$j + $y]) && $feld[$i][$j + $y] == "TREFFER") {
+                $y++;
+            }
+            if (isset($feld[$i][$j + $y]) && ($feld[$i][$j + $y] == "SCHIFF")) {
+                return false;
+            } else {
+                $y = -1;
+                while (isset($feld[$i][$j + $y]) && $feld[$i][$j + $y] == "TREFFER") {
+                    $y--;
+                }
+                if (isset($feld[$i][$j + $y]) && ($feld[$i][$j + $y] == "SCHIFF")) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+    }
     }
     
     /*
