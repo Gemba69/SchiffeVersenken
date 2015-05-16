@@ -342,22 +342,22 @@ class KI {
     private function findeAdjazenteVersenkt($x, $y, $feld) {
         $adjazenzen = array();
         $i = 0;
-        if (isset($feld[$x + 1][$y + 1]) && $feld[$x + 1][$y + 1] == "TREFFER") {
+        if (isset($feld[$x + 1][$y + 1]) && $feld[$x + 1][$y + 1] == "VERSENKT") {
             $adjazenzen[$i][1] = $x + 1;
             $adjazenzen[$i][2] = $y + 1;
             $i++;
         }
-        if (isset($feld[$x - 1][$y - 1]) && $feld[$x - 1][$y - 1] == "TREFFER") {
+        if (isset($feld[$x - 1][$y - 1]) && $feld[$x - 1][$y - 1] == "VERSENKT") {
             $adjazenzen[$i][1] = $x - 1;
             $adjazenzen[$i][2] = $y - 1;
             $i++;
         }
-        if (isset($feld[$x - 1][$y + 1]) && $feld[$x - 1][$y + 1] == "TREFFER") {
+        if (isset($feld[$x - 1][$y + 1]) && $feld[$x - 1][$y + 1] == "VERSENKT") {
             $adjazenzen[$i][1] = $x - 1;
             $adjazenzen[$i][2] = $y + 1;
             $i++;
         }
-        if (isset($feld[$x + 1][$y - 1]) && $feld[$x + 1][$y - 1] == "TREFFER") {
+        if (isset($feld[$x + 1][$y - 1]) && $feld[$x + 1][$y - 1] == "VERSENKT") {
             $adjazenzen[$i][1] = $x + 1;
             $adjazenzen[$i][2] = $y - 1;
             $i++;
