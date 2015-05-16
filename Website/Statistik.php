@@ -9,14 +9,13 @@
 	</head>
 	<body>
 	<div id="hamburgercontainer" class='hamburger'>			
-			<a class='menuContent' href="Startseite.html">Zurück zur Startseite</a></br></br>
-			<a class='menuContent' href="LogInFormular.html">Zum Login</a></br></br>
+			<a class='menuContent' href="Startseite.html">Startseite</a></br></br>
 			<a class='menuContent' href="Spielauswahl.php">Spielauswahl</a></br></br>
 			<a class='menuContent' href="Spielregeln.html">Spielregeln</a></br></br>
 			<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
 			<a class='menuContent' href="Impressum.html">Impressum</a></br></br></br></br></br></br></br></br>
 			<form action="PHP/Logout.php" method="post">
-			<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
+			<button id="Logoff" class="button menuContent" type='submit'>Logout</button>
 			</form>
 	</div>
 

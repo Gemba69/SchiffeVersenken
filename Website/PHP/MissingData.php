@@ -6,9 +6,9 @@
 	</head>
 	<body>
 	<?php
-		echo '<p> Registrierung erfolgreich abgeschlossen!</p>';
+		echo '<p>Eingaben nicht vollstaendig gefuellt oder entspricht nicht den RegEx!</p>';
 		
-		echo '<p/> Sie werden in wenigen Sekunden zur LoginSeite weitergeleitet</p>';
+		echo '<p/>Bitte versuchen Sie sich erneut einzuloggen</p>';
 	
 		echo '<meta http-equiv="refresh" content="2; URL=../LogInFormular.html">';
 	?>

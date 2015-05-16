@@ -1,3 +1,4 @@
+<?php require_once 'PHP/auth.php'; ?>
 <!doctype html>
 <html>
 	<head>
@@ -9,19 +10,23 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
 	</head>
 	<body>
-		<form action="newGame.php">
+
 		<div id="hamburgercontainer" class='hamburger'>			
-			<a class='menuContent' href="Startseite.html">Zurück zur Startseite</a></br></br>
+			<a class='menuContent' href="Startseite.html">Startseite</a></br></br>
 			<a class='menuContent' href="Spielauswahl.php">Spielauswahl</a></br></br>
 			<a class='menuContent' href="Spielregeln.html">Spielregeln</a></br></br>
 			<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
 			<a class='menuContent' href="Impressum.html">Impressum</a></br></br></br></br></br></br></br></br>
-			<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
+			<form action="PHP/Logout.php" method="post">
+			<button id="Logoff" class="button menuContent" type='submit'>Logout</button>
+			</form>
 		</div>
 			<div id="page-wrapper">
+			<form action="PHP/newGameKI.php">
 			<input type="submit" name="newGame" value="Neues Spiel"></input>
+			</form>
 			</div>
-		</form>
+		
 
 
 <?php
@@ -38,7 +43,7 @@ where (Spieler_1=:SpielerID or Spieler_2=:SpielerID) and (StatusID='1' or Status
 left join Benutzer on Gegner=Benutzer.ID
 ;");
 
-$spielerID = 1;
+$spielerID = htmlspecialchars($_SESSION['BenutzerID']);
 $query->bindParam(':SpielerID', $spielerID);
 
 $query->execute();
@@ -47,7 +52,7 @@ $rank =  $query->fetchAll();
 
 
 ?>
-<form action="index.php" method="POST">
+<form action="PHP/LoadGame.php" method="POST" id="table">
 <div id="page-wrapper">
 <table border="1">
 	<tr>
@@ -66,15 +71,16 @@ $rank =  $query->fetchAll();
 			<td><?php echo $SpielID ?></td>
 			<td><?php echo $Gegner ?></td>
 			<td><?php echo $spielphase ?></td>
-			<td><input type="radio" id="<?php echo $SpielID ?>" name="Spiel" value="<?php echo $SpielID ?>"></td>
+			<td><input type="radio" id="<?php echo $SpielID ?>" name="Spiel" value="<?php echo $SpielID ?>" onclick="checkGame()"></td>
 		</tr>
 		<?php
 	}
+
 ?>
   
 </table>
 </br></br><br/>
- <input type="submit" name="StartGame" value="Spiel starten"></input>
+ <input type="submit" id="StartGame" name="StartGame" disabled ></input>
  </div>
  </form>
 

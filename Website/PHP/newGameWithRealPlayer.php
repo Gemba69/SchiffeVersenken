@@ -15,7 +15,7 @@
 <input type="radio" id="Real" name="Player" value="realer Gegner" onclick="checkEnemy()">realer Gegner</input>
 </br> </br>
 Gegnersuche: <input type="text" id="searchfield" disabled></Input>
-<input type="submit" id="Search"name="Search" value="Suche starten" disabled></input>
+<input type="submit" id="Search" name="Search" value="Suche starten" disabled></input>
 </form>
 
 </br> </br>

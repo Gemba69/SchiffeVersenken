@@ -11,6 +11,14 @@ function checkEnemy(){
 	}
 }
 
+function checkGame(){
+	var val = getRadioVal(document.getElementById("table"), "Spiel");
+	
+	if (val!=null) {
+		document.getElementById("StartGame").disabled=false;
+	}
+}
+
 function getRadioVal(form, name) {
     var val;
     // get list of radio buttons with specified name
@@ -24,4 +32,12 @@ function getRadioVal(form, name) {
         }
     }
     return val; // return value of checked radio or undefined if none checked
+}
+
+function setSpielID(form, name) {
+
+	var val = getRadioVal(form, name)
+	
+
+
 }
