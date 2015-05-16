@@ -42,8 +42,10 @@
 				return MISS_ID;
 			} else if ($this->gameField[$i][$j] === SHIP_ID) {
 				$this->gameField[$i][$j] = HIT_ID;
-				if ($this->checkIfDestroyed($i, $j, $this->gameField))
+				if ($this->checkIfDestroyed($i, $j, $this->gameField)) {
+					$this->destroyShip($i, $j, $this->gameField);
 					return DESTROYED_ID;
+				}
 				else
 					return HIT_ID;
 			} else 
@@ -56,8 +58,6 @@
 		*
 		*/
 		private function checkIfDestroyed($i, $j, $gameField) {
-		
-
 			$destroyed = true;
 			if ($gameField[$i][$j] == HIT_ID) {				
 				$iminus = ($i <= 0) ? 0: $i - 1;
@@ -78,5 +78,20 @@
 			return $destroyed;
 		}
 		
+		private function destroyShip($i, $j, &$gameField) {
+			if ($gameField[$i][$j] == HIT_ID) {				
+				$iminus = ($i <= 0) ? 0: $i - 1;
+				$iplus = ($i >= 9) ? 9 : $i + 1;
+				$jminus = ($j <= 0) ? 0: $j - 1;
+				$jplus = ($j >= 9) ? 9 : $j + 1;
+					
+				$gameField[$i][$j] = DESTROYED_ID;
+			
+				$this->destroyShip($i, $jplus, $gameField);
+				$this->destroyShip($i, $jminus, $gameField);
+				$this->destroyShip($iplus, $j, $gameField);
+				$this->destroyShip($iminus, $j, $gameField);
+			} 
+		}
 	}
 ?>
