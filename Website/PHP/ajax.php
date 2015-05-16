@@ -141,7 +141,7 @@
 		else 
 			$_SESSION['turn'] = SELF_ID_PREFIX;
 		
-		if (GameHelperFunctions::checkWin($gameFieldEnemy->getAsArray())) {
+		if (GameHelperFunctions::checkWin($gameFieldSelf->getAsArray())) {
 			$postData['instructions'] = "Du hast verloren.";
 			$postData['title'] = "Niederlage";
 			$_SESSION['turn'] = "lolnope, nobody";
