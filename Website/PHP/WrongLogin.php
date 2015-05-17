@@ -3,6 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Registrierung erfolgreich abgeschlossen</title>
+		<link href='stylesheets/Anmeldebild.css' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
 	</head>
 	<body>
 	<?php
