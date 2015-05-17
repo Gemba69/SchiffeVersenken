@@ -80,12 +80,15 @@ function checkNecessaryInput(){
 }
 
 function soundSetter(){
-	
+	var sound = document.getElementById("audio");
+
 	if (document.getElementById("c1").checked){
 		audio.muted = true;
+		sound.volume = 0;
 		document.getElementById("c1").classList.add("label.unmute");
 	}else{
 		audio.muted = false;
+		sound.volume = 0.3;
 		document.getElementById("c1").classList.add("label.mute");
 	}
 }

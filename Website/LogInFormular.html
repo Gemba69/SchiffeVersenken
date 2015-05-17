@@ -22,13 +22,14 @@
 		<input id='loginSubmit' class="submit" type="submit" disabled></input>
 		<a class="linkToLoginNRegistration" href="Registrierungsformular.html">Noch nicht registriert?</a> 
 		<span></span>
-		<audio id="audio" autoplay loop>
+		<audio id="audio" autoplay loop onload="soundSetter()">
 			<source src="resources/DrownThemLikeADemon.ogg" type="audio/ogg">
 			<source src="resources/DrownThemLikeADemon.mp3" type="audio/mpeg">
 		</audio>
+	<input class="checkbox" id="c1" name="soundbutton" type="checkbox" checkbox="unchecked" onclick="soundSetter()"/>
+			<label class="checkbox" for="c1">Sound</label>
 	</div>
-	<input class="checkbox" id="c1" name="soundbutton" type="checkbox" onclick="soundSetter()"/>
-	<label for="c1">Sound</label>
+	
     </form>	
 </body>
 </html>
