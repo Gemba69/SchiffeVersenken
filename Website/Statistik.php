@@ -4,7 +4,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Statistiken</title>
-		<link href='stylesheets/Anmeldebild.css' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
 	</head>
 	<body>
