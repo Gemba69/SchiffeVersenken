@@ -1,35 +1,23 @@
 Programmierung Restaufgaben
 
-KI fixen
 Phase 2 fertig implementieren + DAO einbinden
 Phasen in DB speichern -> Pöppelmann
 Markierung wenn Schiff versenkt
 index.php umbenennen
-Session Pöppelmann rausnehmen
 
 Session: Timeout, 
-Spiel speichern + laden
-
 
 Bugfixes
-Bezeichnungen „Logoff“ „Zurück zur Startseite“
-
-Seitenaufbau aufhübschen (Statistik, Spiel, etc.)
 
 Testen (u. A. auch Sarah)
-Pöppelmann Debug Sachen rausnehmen
-
-
-Ich:
-- Startseite, Spielregeln, Impressum in geschützten Bereich? -> dynamsisch
-- Oder Verlinkung Login Startseite 
-
+Pöppelmann Debug Sachen rausnehmen + Session
 
 
 
 
 
 Refactor/Schöner machen (falls noch Zeit ist)
+- Session Tineout
 - Spieler verwalten: freischalten (Mit Tabelle?)
 - KI schlauer machen
 - MehrspielerModi
@@ -38,8 +26,3 @@ Refactor/Schöner machen (falls noch Zeit ist)
 - Statistik eigenen Spieler markieren
 - Spielzuwahl eigenen Spieler rausnehmen
 
-
-	session_start();
-	var_dump($_SESSION);
-	echo "</br> </br>";
-	var_dump($_SESSION['BenutzerID']);

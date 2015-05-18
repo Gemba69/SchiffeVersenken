@@ -10,31 +10,6 @@ Insert Into Benutzer (ID, Benutzername, Password, Email) VALUES (3, 'admin', '8c
 Insert Into Benutzer (ID, Benutzername, Password, Email) VALUES (4, 'test', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'test@web.de');
 
 --
--- Testdaten Spielzugtyp
---
-
-Insert Into Spielzugtyp (Name, Beschreibung) VALUES ('SETZEN', 'Ein Schiff auf ein Feld setzen');
-Insert Into Spielzugtyp (Name, Beschreibung) VALUES ('LOESCHEN', 'Ein Schiff von einem Feld loeschen');
-Insert Into Spielzugtyp (Name, Beschreibung) VALUES ('ANGRIFF', 'Ein Feld Angreifen');
-
---
--- Testdaten Farbcode
---
-Insert Into Farbcode (Feld_Typ, Farbcode) VALUES ('WASSER', '74C2E1');
-Insert Into Farbcode (Feld_Typ, Farbcode) VALUES ('MISS', '3482A1');
-Insert Into Farbcode (Feld_Typ, Farbcode) VALUES ('SCHIFF', '555555');
-Insert Into Farbcode (Feld_Typ, Farbcode) VALUES ('TREFFER', 'FF0000');
-Insert Into Farbcode (Feld_Typ, Farbcode) VALUES ('VERSENKT', '000000');
-
---
--- Testdaten SpielStatus
---
-Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('PHASE1', 'Schiffe werden noch gesetzt');
-Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('PHASE2', 'Das Spiel befindet sich in Phase 2');
-Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('GEWONNEN_SPIELER1', 'Spieler1 hat gewonnen');
-Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('GEWONNEN_SPIELER2', 'Spieler 2 hat das Spiel gewonnen');
-
---
 -- Testdaten Spiel
 --
 Insert Into Spiel (Spieler_1, Spieler_2, StatusID) VALUES (1,2, 1);
