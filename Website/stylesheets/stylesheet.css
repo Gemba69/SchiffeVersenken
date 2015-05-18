@@ -152,6 +152,7 @@ body {
 	font-size: 12px;
 	background: #fff;
 	margin: 45px;
+	padding: 50px;
 	width: 480px;
 	border-collapse: collapse;
 	text-align: left;
@@ -177,6 +178,11 @@ body {
 .minimalisticTable tbody tr:hover td
 {
 	color: #009;
+}
+
+.statistikTable {
+	margin: auto;
+	margin-bottom: 15%;
 }
 
 button {

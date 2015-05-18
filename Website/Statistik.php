@@ -28,7 +28,8 @@ on a.Benutzername=b.Benutzername order by GewonneneSpiele desc;
 ;")->fetchAll();
 ?>
 	<div id="page-wrapper" class="minimalisticTable">
-			<table border="1">
+			<h2>Highscore - gewonnene Spiele</h2>
+			<table class="statistikTable">
 				<tr>
 					<th>Benutzername</th>
 					<th>Gewinnquote</th>
@@ -63,7 +64,8 @@ from highscore_gespielte_spiele a left outer join highscore_gewonnene_spiele b
 on a.Benutzername=b.Benutzername order by a.gespielteSpiele desc
 ;")->fetchAll();
 ?>
-			<table border="1">		
+			<h2>Highscore - gespielte Spiele</h2>
+			<table class="statistikTable">		
 				<tr>
 					<th>Benutzername</th>
 					<th>Gewinnquote</th>
@@ -98,7 +100,8 @@ from highscore_gespielte_spiele a left outer join highscore_gewonnene_spiele b
 on a.Benutzername=b.Benutzername
 ;")->fetchAll();
 ?>
-			<table border="1">
+			<h2 >Highscore - Gewinnquote</h2>
+			<table class="statistikTable">
 				<tr>
 					<th>Benutzername</th>
 					<th>Gewinnquote</th>
