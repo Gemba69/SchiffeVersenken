@@ -9,7 +9,7 @@
 	
 	switch ($_POST['requestType']) {
 		case 'reset':
-			resetSession();
+			destroySession();
 			break;
 		case 'resumeSession':
 			if (isset($_SESSION['gamePhase'])) 
@@ -51,7 +51,7 @@
 		$_SESSION['gameId'] = $gameDao->neuesSpiel();
 	}
 	
-	function resetSession() { //temporary
+	function destroySession() { //temporary
 		session_unset();
 		session_destroy();
 	}
@@ -137,6 +137,7 @@
 			$postData['instructions'] = "Gewonnen!";
 			$postData['title'] = "Sieg";
 			$_SESSION['turn'] = "lolnope, game over dude";
+			resetSession();
 		}
 		if ($aiTurn) 
 			$postData['sendAnotherRequest'] = true;
@@ -175,8 +176,18 @@
 			$postData['instructions'] = "Du hast verloren.";
 			$postData['title'] = "Niederlage";
 			$_SESSION['turn'] = "lolnope, nobody";
+			resetSession();
 		}
 		echo json_encode(GameHelperFunctions::utf8ize($postData));
+	}
+	
+	function resetSession() {
+		$_SESSION['gameFieldSelf'] = null;
+		$_SESSION['gameFieldEnemy'] = null;
+		$_SESSION['requiredShips'] = null;
+		$_SESSION['gamePhase'] = null;
+		$_SESSION['turn'] = null;
+		$_SESSION['gameId'] = null;
 	}
 	
 ?>

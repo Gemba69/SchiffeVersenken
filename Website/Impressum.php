@@ -4,7 +4,8 @@
   <head>	
     <meta charset="UTF-8">							
     <title>Impressum</title>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+			<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+
 	<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">	
   </head>
  	<body>
@@ -15,7 +16,9 @@
 		<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
 		<a class='menuContent' href="Impressum.php">Impressum</a></br></br></br></br></br></br></br></br>
 		<form action="PHP/Logout.php" method="post">
-		<button id="Logoff" class="button menuContent" type='submit'>Logout</button>
+		<div class="buttondiv">
+				<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
+			</div>
 		</form>
 	</div>
 	<div id="page-wrapper">

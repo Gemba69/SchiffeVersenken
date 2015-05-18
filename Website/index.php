@@ -1,4 +1,4 @@
-<?php require_once('PHP/classes/DrawFunctions.php');
+﻿<?php require_once('PHP/classes/DrawFunctions.php');
 	  require_once('PHP/classes/GameHelperFunctions.php') ?>
 <!doctype html>
 <html>
@@ -19,7 +19,9 @@
 			<a class='menuContent' href="Spielregeln.html">Spielregeln</a></br></br>
 			<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
 			<a class='menuContent' href="Impressum.html">Impressum</a></br></br></br></br></br></br></br></br>
-			<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
+			<div class="buttondiv">
+				<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
+			</div>
 		</div>
 		<div id="boardcontainer">
 			<aside id="infoboard">
