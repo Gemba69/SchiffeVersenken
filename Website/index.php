@@ -1,15 +1,12 @@
-<<<<<<< HEAD
 ﻿<?php require_once('PHP/classes/DrawFunctions.php');
 	  require_once('PHP/classes/GameHelperFunctions.php') ?>
-=======
 <?php require_once 'PHP/auth.php'; ?>
->>>>>>> 11cdc94b3b1aaf5ba9e28546691dd0101a64db5d
 <!doctype html>
 <html>
   <head>	
     <meta charset="UTF-8">							
     <title>Startseite</title>	
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+			<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
   </head>
  	<body>
@@ -18,15 +15,11 @@
 			<a class='menuContent' href="Spielauswahl.php">Spielauswahl</a></br></br>
 			<a class='menuContent' href="Spielregeln.php">Spielregeln</a></br></br>
 			<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
-<<<<<<< HEAD
 			<a class='menuContent' href="Impressum.html">Impressum</a></br></br></br></br></br></br></br></br>
+			<form action="PHP/Logout.php" method="post">
 			<div class="buttondiv">
 				<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
-			</div>
-=======
-			<a class='menuContent' href="Impressum.php">Impressum</a></br></br></br></br></br></br></br></br>
-			<form action="PHP/Logout.php" method="post">
-			<button id="Logoff" class="button menuContent" type='submit'>Logout</button>
+			</div>			
 			</form>
 	</div>
 	<div id="page-wrapper">
@@ -41,7 +34,6 @@
 		Du kannst dir die <a href=Spielregeln.php>Spielregeln</a> oder deine <a href=Statistik.php>Highscores</a> anschauen. 
 		
 		
->>>>>>> 11cdc94b3b1aaf5ba9e28546691dd0101a64db5d
 		</div>
 	</div>
     </body>
