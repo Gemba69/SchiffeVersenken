@@ -45,7 +45,7 @@
 				$stmt->execute();
 				$BenutzerID = $stmt->fetchAll(PDO::FETCH_NUM);
 				$_SESSION['BenutzerID'] = $BenutzerID[0][0];
-				header("Location: ../Startseite.html");
+				header("Location: ../Startseite.php");
 			}else{
 				//$loginFehlermeldung = "<span class='Fehler'> Konto- oder Passworteingabe ist falsch! </span>";
 				//$repString = "<form action=\"PHP/LogIn.php\" method=\"POST\">";
