@@ -31,17 +31,17 @@
 		<p><strong><FONT SIZE=4>Setzen der Schiffe</FONT></strong></p>
 
 		<p>Die eigene und die gegnerische Flotte besteht aus:<br><br>
-		• 1 Schlachtschiff (5 Treffer n&oumltig zum Versenken)<br>
-		• 2 Kreuzer (4 Treffer n&oumltig zum Versenken)<br>
-		• 3 Fregatten (3 Treffer n&oumltig zum Versenken)<br>
-		• 4 Minensucher (2 Treffer n&oumltig zum Versenken)<br>
+		• 1 Schlachtschiff (5 Felder groß)<br>
+		• 2 Kreuzer (4 Felder groß)<br>
+		• 3 Fregatten (3 Felder groß)<br>
+		• 4 Minensucher (2 Felder groß)<br></p>
 
 
-		Vor dem ersten Zug muss jeder seine Schiffe einsetzen. Die Schiffe müssen so eingesetzt werden, 
+		<p>Vor dem ersten Zug muss jeder seine Schiffe einsetzen. Die Schiffe müssen so eingesetzt werden, 
 		dass sie sich weder waagerecht noch senkrecht überlappen, nebeneinander stehen und nicht über Eck gestellt werden. Ebenfalls ist ein diagonales setzen nicht erlaubt.
-		W&aumlhle ein Schiff durch Anklicken, drehe es gegebenenfalls durch den entsprechenden Button. Ziehe es auf das Gew&aumlsser 
-		und klicke dann auf die gewünschte Position um es abzusetzen. Wenn du ein Schiff wieder entfernen willst, kannst du es 
-		durch Anklicken wieder zurücknehmen. Sind alle Schiffe eingesetzt, best&aumltige die Aufstellung und das Spiel kann gestartet werden.<br></p>
+		Die Schiffe können durch Klicken auf die einzelnen Felder gesetzt werden. Dabei bilden mehrere Zusammenhängende markierte Kacheln ein Schiff. 
+		Durch Klicken auf ein  berets markiertes Feld wird dieses wieder zu Wasser. Ist eine Anordnung nicht korrekt oder sind Zuviele Schiffe von einem Typ gesetzt wird dies angezeigt
+		Sind alle Schiffe richtig eingesetzt, best&aumltige die Aufstellung und das Spiel kann gestartet werden.<br></p>
 
 		<p><strong><FONT SIZE=4>Spielablauf</FONT></strong></p>
 
