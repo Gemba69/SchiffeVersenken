@@ -37,14 +37,14 @@ body {
 
 #hamburgercontainer {
 	float:left;
-	margin-left: -350px;
+	margin-left: -250px;
 	margin-right: auto;
 	margin-top: -50px;
 	margin-bottom: -50px;
 	top: 0px;
 	position: fixed;
 	height: 120%;
-	width: 400px;	
+	width: 300px;	
 	background-color: rgba(255, 255, 255, .8);
 	padding: 10px;
 	border-radius: 5px;
@@ -89,17 +89,17 @@ body {
 }
 
 .menuContent{
-	margin-left: 30px;
+	margin-left: 60px;
 	margin-right: auto;
 	margin-top: 150px;
 	margin-bottom: 50px;
 	position: fixed;
-	transition: margin-left 1s ease-in-out;
+	transition: margin-left 0.5s ease-in-out;
 }
 
 .menuContent:hover{
 	margin-left: 40px;
-	transition: margin-left 1s ease-in-out;
+	transition: margin-left 0.5s ease-in-out;
 }
 
 .submit {

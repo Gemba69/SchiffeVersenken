@@ -17,19 +17,18 @@
 			<button id="Logoff" class="button menuContent" type='submit'>Logout</button>
 			</form>
 	</div>
-
 <?php
 
 $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
 
 $rank = $dbh->query("Select * from highscore_gewonnene_Spiele;")->fetchAll();
 ?>
-<div id="page-wrapper">
-<table border="1">
-	<tr>
-		<td>Benutzername</td>
-		<td>Gewonnene Spiele</td>		
-	</tr>
+	<div id="page-wrapper">
+			<table border="1">
+				<tr>
+					<td>Benutzername</td>
+					<td>Gewonnene Spiele</td>		
+				</tr>
 <?php
 	foreach($rank as $row) {
 		//var_dump($adresse);
@@ -43,20 +42,19 @@ $rank = $dbh->query("Select * from highscore_gewonnene_Spiele;")->fetchAll();
 		<?php
 	}
 ?>
-</table>
-</br> </br> </br>
-
+			</table>
+			</br> </br> </br>
 <?php
 
 $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
 
 $rank = $dbh->query("Select * from highscore_gespielte_Spiele;")->fetchAll();
 ?>
-<table border="1">
-	<tr>
-		<td>Benutzername</td>
-		<td>Gespielte Spiele</td>		
-	</tr>
+			<table border="1">
+				<tr>
+					<td>Benutzername</td>
+					<td>Gespielte Spiele</td>		
+				</tr>
 <?php
 	foreach($rank as $row) {
 		//var_dump($adresse);
@@ -70,8 +68,8 @@ $rank = $dbh->query("Select * from highscore_gespielte_Spiele;")->fetchAll();
 		<?php
 	}
 ?>
-</table>
-</br> </br> </br>
+			</table>
+			</br> </br> </br>
 <?php
 
 $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
@@ -82,13 +80,13 @@ from highscore_gespielte_spiele a left outer join highscore_gewonnene_spiele b
 on a.Benutzername=b.Benutzername
 ;")->fetchAll();
 ?>
-<table border="1">
-	<tr>
-		<td>Benutzername</td>
-		<td>Gewinnquote</td>
-		<td>Gespielte Spiele</td>	
-		<td>Gewonnene Spiele</td>		
-	</tr>
+			<table border="1">
+				<tr>
+					<td>Benutzername</td>
+					<td>Gewinnquote</td>
+					<td>Gespielte Spiele</td>	
+					<td>Gewonnene Spiele</td>		
+				</tr>
 <?php
 	foreach($rank as $row) {
 		//var_dump($adresse);
@@ -106,11 +104,8 @@ on a.Benutzername=b.Benutzername
 		<?php
 	}
 ?>
-</table>
-</div>
-
-
-
+			</table>
+		</div>
 	</body>
 </html>
 
