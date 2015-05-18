@@ -41,7 +41,8 @@ class SpielStatusDatenbankSchnittstelle {
         $query->bindParam(':status_Typ', $status_Typ);
         $query->execute();
         $spielStatus = $query->fetchAll(PDO::FETCH_NUM);
-        return $spielStatus[0];
+        print_r($spielStatus);
+        return $this->array_2d_to_1d($spielStatus)[0];
     }
 
     /*
