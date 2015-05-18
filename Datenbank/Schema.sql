@@ -125,7 +125,7 @@ Select Benutzername, count(Benutzername) as GespielteSpiele
 from Benutzer 
 join Spiel on Benutzer.ID=Spiel.Spieler_1 
 or Benutzer.ID=Spiel.Spieler_2 
-where Benutzer.ID!=0;
+where Benutzer.ID!=0
 group by Benutzername 
 order by GespielteSpiele desc
 ;
