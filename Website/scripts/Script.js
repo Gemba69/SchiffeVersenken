@@ -87,7 +87,7 @@ function soundSetter(){
 		sound.volume = 0;
 	}else{
 		audio.muted = false;
-		sound.volume = 0.01;
+		sound.volume = 0.1;
 	}
 }
 
