@@ -23,11 +23,11 @@ $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
 
 $rank = $dbh->query("Select * from highscore_gewonnene_Spiele;")->fetchAll();
 ?>
-	<div id="page-wrapper">
+	<div id="page-wrapper" class="minimalisticTable">
 			<table border="1">
 				<tr>
-					<td>Benutzername</td>
-					<td>Gewonnene Spiele</td>		
+					<th>Benutzername</th>
+					<th>Gewonnene Spiele</th>		
 				</tr>
 <?php
 	foreach($rank as $row) {
@@ -52,8 +52,8 @@ $rank = $dbh->query("Select * from highscore_gespielte_Spiele;")->fetchAll();
 ?>
 			<table border="1">
 				<tr>
-					<td>Benutzername</td>
-					<td>Gespielte Spiele</td>		
+					<th>Benutzername</th>
+					<th>Gespielte Spiele</th>		
 				</tr>
 <?php
 	foreach($rank as $row) {
@@ -82,10 +82,10 @@ on a.Benutzername=b.Benutzername
 ?>
 			<table border="1">
 				<tr>
-					<td>Benutzername</td>
-					<td>Gewinnquote</td>
-					<td>Gespielte Spiele</td>	
-					<td>Gewonnene Spiele</td>		
+					<th>Benutzername</th>
+					<th>Gewinnquote</th>
+					<th>Gespielte Spiele</th>	
+					<th>Gewonnene Spiele</th>		
 				</tr>
 <?php
 	foreach($rank as $row) {
