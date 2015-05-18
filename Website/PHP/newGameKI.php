@@ -9,7 +9,7 @@ $BenutzerID = htmlspecialchars($_SESSION['BenutzerID']);
 $stmt->execute();	
 
 
-header("Location: ../index.php");		
+header("Location: ../Spiel.php");		
 
 
 
