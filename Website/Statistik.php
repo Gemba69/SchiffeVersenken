@@ -43,7 +43,8 @@ on a.Benutzername=b.Benutzername order by GewonneneSpiele desc;
 		$benutzer=$row["Benutzername"];
 		$gespielteSpiele=$row["GespielteSpiele"];
 		$gewonneneSpiele=$row["GewonneneSpiele"];
-		$gewinnquote=$gewonneneSpiele/$gespielteSpiele*100 . '%'
+		$gewinnquote=$gewonneneSpiele/$gespielteSpiele*100;
+		$gewinnquote = round($gewinnquote,2). '%';
 		?>
 		<tr>
 			<td><?php echo $benutzer ?></td>
@@ -79,7 +80,8 @@ on a.Benutzername=b.Benutzername order by a.gespielteSpiele desc
 		$benutzer=$row["Benutzername"];
 		$gespielteSpiele=$row["GespielteSpiele"];
 		$gewonneneSpiele=$row["GewonneneSpiele"];
-		$gewinnquote=$gewonneneSpiele/$gespielteSpiele*100 . '%'
+		$gewinnquote=$gewonneneSpiele/$gespielteSpiele*100;
+		$gewinnquote = round($gewinnquote,2). '%';
 		?>
 		<tr>
 			<td><?php echo $benutzer ?></td>
@@ -115,7 +117,8 @@ on a.Benutzername=b.Benutzername
 		$benutzer=$row["Benutzername"];
 		$gespielteSpiele=$row["GespielteSpiele"];
 		$gewonneneSpiele=$row["GewonneneSpiele"];
-		$gewinnquote=$gewonneneSpiele/$gespielteSpiele*100 . '%'
+		$gewinnquote=$gewonneneSpiele/$gespielteSpiele*100;
+		$gewinnquote = round($gewinnquote,2). '%';
 		?>
 		<tr>
 			<td><?php echo $benutzer ?></td>
