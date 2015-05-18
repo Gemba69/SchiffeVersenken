@@ -120,18 +120,23 @@
 			$aiTurn = true;
 		} else if ($result == DESTROYED_ID) {
 			$postData['instructions'] = $instructions.'<ul><li class="fadeinanim">Versenkt! Und weiter geht\'s!</li></ul>';
-			$ship = DESTROYED_ID;
+			$destroyedTiles = $gameFieldEnemy->getAllDestroyedTiles($i, $j);
+			$cellData = array();
+			//var_dump($destroyedTiles);
+			for ($k = 0; $k < count($destroyedTiles); $k++) {
+				$cellData = array_merge($cellData, GameHelperFunctions::generateCellDataArrayForSingleClick($destroyedTiles[$k]['i'], $destroyedTiles[$k]['j'], DESTROYED_ID, ENEMY_ID_PREFIX));
+			}
 		} else {
 			$postData['instructions'] = $instructions.'<ul><li class="fadeinanim">Dort wurde schon hingeschossen. </li></ul>';
 			echo json_encode(GameHelperFunctions::utf8ize($postData));
 			return;
 		}
-		$cellData = GameHelperFunctions::generateCellDataArrayForSingleClick($i, $j, $ship, ENEMY_ID_PREFIX);
+		!isset($cellData) ? $cellData = GameHelperFunctions::generateCellDataArrayForSingleClick($i, $j, $ship, ENEMY_ID_PREFIX) : null;
 		$postData['cells'] = $cellData;
 		if (GameHelperFunctions::checkWin($gameFieldEnemy->getAsArray())) {
 			$postData['instructions'] = "Gewonnen!";
 			$postData['title'] = "Sieg";
-			$_SESSION['turn'] = "lolnope, nobody";
+			$_SESSION['turn'] = "lolnope, game over dude";
 		}
 		if ($aiTurn) 
 			$postData['sendAnotherRequest'] = true;
@@ -149,8 +154,14 @@
 		$ship = $gameFieldSelf->attack($i, $j);
 		if ($ship == MISS_ID) {
 			$postData['instructions'] = PHASE_2_MAJOR_INSTRUCTIONS;
+		} else if ($ship == DESTROYED_ID) {
+			$destroyedTiles = $gameFieldSelf->getAllDestroyedTiles($i, $j);
+			$cellData = array();
+			for ($k = 0; $k < count($destroyedTiles); $k++) {
+				$cellData = array_merge($cellData, GameHelperFunctions::generateCellDataArrayForSingleClick($destroyedTiles[$k]['i'], $destroyedTiles[$k]['j'], DESTROYED_ID, SELF_ID_PREFIX));
+			}
 		}
-		$cellData = GameHelperFunctions::generateCellDataArrayForSingleClick($i, $j, $ship, SELF_ID_PREFIX);
+		!isset($cellData) ? $cellData = GameHelperFunctions::generateCellDataArrayForSingleClick($i, $j, $ship, SELF_ID_PREFIX) : null;
 
 		$postData['cells'] = $cellData;
 		$_SESSION['gameFieldSelf'] = $gameFieldSelf;

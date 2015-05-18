@@ -93,5 +93,28 @@
 				$this->destroyShip($iminus, $j, $gameField);
 			} 
 		}
+		
+		public function getAllDestroyedTiles($i, $j) {
+			return $this->getAllDestroyedTilesCore($i, $j, $this->gameField);
+		}
+		
+		private function getAllDestroyedTilesCore($i, $j, $gameField) {
+			if ($gameField[$i][$j] == DESTROYED_ID) {				
+				$iminus = ($i <= 0) ? 0: $i - 1;
+				$iplus = ($i >= 9) ? 9 : $i + 1;
+				$jminus = ($j <= 0) ? 0: $j - 1;
+				$jplus = ($j >= 9) ? 9 : $j + 1;
+				
+				$gameField[$i][$j] = WATER_ID;
+
+				$ret = isset($ret) ? array_merge($ret, array('i' => $i, 'j' => $j)) : array(0 => array('i' => $i, 'j' => $j));
+			
+				$ret = array_merge($ret, $this->getAllDestroyedTilesCore($i, $jplus, $gameField));
+				$ret = array_merge($ret, $this->getAllDestroyedTilesCore($i, $jminus, $gameField));
+				$ret = array_merge($ret, $this->getAllDestroyedTilesCore($iplus, $j, $gameField));
+				$ret = array_merge($ret, $this->getAllDestroyedTilesCore($iminus, $j, $gameField));
+			} 
+			return isset($ret) ? $ret : array();
+		}
 	}
 ?>
