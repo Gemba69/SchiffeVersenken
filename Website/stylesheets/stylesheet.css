@@ -190,6 +190,12 @@ body {
 	margin-bottom: 15%;
 }
 
+.designHeader {
+	border: none;
+	font-weight: 300;
+	color: #146281;
+}
+
 button {
 	border: none;
 	font-size: 20px;
