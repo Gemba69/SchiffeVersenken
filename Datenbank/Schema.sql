@@ -125,6 +125,7 @@ Select Benutzername, count(Benutzername) as GespielteSpiele
 from Benutzer 
 join Spiel on Benutzer.ID=Spiel.Spieler_1 
 or Benutzer.ID=Spiel.Spieler_2 
+where Benutzer.ID!=0
 group by Benutzername 
 order by GespielteSpiele desc
 ;
@@ -141,6 +142,36 @@ Select Benutzername, count(Benutzername) as GewonneneSpiele
 from Benutzer 
 join Spiel on Benutzer.ID=Spiel.Spieler_1 and Spiel.StatusID=3 
 or Benutzer.ID=Spiel.Spieler_2 and Spiel.StatusID=4 
+where Benutzer.ID!=0
 group by Benutzername 
 order by GewonneneSpiele desc
 ;
+
+--
+-- Necessary Data for Standard-Tables 
+--
+
+--
+-- Daten Spielzugtyp
+--
+
+Insert Into Spielzugtyp (Name, Beschreibung) VALUES ('SETZEN', 'Ein Schiff auf ein Feld setzen');
+Insert Into Spielzugtyp (Name, Beschreibung) VALUES ('LOESCHEN', 'Ein Schiff von einem Feld loeschen');
+Insert Into Spielzugtyp (Name, Beschreibung) VALUES ('ANGRIFF', 'Ein Feld Angreifen');
+
+--
+-- Daten Farbcode
+--
+Insert Into Farbcode (Feld_Typ, Farbcode) VALUES ('WASSER', '74C2E1');
+Insert Into Farbcode (Feld_Typ, Farbcode) VALUES ('MISS', '3482A1');
+Insert Into Farbcode (Feld_Typ, Farbcode) VALUES ('SCHIFF', '555555');
+Insert Into Farbcode (Feld_Typ, Farbcode) VALUES ('TREFFER', 'FF0000');
+Insert Into Farbcode (Feld_Typ, Farbcode) VALUES ('VERSENKT', '000000');
+
+--
+-- Daten SpielStatus
+--
+Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('PHASE1', 'Schiffe werden noch gesetzt');
+Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('PHASE2', 'Das Spiel befindet sich in Phase 2');
+Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('GEWONNEN_SPIELER1', 'Spieler1 hat gewonnen');
+Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('GEWONNEN_SPIELER2', 'Spieler 2 hat das Spiel gewonnen');

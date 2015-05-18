@@ -3,9 +3,7 @@ Dokumentation SchiffeVersenken TODOs
 Klassenaufbau (Simon, Pöppelmann)
 raffinierte Interaktion in der Oberfläche
 
-Installation: Anmeldung mit einem bestimmten Benutzer und Verweis Auf 
-Beschreibung der Anwendung mit Screenshots (Funktionen) (Benutzerhandbuch)
 
 Architektur
--> Websiteprogrammierung
+
 -> PHPDoc generieren bzw. noch machen

@@ -21,10 +21,10 @@
 
 $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
 
-$rank = $dbh->query("Select a.Benutzername,a.gespielteSpiele as GespielteSpiele,
+$rank = $dbh->query("Select (GewonneneSpiele/GespielteSpiele) as Gewinnquote, a.Benutzername,a.gespielteSpiele as GespielteSpiele,
 b.gewonneneSpiele as GewonneneSpiele
 from highscore_gespielte_spiele a left outer join highscore_gewonnene_spiele b 
-on a.Benutzername=b.Benutzername order by GewonneneSpiele desc;
+on a.Benutzername=b.Benutzername order by GewonneneSpiele desc
 ;")->fetchAll();
 ?>
 	<div id="page-wrapper" class="minimalisticTable">
@@ -43,7 +43,7 @@ on a.Benutzername=b.Benutzername order by GewonneneSpiele desc;
 		$benutzer=$row["Benutzername"];
 		$gespielteSpiele=$row["GespielteSpiele"];
 		$gewonneneSpiele=$row["GewonneneSpiele"];
-		$gewinnquote=$gewonneneSpiele/$gespielteSpiele*100 . '%'
+		$gewinnquote=$row["Gewinnquote"]*100  . ' %';
 		?>
 		<tr>
 			<td><?php echo $benutzer ?></td>
@@ -59,10 +59,10 @@ on a.Benutzername=b.Benutzername order by GewonneneSpiele desc;
 
 $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
 
-$rank = $dbh->query("Select a.Benutzername,a.gespielteSpiele as GespielteSpiele,
+$rank = $dbh->query("Select (GewonneneSpiele/GespielteSpiele) as Gewinnquote, a.Benutzername,a.gespielteSpiele as GespielteSpiele,
 b.gewonneneSpiele as GewonneneSpiele
 from highscore_gespielte_spiele a left outer join highscore_gewonnene_spiele b 
-on a.Benutzername=b.Benutzername order by a.gespielteSpiele desc
+on a.Benutzername=b.Benutzername order by GespielteSpiele desc
 ;")->fetchAll();
 ?>
 			<h2 class="designHeader">Highscore - gespielte Spiele</h2>
@@ -79,7 +79,7 @@ on a.Benutzername=b.Benutzername order by a.gespielteSpiele desc
 		$benutzer=$row["Benutzername"];
 		$gespielteSpiele=$row["GespielteSpiele"];
 		$gewonneneSpiele=$row["GewonneneSpiele"];
-		$gewinnquote=$gewonneneSpiele/$gespielteSpiele*100 . '%'
+		$gewinnquote=$row["Gewinnquote"]*100  . ' %';
 		?>
 		<tr>
 			<td><?php echo $benutzer ?></td>
@@ -95,10 +95,10 @@ on a.Benutzername=b.Benutzername order by a.gespielteSpiele desc
 
 $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
 
-$rank = $dbh->query("Select a.Benutzername,a.gespielteSpiele as GespielteSpiele,
+$rank = $dbh->query("Select (GewonneneSpiele/GespielteSpiele) as Gewinnquote, a.Benutzername,a.gespielteSpiele as GespielteSpiele,
 b.gewonneneSpiele as GewonneneSpiele
 from highscore_gespielte_spiele a left outer join highscore_gewonnene_spiele b 
-on a.Benutzername=b.Benutzername
+on a.Benutzername=b.Benutzername order by Gewinnquote desc
 ;")->fetchAll();
 ?>
 			<h2 class="designHeader">Highscore - Gewinnquote</h2>
@@ -115,7 +115,9 @@ on a.Benutzername=b.Benutzername
 		$benutzer=$row["Benutzername"];
 		$gespielteSpiele=$row["GespielteSpiele"];
 		$gewonneneSpiele=$row["GewonneneSpiele"];
-		$gewinnquote=$gewonneneSpiele/$gespielteSpiele*100 . '%'
+		//$gewinnquote=$gewonneneSpiele/$gespielteSpiele*100;
+		//$gewinnquote = round($gewinnquote,2). '%';
+		$gewinnquote=$row["Gewinnquote"]*100  . ' %';
 		?>
 		<tr>
 			<td><?php echo $benutzer ?></td>
