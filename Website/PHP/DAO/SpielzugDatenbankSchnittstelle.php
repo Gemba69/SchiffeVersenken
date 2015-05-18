@@ -74,7 +74,7 @@ class SpielzugDatenbankSchnittstelle {
      */
     public function ladeSpielbrettAusDb() {
         $i = 0;
-        $query = $this->pdo->prepare("SELECT Spielbrett, x_Koordinate, y_Koordinate, Spielzugtyp FROM Spielzug WHERE SpielID = :spielId");
+        $query = $this->pdo->prepare("SELECT Spielbrett, X_Koordinate, Y_Koordinate, Spielzugtyp FROM Spielzug WHERE SpielID = :spielId");
         $query->bindParam(':spielId', $this->spielId);
         $query->execute();
         $spielzugArray0 = $query->fetchAll(PDO::FETCH_NUM);
@@ -399,7 +399,7 @@ class SpielzugDatenbankSchnittstelle {
             if ($x > 0 && $x < $this->feldbreite) {
                 if ($y > 0 && $y < $this->feldhoehe) {
                     if ($spielzugTyp == "SETZEN" || $spielzugTyp == "LOESCHEN" || $spielzugTyp == "ANGRIFF") {
-                        $stmt = $this->pdo->prepare("INSERT INTO Spielzug(SpielID, Spielbrett, x-Koordinate, y-Koordinate, Spielzugtyp)
+                        $stmt = $this->pdo->prepare("INSERT INTO Spielzug(SpielID, Spielbrett, X_Koordinate, Y_Koordinate, Spielzugtyp)
                             VALUES(:spielId, :spielbrett, :x, :y, :spielzugTyp)");
                         $stmt->bindParam(':spielId', $this->spielId);
                         $stmt->bindParam(':spielbrett', $spielbrett);
