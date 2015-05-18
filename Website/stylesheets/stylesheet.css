@@ -187,13 +187,21 @@ body {
 
 .statistikTable {
 	margin: auto;
-	margin-bottom: 15%;
+	margin-bottom: 5%;
+	margin-top: 5%;
 }
 
 .designHeader {
 	border: none;
 	font-weight: 300;
 	color: #146281;
+}
+
+#spielstandPositioning {
+	width: 550px;
+	margin-top: 5%;
+	
+	
 }
 
 button {
