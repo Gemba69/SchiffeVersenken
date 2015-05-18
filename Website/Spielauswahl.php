@@ -20,14 +20,10 @@
 			<button id="Logoff" class="button menuContent" type='submit'>Logout</button>
 			</form>
 		</div>
-			<div id="page-wrapper">
+			<div id="page-wrapper" class="minimalisticTable">
 			<form action="PHP/newGameKI.php">
-			<input type="submit" name="newGame" value="Neues Spiel"></input>
+			<input type="submit" name="newGame" class="submit" value="Neues Spiel"></input>
 			</form>
-			</div>
-		
-
-
 <?php
 
 $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
@@ -52,14 +48,13 @@ $rank =  $query->fetchAll();
 
 ?>
 <form action="PHP/LoadGame.php" method="POST" id="table">
-<div id="page-wrapper">
-<table border="1">
+<table id="spielstandPositioning" class="statistikTable">
 	<tr>
-		<td>SpielID</td>
-		<td>Gegner</td>
-		<td>Spieplphase</td>	
+		<th>SpielID</th>
+		<th>Gegner</th>
+		<th>Spieplphase</th>
+		<th></th>
 	</tr>
-</div>
 <?php
 	foreach($rank as $row) {
 		$SpielID=$row["SpielID"];
@@ -76,13 +71,10 @@ $rank =  $query->fetchAll();
 	}
 
 ?>
-  
 </table>
-</br></br><br/>
- <input type="submit" id="StartGame" name="StartGame" disabled ></input>
- </div>
+ <input type="submit" id="StartGame" class="submit" name="StartGame" value="Spielstand laden" disabled ></input>
  </form>
-
+</div>
 	</body>
 </html>
 
