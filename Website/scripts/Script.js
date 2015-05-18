@@ -85,11 +85,9 @@ function soundSetter(){
 	if (document.getElementById("c1").checked){
 		audio.muted = true;
 		sound.volume = 0;
-		document.getElementById("c1").classList.add("label.unmute");
 	}else{
 		audio.muted = false;
-		sound.volume = 0.3;
-		document.getElementById("c1").classList.add("label.mute");
+		sound.volume = 0.01;
 	}
 }
 
@@ -105,10 +103,3 @@ function checkNecessaryLoginInput(){
 		document.getElementById("loginSubmit").classList.remove("blueBorder");
 	}
 }
-
-
-
-
-
-
-

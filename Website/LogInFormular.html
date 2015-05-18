@@ -8,13 +8,6 @@
 	  <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
   </head>
   <body>
-	<div id="hamburgercontainer" class='hamburger'>			
-			<a class='menuContent' href="Startseite.html">Startseite</a></br></br>
-			<a class='menuContent' href="Spielauswahl.php">Spielauswahl</a></br></br>
-			<a class='menuContent' href="Spielregeln.html">Spielregeln</a></br></br>
-			<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
-			<a class='menuContent' href="Impressum.html">Impressum</a></br></br></br></br></br></br></br></br>
-	</div>  
     <form action="PHP/LogIn.php" method="POST">
 	<div id="wrapper">
 		<input id='loginUser' class="Eingabefeld" name="benutzername" placeholder="Benutzername" type="text" onkeyup="checkNecessaryLoginInput()" onload="checkNecessaryLoginInput()"> </br>
@@ -22,7 +15,7 @@
 		<input id='loginSubmit' class="submit" type="submit" disabled></input>
 		<a class="linkToLoginNRegistration" href="Registrierungsformular.html">Noch nicht registriert?</a> 
 		<span></span>
-		<audio id="audio" autoplay loop onload="soundSetter()">
+		<audio id="audio" autoplay loop onloadeddata="soundSetter()">
 			<source src="resources/DrownThemLikeADemon.ogg" type="audio/ogg">
 			<source src="resources/DrownThemLikeADemon.mp3" type="audio/mpeg">
 		</audio>
