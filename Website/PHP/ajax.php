@@ -30,7 +30,7 @@
 	
 	function resumeSession() {
 			$gameFieldSelfArray = $_SESSION['gameFieldSelf']->getAsArray();
-			$gameFieldEnemyArray = $_SESSION['gameFieldSelf']->getAsArray();
+			$gameFieldEnemyArray = $_SESSION['gameFieldEnemy']->getAsArray();
 
 			$postData = GameHelperFunctions::generateResumeSessionArray($gameFieldSelfArray, $gameFieldEnemyArray, $_SESSION['requiredShips'], $_SESSION['gamePhase']);
 			echo json_encode(GameHelperFunctions::utf8ize($postData));
