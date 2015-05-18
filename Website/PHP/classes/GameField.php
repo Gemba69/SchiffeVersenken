@@ -68,9 +68,9 @@
 				$gameField[$i][$j] = WATER_ID;
 			
 				$destroyed = $this->checkIfDestroyed($i, $jplus, $gameField) &&
-							$this->checkIfDestroyed($i, $jminus, $gameField) &&
-							$this->checkIfDestroyed($iplus, $j, $gameField) &&
-							$this->checkIfDestroyed($iminus, $j, $gameField);
+							 $this->checkIfDestroyed($i, $jminus, $gameField) &&
+							 $this->checkIfDestroyed($iplus, $j, $gameField) &&
+							 $this->checkIfDestroyed($iminus, $j, $gameField);
 			} else if ($gameField[$i][$j] == SHIP_ID) {
 				$destroyed = false;
 				$gameField[$i][$j] = WATER_ID;

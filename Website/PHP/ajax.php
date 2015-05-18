@@ -1,7 +1,9 @@
 <?php 
 	require_once('classes/GameHelperFunctions.php');	
 	require_once('classes/GameField.php');			
-	require_once('classes/AI.php');		
+	require_once('classes/AI.php');	
+	require_once('DAO/SpielDatenbankSchnittstelle.php');	
+	require_once('DAO/SpielzugDatenbankSchnittstelle.php');		
 
 	session_start();
 	
@@ -35,7 +37,8 @@
 	}
 	
 	function createNewSession() {
-		$gameFieldSelf = new GameField(GameHelperFunctions::initializeOrFetchGame(10, 10));
+		$gameDao = new SpielDatenbankSchnittstelle(1, AI_ID);
+		$gameFieldSelf = new GameField(GameHelperFunctions::initializeOrFetchGame(10, 10)); //großes TODO: 10x10 nicht immer hardcoden! god damn it jonas, your laziness is limitless!
 		$gameFieldEnemy = new GameField(GameHelperFunctions::initializeOrFetchGame(10, 10));
 		$gamePhase = 0;
 		$turn = SELF_ID_PREFIX;
@@ -45,6 +48,7 @@
 		$_SESSION['requiredShips'] = array('10' => 0, '9' => 0, '8' => 0, '7' => 0, '6' => 0, '5' => 1, '4' => 2, '3' => 3, '2' => 4, '1' => 0); //todo: aus der datenbank auslesen
 		$_SESSION['gamePhase'] = $gamePhase;
 		$_SESSION['turn'] = $turn;
+		$_SESSION['gameId'] = $gameDao->neuesSpiel();
 	}
 	
 	function resetSession() { //temporary
@@ -57,6 +61,14 @@
 		$gameFieldSelfArray = $_SESSION['gameFieldSelf']->getAsArray();
 		$postData = GameHelperFunctions::generateClickResponseArray($gameFieldSelfArray, $_SESSION['requiredShips'], 1, null, null, null, null);
 		$_SESSION['gameFieldEnemy'] = new GameField(AI::schiffeSetzen(GameHelperFunctions::initializeOrFetchGame(10, 10), $_SESSION['requiredShips'])); // TODO: 10x10 zentral auslesen
+		
+		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['gameId']); //TODO: wie immer Spielfeldgröße
+		for ($i = 0; $i < count($_SESSION['gameFieldEnemy']->getAsArray()); $i++) {
+			for ($j = 0; $j < count($_SESSION['gameFieldEnemy']->getAsArray()[$i]); $j++) {
+				if ($_SESSION['gameFieldEnemy']->getAsArray()[$i][$j] == SHIP_ID)
+					$dao->speicherSpielzugInDb(1, $i, $j, "SETZEN");
+			}
+		}	
 		echo json_encode(GameHelperFunctions::utf8ize($postData));
 	}
 	
@@ -77,6 +89,13 @@
 		$j = $_POST['j'];
 		
 		$gameFieldSelf->toggleShip($i, $j);
+		
+		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['gameId']); //TODO: wie immer Spielfeldgröße
+		if ($gameFieldSelf->getAsArray()[$i][$j] == SHIP_ID)
+			$dao->speicherSpielzugInDb(0, $i, $j, "SETZEN"); //todo: hardcoding....
+		else 
+			$dao->speicherSpielzugInDb(0, $i, $j, "LOESCHEN");
+		
 		$_SESSION['gameFieldSelf'] = $gameFieldSelf;
 		$postData = GameHelperFunctions::generateClickResponseArray($gameFieldSelf->getAsArray(), $_SESSION['requiredShips'], 0, $i, $j, SELF_ID_PREFIX, SHIP_ID);
 		echo json_encode(GameHelperFunctions::utf8ize($postData));
