@@ -43,14 +43,13 @@ $rank = $dbh->query("Select * from highscore_gewonnene_Spiele;")->fetchAll();
 	}
 ?>
 			</table>
-			</br> </br> </br>
 <?php
 
 $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
 
 $rank = $dbh->query("Select * from highscore_gespielte_Spiele;")->fetchAll();
 ?>
-			<table border="1">
+			<table border="1">		
 				<tr>
 					<th>Benutzername</th>
 					<th>Gespielte Spiele</th>		
@@ -69,7 +68,6 @@ $rank = $dbh->query("Select * from highscore_gespielte_Spiele;")->fetchAll();
 	}
 ?>
 			</table>
-			</br> </br> </br>
 <?php
 
 $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
@@ -105,7 +103,7 @@ on a.Benutzername=b.Benutzername
 	}
 ?>
 			</table>
-		</div>
+	</div>
 	</body>
 </html>
 
