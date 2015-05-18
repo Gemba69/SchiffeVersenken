@@ -131,7 +131,7 @@ function sendAiComboAjaxRequest() {
 
 function processAnswer(answer) {
 	document.getElementById('infobox').innerHTML = answer; //debug
-
+	
 	answer = $.parseJSON(answer);
 	if (answer.illegal)
 		return;

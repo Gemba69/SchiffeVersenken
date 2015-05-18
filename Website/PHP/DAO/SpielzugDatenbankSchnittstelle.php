@@ -1,5 +1,7 @@
 <?php
 
+require_once('SpielzugtypDatenbankSchnittstelle.php');		
+
 /*
  * Die Klasse SpielzugDatenbankSchnittstelle stellt eine Verbindung zur 
  * Datenbank her und regelt den Zugriff auf die Tabelle Spielzug indem sie
@@ -77,14 +79,14 @@ class SpielzugDatenbankSchnittstelle {
         $query->execute();
         $spielzugArray0 = $query->fetchAll(PDO::FETCH_NUM);
         $spielzugArray = $this->array_2d_to_1d($spielzugArray0);
-        print("SpielzugArraycount: " . count($spielzugArray) . " Spielid: " . $this->spielId);
+        ////print("SpielzugArraycount: " . count($spielzugArray) . " Spielid: " . $this->spielId);
         for ($j = 0; $j < (count($spielzugArray) / 4); $j++) {
             if ($spielzugArray[$i] == 0) {
                 $i++;
                 $xk = $spielzugArray[$i];
                 $yk = $spielzugArray[$i + 1];
                 $i = $i + 2;
-                print($this->spielzugtypDb->ladeSpielzugtypId("SETZEN") . " ; ");
+                ////print($this->spielzugtypDb->ladeSpielzugtypId("SETZEN") . " ; ");
                 if ($this->spielbrett0[$xk][$yk] == self::CONST_WASSER && $spielzugArray[$i] == $this->spielzugtypDb->ladeSpielzugtypId("SETZEN")) {
                     $this->spielbrett0[$xk][$yk] = self::CONST_SCHIFF;
                 } else if ($this->spielbrett0[$xk][$yk] == self::CONST_WASSER && $spielzugArray[$i] == $this->spielzugtypDb->ladeSpielzugtypId("LOESCHEN")) {
@@ -209,16 +211,16 @@ class SpielzugDatenbankSchnittstelle {
             if ($this->spielbrett0[$x][$y] == self::CONST_TREFFER) {
                 $this->spielbrett0[$x][$y] = self::CONST_VERSENKT;
             } else {
-                print("An der Stelle " . $x . "/" . $y . " gibt es keinen Treffer");
+                //print("An der Stelle " . $x . "/" . $y . " gibt es keinen Treffer");
             }
         } else if ($spielbrettnr == 1) {
             if ($this->spielbrett1[$x][$y] == self::CONST_TREFFER) {
                 $this->spielbrett1[$x][$y] = self::CONST_VERSENKT;
             } else {
-                print("An der Stelle " . $x . "/" . $y . " gibt es keinen Treffer");
+                //print("An der Stelle " . $x . "/" . $y . " gibt es keinen Treffer");
             }
         } else {
-            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            //print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
         }
     }
 
@@ -233,7 +235,7 @@ class SpielzugDatenbankSchnittstelle {
         } else if ($spielbrettnr == 1) {
             $feld=$this->spielbrett1;
         } else {
-            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            //print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
         }
         if (count(($adjazenzen = $this->findeAdjazenteTreffer($i, $j, $feld))) > 0) {
         if ($adjazenzen[0][1] < $i || $adjazenzen[0][1] > $i) {
@@ -327,7 +329,7 @@ class SpielzugDatenbankSchnittstelle {
                 $i++;
             }
         } else {
-            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            //print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
         }
         return $adjazenzen;
     }
@@ -383,7 +385,7 @@ class SpielzugDatenbankSchnittstelle {
                 $i++;
             }
         } else {
-            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            //print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
         }
         return $adjazenzen;
     }
@@ -406,16 +408,16 @@ class SpielzugDatenbankSchnittstelle {
                         $stmt->bindParam(':spielzugTyp', $this->spielzugtypDb->ladeSpielzugtypId($spielzugTyp));
                         $stmt->execute();
                     } else {
-                        print("SpielzugTyp: " . $spielzugTyp . " ist nicht vorhanden! (moeglich ist: SETZEN,LOESCHEN,ANGRIFF)");
+                        //print("SpielzugTyp: " . $spielzugTyp . " ist nicht vorhanden! (moeglich ist: SETZEN,LOESCHEN,ANGRIFF)");
                     }
                 } else {
-                    print("y: " . $y . " ist nicht vorhanden! ( 0-" . $this->feldhoehe . ")");
+                    //print("y: " . $y . " ist nicht vorhanden! ( 0-" . $this->feldhoehe . ")");
                 }
             } else {
-                print("x: " . $x . " ist nicht vorhanden! ( 0-" . $this->feldbreite . ")");
+                //print("x: " . $x . " ist nicht vorhanden! ( 0-" . $this->feldbreite . ")");
             }
         } else {
-            print("Spielbrett: " . $spielbrett . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            //print("Spielbrett: " . $spielbrett . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
         }
     }
 

@@ -7,7 +7,7 @@
 		<script src="scripts/jquery.js"></script>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 		<title>
 			Schiffe versenken
 		</title>
@@ -32,9 +32,9 @@
 				</ul>
 			</aside>
 			<aside id="legend">
-				<div class="buttondiv">
-					<img class="buttonimg" src="resources/arrow.png" alt="arrow">
-					<button id="resetbutton" onclick="resetAjaxRequest()">Destroy Session</button><br>
+				<div class="buttondiv rightalign">
+					<img class="buttonimg" src="resources/surrenderflag.png" alt="flag icon missing">
+					<button id="resetbutton" onclick="resetAjaxRequest()">Aufgeben</button><br>
 				</div>
 				<span class="example_cell"></span> Wasser
 				<span class="example_cell graycol"></span> Schiff

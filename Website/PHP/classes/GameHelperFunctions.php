@@ -7,6 +7,7 @@
 	define('SHIP_ID', "SCHIFF");
 	define('MISS_ID', "MISS");
 	define('HIT_ID', "TREFFER");
+	define('AI_ID', 2);
 	define('DESTROYED_ID', "VERSENKT");
 	define('ILLEGAL_SHIP_ALIGNMENT_WARNING', "<li>Die aktuelle Anordnung ist ungültig.<br>Verschiedene Schiffe dürfen sich nicht berühren.</li>");
 	define("PHASE_1_TITLE", "Planung");
@@ -69,11 +70,11 @@
 			$cellData = array_merge($cellData, self::generateCellDataArray($gameFieldEnemy, ENEMY_ID_PREFIX));
 			$postData = array('cells' => $cellData);
 			if ($phase == 0) {
-				if (self::allShipsPlaced($gameField, $requiredShips)) {
+				if (self::allShipsPlaced($gameFieldSelf, $requiredShips)) {
 					$postData['instructions'] = CONTINUE_INSTRUCTIONS."<br><br>".CONTINUE_BUTTON_CODE;
 					$postData['title'] = PHASE_1_TITLE;
 				} else {
-					$remainingShips = self::drawRemainingShips($gameField, $requiredShips); //TODO: siehe oben
+					$remainingShips = self::drawRemainingShips($gameFieldSelf, $requiredShips); //TODO: siehe oben
 					$instructions = "<li>".PHASE_1_MAJOR_INSTRUCTIONS."</li>".$remainingShips;
 					$postData['instructions'] = $instructions;
 					$postData['title'] = PHASE_1_TITLE;
