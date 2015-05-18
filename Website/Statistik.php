@@ -28,6 +28,7 @@ on a.Benutzername=b.Benutzername order by GewonneneSpiele desc;
 ;")->fetchAll();
 ?>
 	<div id="page-wrapper" class="minimalisticTable">
+		<h1>Statistik</h1>
 			<h2 class="designHeader">Highscore - gewonnene Spiele</h2>
 			<table class="statistikTable">
 				<tr>
