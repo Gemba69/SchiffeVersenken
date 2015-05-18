@@ -12,7 +12,7 @@
 	<body>
 
 		<div id="hamburgercontainer" class='hamburger'>			
-			<a class='menuContent' href="Startseite.php">Startseite</a></br></br>
+			<a class='menuContent' href="Index.php">Startseite</a></br></br>
 			<a class='menuContent' href="Spielauswahl.php">Spielauswahl</a></br></br>
 			<a class='menuContent' href="Spielregeln.php">Spielregeln</a></br></br>
 			<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
