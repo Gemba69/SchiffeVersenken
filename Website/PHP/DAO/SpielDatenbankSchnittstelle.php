@@ -72,7 +72,7 @@ class SpielDatenbankSchnittstelle {
         include 'SpielStatusDatenbankSchnittstelle.php';
         $spielStatusDb = new SpielStatusDatenbankSchnittstelle();
         $spielStatusId = $spielStatusDb->ladeSpielStatusId("PHASE1");
-        $stmt = $this->pdo->prepare("INSERT INTO Spiel(Spieler1, Spieler2, StatusID)
+        $stmt = $this->pdo->prepare("INSERT INTO Spiel(Spieler_1, Spieler_2, StatusID)
                             VALUES(:spieler1, :spieler2, :spielStatusId)");
         $stmt->bindParam(':spieler1', $this->spieler0);
         $stmt->bindParam(':spieler2', $this->spieler1);

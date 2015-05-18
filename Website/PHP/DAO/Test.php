@@ -17,18 +17,29 @@ print("<br>");
 $spielDb = new SpielDatenbankSchnittstelle(1,2);
 print("2");
 print("<br>");
-$spielDb->neuesSpiel();
+$spielid=$spielDb->neuesSpiel();
+print("Neue Spiel id:". $spielid);
 print("3");
 print("<br>");
 $spielIDs = $spielDb->ladeSpiele();
 print("4");
 print("<br>");
-print($spielIDs);
-$spielzugDb = new SpielzugDatenbankSchnittstelle(10,10,$spielIDs[0]);
+print_r($spielIDs);
+$spielzugDb = new SpielzugDatenbankSchnittstelle(10,10,$spielid);
+print("5");
+print("<br>");
 $spielzugDb->speicherSpielzugInDb(0,5,5,"ANGRIFF");
+print("6");
+print("<br>");
 ausgabe($spielzugDb->ladeSpielbrettAusDb());
+print("7");
+print("<br>");
 $spielst = new SpielStatusDatenbankSchnittstelle();
+print("8");
+print("<br>");
 $spielst->ladeSpielStatusId("PHASE1");
+print("9");
+print("<br>");
 
 function ausgabe($feld) {
         for ($i = 0; $i < 10; $i++) {
@@ -43,6 +54,8 @@ function ausgabe($feld) {
                     print("V ");
                 } elseif ($feld[$i][$j] == "MISS") {
                     print("M ");
+                }else{
+                    print($feld[$i][$j]);
                 }
             }
             echo "<br>";
