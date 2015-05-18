@@ -21,22 +21,32 @@
 
 $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
 
-$rank = $dbh->query("Select * from highscore_gewonnene_Spiele;")->fetchAll();
+$rank = $dbh->query("Select a.Benutzername,a.gespielteSpiele as GespielteSpiele,
+b.gewonneneSpiele as GewonneneSpiele
+from highscore_gespielte_spiele a left outer join highscore_gewonnene_spiele b 
+on a.Benutzername=b.Benutzername order by GewonneneSpiele desc;
+;")->fetchAll();
 ?>
 	<div id="page-wrapper" class="minimalisticTable">
 			<table border="1">
 				<tr>
 					<th>Benutzername</th>
+					<th>Gewinnquote</th>
+					<th>Gespielte Spiele</th>	
 					<th>Gewonnene Spiele</th>		
 				</tr>
 <?php
 	foreach($rank as $row) {
 		//var_dump($adresse);
 		$benutzer=$row["Benutzername"];
+		$gespielteSpiele=$row["GespielteSpiele"];
 		$gewonneneSpiele=$row["GewonneneSpiele"];
+		$gewinnquote=$gewonneneSpiele/$gespielteSpiele*100 . '%'
 		?>
 		<tr>
 			<td><?php echo $benutzer ?></td>
+			<td><?php echo $gewinnquote ?></td>
+			<td><?php echo $gespielteSpiele ?></td>
 			<td><?php echo $gewonneneSpiele ?></td>
 		</tr>
 		<?php
@@ -47,22 +57,32 @@ $rank = $dbh->query("Select * from highscore_gewonnene_Spiele;")->fetchAll();
 
 $dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
 
-$rank = $dbh->query("Select * from highscore_gespielte_Spiele;")->fetchAll();
+$rank = $dbh->query("Select a.Benutzername,a.gespielteSpiele as GespielteSpiele,
+b.gewonneneSpiele as GewonneneSpiele
+from highscore_gespielte_spiele a left outer join highscore_gewonnene_spiele b 
+on a.Benutzername=b.Benutzername order by a.gespielteSpiele desc
+;")->fetchAll();
 ?>
 			<table border="1">		
 				<tr>
 					<th>Benutzername</th>
-					<th>Gespielte Spiele</th>		
+					<th>Gewinnquote</th>
+					<th>Gespielte Spiele</th>	
+					<th>Gewonnene Spiele</th>		
 				</tr>
 <?php
 	foreach($rank as $row) {
 		//var_dump($adresse);
 		$benutzer=$row["Benutzername"];
 		$gespielteSpiele=$row["GespielteSpiele"];
+		$gewonneneSpiele=$row["GewonneneSpiele"];
+		$gewinnquote=$gewonneneSpiele/$gespielteSpiele*100 . '%'
 		?>
 		<tr>
 			<td><?php echo $benutzer ?></td>
+			<td><?php echo $gewinnquote ?></td>
 			<td><?php echo $gespielteSpiele ?></td>
+			<td><?php echo $gewonneneSpiele ?></td>
 		</tr>
 		<?php
 	}
