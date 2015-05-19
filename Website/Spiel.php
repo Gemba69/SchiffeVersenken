@@ -1,4 +1,4 @@
-<?php require_once('PHP/classes/DrawFunctions.php');
+﻿<?php require_once('PHP/classes/DrawFunctions.php');
 	  require_once('PHP/classes/GameHelperFunctions.php');
 	  //require_once ('PHP/auth.php‘);
       //require_once ('PHP/Auth_Spiel.php');
@@ -23,7 +23,9 @@
 			<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
 			<a class='menuContent' href="Impressum.php">Impressum</a></br></br></br></br></br></br></br></br>
 		<form action="PHP/Logout.php" method="post">
-		<button id="Logoff" class="button menuContent" type='submit'>Logout</button>
+		<div class="buttondiv">
+				<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
+			</div>
 		</form>
 		</div>
 		<div id="boardcontainer">
