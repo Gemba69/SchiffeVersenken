@@ -12,7 +12,7 @@
 			destroySession();
 			break;
 		case 'resumeSession':
-				resumeSession();
+			resumeSession();
 			break;
 		case 'nextPhase':
 			advancePhase();
@@ -47,12 +47,11 @@
 		$_SESSION['requiredShips'] = array('10' => 0, '9' => 0, '8' => 0, '7' => 0, '6' => 0, '5' => 1, '4' => 2, '3' => 3, '2' => 4, '1' => 0); //todo: aus der datenbank auslesen
 		$_SESSION['gamePhase'] = $gamePhase;
 		if (!isset($_SESSION['turn'])) {
-			$_SESSION['turn'] = turn;
+			$_SESSION['turn'] = $turn;
 		} else if ($_SESSION['turn'] == ENEMY_ID_PREFIX) {
 			aiPlays();
 		}
-		
-		$postData = GameHelperFunctions::generateResumeSessionArray($gameFieldSelfArray, $gameFieldEnemyArray, $_SESSION['requiredShips'], $_SESSION['gamePhase']);
+		$postData = GameHelperFunctions::generateResumeSessionArray($gameFieldSelf->getAsArray(), $gameFieldEnemy->getAsArray(), $_SESSION['requiredShips'], $_SESSION['gamePhase']);
 		echo json_encode(GameHelperFunctions::utf8ize($postData));
 	}
 	
@@ -65,7 +64,7 @@
 		$_SESSION['gamePhase'] = 2;
 		$gameFieldSelfArray = $_SESSION['gameFieldSelf']->getAsArray();
 		$postData = GameHelperFunctions::generateClickResponseArray($gameFieldSelfArray, $_SESSION['requiredShips'], 1, null, null, null, null);
-		$_SESSION['gameFieldEnemy'] = new GameField(AI::schiffeSetzen(GameHelperFunctions::initializeOrFetchGame(10, 10), $_SESSION['requiredShips'])); // TODO: 10x10 zentral auslesen
+		$_SESSION['gameFieldEnemy'] = new GameField(AI::schiffeSetzen(GameHelperFunctions::initializeNewField(10, 10), $_SESSION['requiredShips'])); // TODO: 10x10 zentral auslesen
 		
 		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['Spiel']); //TODO: wie immer Spielfeldgröße
 		for ($i = 0; $i < count($_SESSION['gameFieldEnemy']->getAsArray()); $i++) {
@@ -117,6 +116,9 @@
 		$aiTurn = false;
 		
 		$result = $gameFieldEnemy->attack($i, $j);
+		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['Spiel']); //TODO: wie immer Spielfeldgröße
+		$dao->speicherSpielzugInDb(0, $i, $j, "ANGRIFF"); //todo: hardcoding....
+
 		if ($result == HIT_ID) {
 			$postData['instructions'] = $instructions.'<ul><li class="fadeinanim">Treffer! Noch einmal!</li></ul>';
 			$ship = HIT_ID; //TODO: Farbe irgendwoher beziehen.
@@ -143,7 +145,7 @@
 		if (GameHelperFunctions::checkWin($gameFieldEnemy->getAsArray())) {
 			$postData['instructions'] = BACK_BUTTON_CODE;
 			$postData['title'] = "Sieg";
-			$_SESSION['turn'] = "lolnope, game over dude";
+			$_SESSION['turn'] = null;
 			$gameDao = new SpielDatenbankSchnittstelle($_SESSION['BenutzerID'], AI_ID);
 			$gameDao->setSpielStatusId($_SESSION['Spiel'], 3);
 			$_SESSION['gamePhase'] = 3;
@@ -162,6 +164,8 @@
 		$i = $koords[0];
 		$j = $koords[1];
 		$ship = $gameFieldSelf->attack($i, $j);
+		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['Spiel']); //TODO: wie immer Spielfeldgröße
+		$dao->speicherSpielzugInDb(1, $i, $j, "ANGRIFF"); //todo: hardcoding....
 		if ($ship == MISS_ID) {
 			$postData['instructions'] = PHASE_2_MAJOR_INSTRUCTIONS;
 		} else if ($ship == DESTROYED_ID) {
@@ -184,7 +188,7 @@
 		if (GameHelperFunctions::checkWin($gameFieldSelf->getAsArray())) {
 			$postData['instructions'] = BACK_BUTTON_CODE; //TODO: nicht hardcoden
 			$postData['title'] = "Niederlage"; // TODO: nicht hardcoden
-			$_SESSION['turn'] = "lolnope, nobody";
+			$_SESSION['turn'] = null;
 			$_SESSION['gamePhase'] = 4;
 			$gameDao = new SpielDatenbankSchnittstelle($_SESSION['BenutzerID'], AI_ID); 
 			$gameDao->setSpielStatusId($_SESSION['Spiel'], 4);

@@ -32,16 +32,15 @@
 			return $d;
 		}
 	
-		/*public static function initializeOrFetchGame($width, $height) {
+		public static function initializeNewField($width, $height) {
 			$field = array();
-			for ($i = 0; $i < $width; $i++) { //TODO: feldgroesse dynamisch machen
+			for ($i = 0; $i < $width; $i++) { 
 				for ($j = 0; $j < $height; $j++) {
 					$field[$i][$j]= WATER_ID;
 				}
 			}
 			return $field;
-			//TODO: spiel aus datenbank holen
-		}*/
+		}
 		
 		public static function drawRemainingShips($gameField, $requiredShips) {
 			$drawnShips = self::checkAmountOfShips($gameField);
@@ -68,7 +67,7 @@
 			//TODO: verschiedene phasen
 		public static function generateResumeSessionArray($gameFieldSelf, $gameFieldEnemy, $requiredShips, $phase) {
 			for ($i = 0; $i < count($gameFieldEnemy); $i++) {
-				for ($j = 0; $j < count($gameFieldEnemy[$i]); $j) {
+				for ($j = 0; $j < count($gameFieldEnemy[$i]); $j++) {
 					if ($gameFieldEnemy[$i][$j] == SHIP_ID)
 						$gameFieldEnemy[$i][$j] = WATER_ID;
 				}

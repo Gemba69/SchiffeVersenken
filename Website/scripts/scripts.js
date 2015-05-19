@@ -130,8 +130,8 @@ function sendAiComboAjaxRequest() {
 }
 
 function processAnswer(answer) {
-	document.getElementById('infobox').innerHTML = answer; //debug
-	
+	//document.getElementById('infobox').innerHTML = answer; //debug
+	alert("asdf");
 	answer = $.parseJSON(answer);
 	if (answer.illegal)
 		return;
