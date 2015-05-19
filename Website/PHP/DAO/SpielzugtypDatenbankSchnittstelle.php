@@ -6,7 +6,7 @@
  */
 class SpielzugtypDatenbankSchnittstelle {
     
-    //Variablen f�r die Datenbankverbindung
+    //Variablen f?r die Datenbankverbindung
     private $pdo;
 
     //Konstruktor
@@ -17,7 +17,7 @@ class SpielzugtypDatenbankSchnittstelle {
 
     /*
      * Die Funktion ladeSpielzugtyp gibt bei Mitgabe der SpielzugtypID den Namen
-     * und die Beschreibung zur�ck.
+     * und die Beschreibung zur?ck.
      */
     function ladeSpielzugtyp($spielzugtypId) {
         $spielzugtyp = array();
@@ -43,8 +43,8 @@ class SpielzugtypDatenbankSchnittstelle {
     
     /*
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
-     * Arrays ein eindimensionales Array zur�ck, in dem die Zeilen/Datens�tze 
-     * aus dem zweidimensionalen Array hintereiandergeh�ngt wurden.
+     * Arrays ein eindimensionales Array zur?ck, in dem die Zeilen/Datens?tze 
+     * aus dem zweidimensionalen Array hintereiandergeh?ngt wurden.
      */
     function array_2d_to_1d($input_array) {
         $output_array = array();

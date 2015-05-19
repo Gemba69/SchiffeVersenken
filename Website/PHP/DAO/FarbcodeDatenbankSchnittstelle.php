@@ -8,7 +8,7 @@
 
 class FarbcodeDatenbankSchnittstelle {
 
-    //Variablen f�r die Datenbankverbindung
+    //Variablen f?r die Datenbankverbindung
     private $pdo;
 
     //Konstruktor
@@ -19,7 +19,7 @@ class FarbcodeDatenbankSchnittstelle {
 
     /*
      * Die Funktion ladeSpielFarbcode gibt bei Mitgabe der FarbcodeID den Namen
-     * und den Hex-Farbcode zur�ck.
+     * und den Hex-Farbcode zur?ck.
      */
     function ladeSpielFarbcode($farbcodeId) {
         $farbcode = array();
@@ -31,8 +31,8 @@ class FarbcodeDatenbankSchnittstelle {
     }
 
     /*
-     * Die Funktion ladeFarbcodeId gibt bei Mitgabe des Namen die zugeh�rige 
-     * FarbcodeID zur�ck.
+     * Die Funktion ladeFarbcodeId gibt bei Mitgabe des Namen die zugeh?rige 
+     * FarbcodeID zur?ck.
      */
     function ladeFarbcodeId($name) {
         $farbcodeId = array();
@@ -45,8 +45,8 @@ class FarbcodeDatenbankSchnittstelle {
 
     /*
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
-     * Arrays ein eindimensionales Array zur�ck, in dem die Zeilen/Datens�tze 
-     * aus dem zweidimensionalen Array hintereiandergeh�ngt wurden.
+     * Arrays ein eindimensionales Array zur?ck, in dem die Zeilen/Datens?tze 
+     * aus dem zweidimensionalen Array hintereiandergeh?ngt wurden.
      */
     function array_2d_to_1d($input_array) {
         $output_array = array();

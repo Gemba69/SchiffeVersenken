@@ -9,7 +9,7 @@ class SpielDatenbankSchnittstelle {
     private $spieler0;
     private $spieler1;
     
-    //Variablen f�r die Datenbankverbindung
+    //Variablen f?r die Datenbankverbindung
     private $pdo;
 
     //Konstruktor
@@ -21,8 +21,8 @@ class SpielDatenbankSchnittstelle {
     }
 
     /*
-     * Die Funktion ladeSpiele gibt alle SpielIDs in einem Array zur�ck, 
-     * die zu den beiden SpilerIds passen, die dem Konstruktor �bergeben wurden.
+     * Die Funktion ladeSpiele gibt alle SpielIDs in einem Array zur?ck, 
+     * die zu den beiden SpilerIds passen, die dem Konstruktor ?bergeben wurden.
      */
     function ladeSpiele() {
         $spieleIds = array();
@@ -36,7 +36,7 @@ class SpielDatenbankSchnittstelle {
 
     /*
      * Die Funktion getSpielStatusId gibt bei Mitgabe der SpielID die StatusID 
-     * des Spiels zur�ck.
+     * des Spiels zur?ck.
      */
     function getSpielStatusId($spielId) {
         $spielStatusId = array();
@@ -50,8 +50,8 @@ class SpielDatenbankSchnittstelle {
     /*
      * Die Funktion setSpielStatusId ordnet durch Mitgabe der SpielID und einer 
      * SpielStatusID die SpielStatusID dem Spiel zu. 
-     * Dadurch wird der alte SpielStatus �berschrieben. 
-     * Au�erdem gibt die Funktion die ge�nderte SpielStatusId zur�ck.
+     * Dadurch wird der alte SpielStatus ?berschrieben. 
+     * Au?erdem gibt die Funktion die ge?nderte SpielStatusId zur?ck.
      */
     function setSpielStatusId($spielStatusId, $spielId) {
         $stmt = $this->pdo->prepare("UPDATE Spiel SET StatusID = :spielStatusId WHERE ID = :id");
@@ -64,7 +64,7 @@ class SpielDatenbankSchnittstelle {
     /*
      * Die Funktion neuesSpiel legt ein neues Spiel mit den beiden im 
      * Konstruktor mitgegebenen SpielerIds an 
-     * und gibt die SpielID des neuen Spiels zur�ck.
+     * und gibt die SpielID des neuen Spiels zur?ck.
      */
     function neuesSpiel() {
         include 'SpielStatusDatenbankSchnittstelle.php';
@@ -84,8 +84,8 @@ class SpielDatenbankSchnittstelle {
 
     /*
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
-     * Arrays ein eindimensionales Array zur�ck, in dem die Zeilen/Datens�tze 
-     * aus dem zweidimensionalen Array hintereiandergeh�ngt wurden.
+     * Arrays ein eindimensionales Array zur?ck, in dem die Zeilen/Datens?tze 
+     * aus dem zweidimensionalen Array hintereiandergeh?ngt wurden.
      */
     function array_2d_to_1d($input_array) {
         $output_array = array();

@@ -7,7 +7,7 @@
 
 class SpielStatusDatenbankSchnittstelle {
 
-    //Variablen f�r die Datenbankverbindung
+    //Variablen f?r die Datenbankverbindung
     private $pdo;
 
     //Konstruktor
@@ -18,7 +18,7 @@ class SpielStatusDatenbankSchnittstelle {
 
     /*
      * Die Funktion ladeSpielStatus gibt bei Mitgabe einer SpielStatusID 
-     * den zugeh�rigen Status_Typ und die zugeh�rige Beschreibung zur�ck.
+     * den zugeh?rigen Status_Typ und die zugeh?rige Beschreibung zur?ck.
      */
     function ladeSpielStatus($spielStatusId) {
         $spielStatus = array();
@@ -31,7 +31,7 @@ class SpielStatusDatenbankSchnittstelle {
 
     /*
      * Die Funktion ladeSpielStatusId gibt bei Mitgabe des Status_Typs 
-     * die SpielStatusId zur�ck.
+     * die SpielStatusId zur?ck.
      */
     function ladeSpielStatusId($status_Typ) {
         $spielStatus = array();
@@ -44,8 +44,8 @@ class SpielStatusDatenbankSchnittstelle {
 
     /*
      * Die Funktion array_2d_to_1d gibt bei mitgabe eines zweidimensionalen
-     * Arrays ein eindimensionales Array zur�ck, in dem die Zeilen/Datens�tze 
-     * aus dem zweidimensionalen Array hintereiandergeh�ngt wurden.
+     * Arrays ein eindimensionales Array zur?ck, in dem die Zeilen/Datens?tze 
+     * aus dem zweidimensionalen Array hintereiandergeh?ngt wurden.
      */
 
     function array_2d_to_1d($input_array) {

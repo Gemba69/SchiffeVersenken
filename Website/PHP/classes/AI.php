@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Die Klasse KI stellt eine k�nstliche Intelligenz zum Setzen der Schiffe und 
+ * Die Klasse KI stellt eine k?nstliche Intelligenz zum Setzen der Schiffe und 
  * zum Angrif des gegnerischen Feldes 
  */
 
@@ -9,7 +9,7 @@ class AI {
 
     /*
      * Die Funktion schiffeSetzten setzt auf das leere Feld die vorhandenen 
-     * Schiffe und gibt das mit Schiffen besetzte Feld zur�ck.
+     * Schiffe und gibt das mit Schiffen besetzte Feld zur?ck.
      */
 
     public static function schiffeSetzen($feld, $schiffe) {
@@ -50,7 +50,7 @@ class AI {
             $outerzaehler++;
         } while ($outerwhile && $outerzaehler < 1000);
         if ($outerzaehler > 998) {
-            print("Schiffe k�nnen nicht gesetzt werden!! (zu viele)");
+            print("Schiffe k?nnen nicht gesetzt werden!! (zu viele)");
         } else {
             $feld = $tempfeld;
         }
@@ -59,7 +59,7 @@ class AI {
 
     /*
      * Die Funktion schiffeSetzten setzt auf das leere Feld die vorhandenen 
-     * Schiffe und gibt das mit Schiffen besetzte Feld zur�ck, wenn die Schiffe 
+     * Schiffe und gibt das mit Schiffen besetzte Feld zur?ck, wenn die Schiffe 
      * passen.
      */
 
@@ -120,7 +120,7 @@ class AI {
     }
 
     /*
-     * Die Funktion schiffePr�fung pr�ft, ob die gesetzten Schiffe 
+     * Die Funktion schiffePr?fung pr?ft, ob die gesetzten Schiffe 
      * plausibel/richtig sind.
      */
 
@@ -141,7 +141,7 @@ class AI {
     }
 
     /*
-     * Die Funktion angriff gibt eine Koordinate zur�ck, die als n�chster 
+     * Die Funktion angriff gibt eine Koordinate zur?ck, die als n?chster 
      * Angriff sinnvoll ist.
      */
 
@@ -268,7 +268,7 @@ class AI {
     }
 
     /*
-     * Die Funktion plausibel gibt zur�ck, ob die angegebene stelle noch nicht 
+     * Die Funktion plausibel gibt zur?ck, ob die angegebene stelle noch nicht 
      * belegt ist mit "MISS", "VERSENKT" oder "TREFFER"
      */
 
@@ -280,8 +280,8 @@ class AI {
     }
 
     /*
-     * Die Funktion fireShot gibt zur�ck, ob der letzte angriff ein Teffer war
-     * oder nicht und f�hrt den angriff aus.
+     * Die Funktion fireShot gibt zur?ck, ob der letzte angriff ein Teffer war
+     * oder nicht und f?hrt den angriff aus.
      */
 
     public static function fireShot(&$gameField, $requiredShips) {
@@ -291,7 +291,7 @@ class AI {
 
     /*
      * Die Funktion findeAdjazenteVersekt gibt alle adjazenten Felder, 
-     * die auch Versenkt sind in einem Array zur�ck.
+     * die auch Versenkt sind in einem Array zur?ck.
      */
 
     private static function findeAdjazenteVersenkt($x, $y, $feld) {
@@ -342,7 +342,7 @@ class AI {
 
     /*
      * Die Funktion findeAdjazenteTreffer gibt alle adjazenten Felder, 
-     * die auch getroffen sind in einem Array zur�ck.
+     * die auch getroffen sind in einem Array zur?ck.
      */
 
     private static function findeAdjazenteTreffer($x, $y, $feld) {
@@ -373,7 +373,7 @@ class AI {
 
     /*
      * Die Funktion findeAdjazenteSchiffe gibt alle adjazenten Felder, 
-     * die auch ein Schiff sind in einem Array zur�ck.
+     * die auch ein Schiff sind in einem Array zur?ck.
      */
 
     private static function findeAdjazenteSchiffe($x, $y, $feld) {
@@ -423,8 +423,8 @@ class AI {
 
     /*
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
-     * Arrays ein eindimensionales Array zur�ck, in dem die Zeilen/Datens�tze 
-     * aus dem zweidimensionalen Array hintereiandergeh�ngt wurden.
+     * Arrays ein eindimensionales Array zur?ck, in dem die Zeilen/Datens?tze 
+     * aus dem zweidimensionalen Array hintereiandergeh?ngt wurden.
      */
 
     private static function array_2d_to_1d($input_array) {

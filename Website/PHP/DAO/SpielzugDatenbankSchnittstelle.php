@@ -5,8 +5,8 @@ require_once('SpielzugtypDatenbankSchnittstelle.php');
 /*
  * Die Klasse SpielzugDatenbankSchnittstelle stellt eine Verbindung zur 
  * Datenbank her und regelt den Zugriff auf die Tabelle Spielzug indem sie
- * Spielz�e in der Datenbank speichern kann und das geladene Spielbrett in 
- * Arrays zu verf�gung stellt.
+ * Spielz?e in der Datenbank speichern kann und das geladene Spielbrett in 
+ * Arrays zu verf?gung stellt.
  */
 
 class SpielzugDatenbankSchnittstelle {
@@ -18,7 +18,7 @@ class SpielzugDatenbankSchnittstelle {
     private $spielId;
     private $spielzugtypDb;
     
-    //Variablen f�r die Datenbankverbindung
+    //Variablen f?r die Datenbankverbindung
     private $pdo;
 
     const CONST_WASSER = "WASSER";
@@ -53,14 +53,14 @@ class SpielzugDatenbankSchnittstelle {
     }
 
     /*
-     * Die Funktion getSpielbrett0 gibt das erste Spielbrett zur�ck. 
+     * Die Funktion getSpielbrett0 gibt das erste Spielbrett zur?ck. 
      */
     public function getSpielbrett0() {
         return $this->spielbrett0;
     }
 
     /*
-     * Die Funktion getSpielbrett1 gibt das zweite Spielbrett zur�ck. 
+     * Die Funktion getSpielbrett1 gibt das zweite Spielbrett zur?ck. 
      */
     public function getSpielbrett1() {
         return $this->spielbrett1;
@@ -162,8 +162,8 @@ class SpielzugDatenbankSchnittstelle {
     }
 
     /*
-     * Die Funktion versenktueberpr �berpr�ft, ob irgendein Schiff auf einem 
-     * bestimmten Spielfeld versenkt ist und �ndert die Felder eines 
+     * Die Funktion versenktueberpr ?berpr?ft, ob irgendein Schiff auf einem 
+     * bestimmten Spielfeld versenkt ist und ?ndert die Felder eines 
      * versenkten Schiffes auf VERSENKT.
      */
     function versenktueberpr($spielbrettnr) {
@@ -210,16 +210,16 @@ class SpielzugDatenbankSchnittstelle {
             if ($this->spielbrett0[$x][$y] == self::CONST_TREFFER) {
                 $this->spielbrett0[$x][$y] = self::CONST_VERSENKT;
             } else {
-                //print("An der Stelle " . $x . "/" . $y . " gibt es keinen Treffer");
+                print("An der Stelle " . $x . "/" . $y . " gibt es keinen Treffer");
             }
         } else if ($spielbrettnr == 1) {
             if ($this->spielbrett1[$x][$y] == self::CONST_TREFFER) {
                 $this->spielbrett1[$x][$y] = self::CONST_VERSENKT;
             } else {
-                //print("An der Stelle " . $x . "/" . $y . " gibt es keinen Treffer");
+                print("An der Stelle " . $x . "/" . $y . " gibt es keinen Treffer");
             }
         } else {
-            //print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
         }
     }
 
@@ -234,7 +234,7 @@ class SpielzugDatenbankSchnittstelle {
         } else if ($spielbrettnr == 1) {
             $feld=$this->spielbrett1;
         } else {
-            //print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
         }
         if (count(($adjazenzen = $this->findeAdjazenteTreffer($i, $j, $feld))) > 0) {
         if ($adjazenzen[0][1] < $i || $adjazenzen[0][1] > $i) {
@@ -279,7 +279,7 @@ class SpielzugDatenbankSchnittstelle {
     
     /*
      * Die Funktion findeAdjazenteSchiffe gibt alle adjazenten Felder, 
-     * die auch Schiffe sind in einem Array zur�ck.
+     * die auch Schiffe sind in einem Array zur?ck.
      */
     public function findeAdjazenteSchiffe($spielbrettnr, $x, $y) {
         $adjazenzen = array();
@@ -328,14 +328,14 @@ class SpielzugDatenbankSchnittstelle {
                 $i++;
             }
         } else {
-            //print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
         }
         return $adjazenzen;
     }
 
     /*
      * Die Funktion findeAdjazenteTreffer gibt alle adjazenten Felder, 
-     * die auch Treffer sind in einem Array zur�ck.
+     * die auch Treffer sind in einem Array zur?ck.
      */
     public function findeAdjazenteTreffer($spielbrettnr, $x, $y) {
         $adjazenzen = array();
@@ -384,13 +384,13 @@ class SpielzugDatenbankSchnittstelle {
                 $i++;
             }
         } else {
-            //print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
         }
         return $adjazenzen;
     }
 
     /*
-     * Die Funktion speicherSpielzugInDb speichert den �bergebenen 
+     * Die Funktion speicherSpielzugInDb speichert den ?bergebenen 
      * Spielzug in der Datenbank
      */
     public function speicherSpielzugInDb($spielbrett, $x, $y, $spielzugTyp) {
@@ -407,16 +407,16 @@ class SpielzugDatenbankSchnittstelle {
                         $stmt->bindParam(':spielzugTyp', $this->spielzugtypDb->ladeSpielzugtypId($spielzugTyp));
                         $stmt->execute();
                     } else {
-                        //print("SpielzugTyp: " . $spielzugTyp . " ist nicht vorhanden! (moeglich ist: SETZEN,LOESCHEN,ANGRIFF)");
+                        print("SpielzugTyp: " . $spielzugTyp . " ist nicht vorhanden! (moeglich ist: SETZEN,LOESCHEN,ANGRIFF)");
                     }
                 } else {
-                    //print("y: " . $y . " ist nicht vorhanden! ( 0-" . $this->feldhoehe . ")");
+                    print("y: " . $y . " ist nicht vorhanden! ( 0-" . $this->feldhoehe . ")");
                 }
             } else {
-                //print("x: " . $x . " ist nicht vorhanden! ( 0-" . $this->feldbreite . ")");
+                print("x: " . $x . " ist nicht vorhanden! ( 0-" . $this->feldbreite . ")");
             }
         } else {
-            //print("Spielbrett: " . $spielbrett . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            print("Spielbrett: " . $spielbrett . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
         }
     }
 
@@ -427,8 +427,8 @@ class SpielzugDatenbankSchnittstelle {
 
     /*
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
-     * Arrays ein eindimensionales Array zur�ck, in dem die Zeilen/Datens�tze 
-     * aus dem zweidimensionalen Array hintereiandergeh�ngt wurden.
+     * Arrays ein eindimensionales Array zur?ck, in dem die Zeilen/Datens?tze 
+     * aus dem zweidimensionalen Array hintereiandergeh?ngt wurden.
      */
     function array_2d_to_1d($input_array) {
         $output_array = array();
