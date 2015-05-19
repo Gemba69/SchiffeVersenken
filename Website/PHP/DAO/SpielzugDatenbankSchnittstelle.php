@@ -236,7 +236,7 @@ class SpielzugDatenbankSchnittstelle {
         } else {
             print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein) versenkt");
         }
-        if (count(($adjazenzen = $this->findeAdjazenteTreffer($i, $j, $feld))) > 0) {
+        if (count(($adjazenzen = $this->findeAdjazenteTreffer($feld, $i, $j))) > 0) {
         if ($adjazenzen[0][1] < $i || $adjazenzen[0][1] > $i) {
             $x = 1;
             while (isset($feld[$i + $x][$j]) && $feld[$i + $x][$j] == "TREFFER") {
