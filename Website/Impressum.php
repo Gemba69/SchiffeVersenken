@@ -9,18 +9,9 @@
 	<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">	
   </head>
  	<body>
-	<div id="hamburgercontainer" class='hamburger'>			
-		<a class='menuContent' href="Index.php">Startseite</a></br></br>
-		<a class='menuContent' href="Spielauswahl.php">Spielauswahl</a></br></br>
-		<a class='menuContent' href="Spielregeln.php">Spielregeln</a></br></br>
-		<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
-		<a class='menuContent' href="Impressum.php">Impressum</a></br></br></br></br></br></br></br></br>
-		<form action="PHP/Logout.php" method="post">
-		<div class="buttondiv">
-				<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
-			</div>
-		</form>
-	</div>
+	 <?php
+		include "PHP/Sidebar.php";
+	 ?>
 	<div id="page-wrapper">
 		<div class='impressum'><h1>Impressum</h1>
 		<p>Angaben gem&auml&szlig &sect 5 TMG

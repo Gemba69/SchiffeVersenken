@@ -16,18 +16,9 @@
 		</title>
 	</head>
 	<body onload="resumeSessionAjaxRequest()">
-		<div id="hamburgercontainer" class='hamburger'>			
-			<a class='menuContent' href="Index.php">Startseite</a>
-			<a class='menuContent' href="Spielauswahl.php">Spielauswahl</a>
-			<a class='menuContent' href="Spielregeln.php">Spielregeln</a>
-			<a class='menuContent' href="Statistik.php">Statistik</a>
-			<a class='menuContent' href="Impressum.php">Impressum</a></br></br></br>
-		<form action="PHP/Logout.php" method="post">
-		<div class="buttondiv">
-				<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
-			</div>
-		</form>
-		</div>
+		<?php
+		include "PHP/Sidebar.php";
+		?>
 		<div id="boardcontainer">
 			<aside id="infoboard">
 				<h1 id="title"><?php echo PHASE_1_TITLE; ?></h1><br>

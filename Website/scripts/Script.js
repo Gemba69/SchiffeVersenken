@@ -103,3 +103,5 @@ function checkNecessaryLoginInput(){
 		document.getElementById("loginSubmit").classList.remove("blueBorder");
 	}
 }
+
+

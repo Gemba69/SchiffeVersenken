@@ -207,6 +207,16 @@ a:hover {
 	margin-top: 5%;
 }
 
+#logout {
+	margin-top: 20%;
+	font-size: 25px;
+}
+
+#ULVar
+{
+    list-style-type: none;
+}
+
 button {
 	border: none;
 	font-size: 20px;
