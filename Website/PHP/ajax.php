@@ -79,9 +79,9 @@
 	}
 	
 	function processCellClicked() {
-		if ($_SESSION['gamePhase'] == 1 && $_POST['gameField'] == SELF_ID_PREFIX) {
+		if ($_SESSION['gamePhase'] == 1 && $_POST['gameField'] === SELF_ID_PREFIX) {
 			processPhase1CellClick();
-		} else if ($_SESSION['gamePhase'] == 2 && $_POST['gameField'] == ENEMY_ID_PREFIX && $_SESSION['turn'] === SELF_ID_PREFIX) {
+		} else if ($_SESSION['gamePhase'] == 2 && $_POST['gameField'] === ENEMY_ID_PREFIX && $_SESSION['turn'] === SELF_ID_PREFIX) {
 			processPhase2CellClick();
 		} else {
 			$postData = array('illegal' => 'true');

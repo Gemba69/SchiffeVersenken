@@ -125,7 +125,7 @@
 			for ($i = 0; $i < count($gameFieldArray); $i++) {
 				for ($j = 0; $j < count($gameFieldArray[$i]); $j++) {
 					$color = self::convertColor($gameFieldArray[$i][$j]);
-					if ($gameFieldArray[$i][$j] === SHIP_ID) {
+					if ($gameFieldArray[$i][$j] != WATER_ID) {
 						$cell = array('i' => $i,
 									  'j' => $j,
 									  'color' => $color,

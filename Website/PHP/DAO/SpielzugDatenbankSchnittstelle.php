@@ -37,19 +37,6 @@ class SpielzugDatenbankSchnittstelle {
         $this->pdo = $dbh;
 
         $this->spielzugtypDb = new SpielzugtypDatenbankSchnittstelle();
-
-        for ($i = 0; $i < $this->feldhoehe; $i++) {
-            for ($j = 0; $j < $this->feldbreite; $j++) {
-                $this->spielbrett0[$i][$j] = self::CONST_WASSER;
-            }
-        }
-
-        for ($i = 0; $i < $this->feldhoehe; $i++) {
-            for ($j = 0; $j < $this->feldbreite; $j++) {
-                $this->spielbrett1[$i][$j] = self::CONST_WASSER;
-            }
-        }
-        $this->ladeSpielbrettAusDb();
     }
 
     /*
@@ -71,6 +58,17 @@ class SpielzugDatenbankSchnittstelle {
      * Spielbretter aus der Spielzug-Tabelle. 
      */
     public function ladeSpielbrettAusDb() {
+		 for ($i = 0; $i < $this->feldhoehe; $i++) {
+            for ($j = 0; $j < $this->feldbreite; $j++) {
+                $this->spielbrett0[$i][$j] = self::CONST_WASSER;
+            }
+        }
+
+        for ($i = 0; $i < $this->feldhoehe; $i++) {
+            for ($j = 0; $j < $this->feldbreite; $j++) {
+                $this->spielbrett1[$i][$j] = self::CONST_WASSER;
+            }
+        }
         $i = 0;
         $query = $this->pdo->prepare("SELECT Spielbrett, X_Koordinate, Y_Koordinate, Spielzugtyp FROM Spielzug WHERE SpielID = :spielId");
         $query->bindParam(':spielId', $this->spielId);
@@ -192,8 +190,8 @@ class SpielzugDatenbankSchnittstelle {
      * (Versekt ein Schiff)
      */
     public function setzeVersenkt($spielbrettnr, $x, $y) {
-        versenke($spielbrettnr, $x, $y);
-        $adjazenzen=findeAdjazenteTreffer($spielbrettnr, $x, $y);
+        $this->versenke($spielbrettnr, $x, $y);
+        $adjazenzen = $this->findeAdjazenteTreffer($spielbrettnr, $x, $y);
         for ($i = 0; i < (count($adjazenzen)); $i++) {
             $this->setzeVersenkt($spielbrettnr, $adjazenzen[$i][1], $adjazenzen[$i][2]);
             $this->versenke($feld, $adjazenzen[$i][1], $adjazenzen[$i][2]);    
