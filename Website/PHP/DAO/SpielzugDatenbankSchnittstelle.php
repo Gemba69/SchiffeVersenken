@@ -71,7 +71,7 @@ class SpielzugDatenbankSchnittstelle {
      * Spielbretter aus der Spielzug-Tabelle. 
      */
     public function ladeSpielbrettAusDb() {
-        $i = 0;
+        $i = -1;
         $query = $this->pdo->prepare("SELECT Spielbrett, X_Koordinate, Y_Koordinate, Spielzugtyp FROM Spielzug WHERE SpielID = :spielId");
         $query->bindParam(':spielId', $this->spielId);
         $query->execute();
@@ -171,14 +171,14 @@ class SpielzugDatenbankSchnittstelle {
             for ($j = 0; $j < $this->feldbreite; $j++) {
                 if ($spielbrettnr == 0) {
                     if ($this->spielbrett0[$i][$j] == self::CONST_TREFFER) {
-                        if (versenkt($i, $j, $spielbrettnr)) {
-                            setzeVersenkt($spielbrettnr, $i, $j);
+                        if ($this->versenkt($i, $j, $spielbrettnr)) {
+                            $this->setzeVersenkt($spielbrettnr, $i, $j);
                         }
                     }
                 } else if ($spielbrettnr == 1) {
                     if ($this->spielbrett1[$i][$j] == self::CONST_TREFFER) {
-                        if (versenkt($i, $j, $spielbrettnr)) {
-                            setzeVersenkt($spielbrettnr, $i, $j);
+                        if ($this->versenkt($i, $j, $spielbrettnr)) {
+                            $this->setzeVersenkt($spielbrettnr, $i, $j);
                         }
                     }
                 }
@@ -228,7 +228,7 @@ class SpielzugDatenbankSchnittstelle {
      * Spielbrett auf VERSENKT.
      * (Versekt ein Feld des Schiffes)
      */
-    public function versenkt($spielbrettnr, $x, $y) {
+    public function versenkt($spielbrettnr, $i, $j) {
         if($spielbrettnr==0){
             $feld=$this->spielbrett0;
         } else if ($spielbrettnr == 1) {
