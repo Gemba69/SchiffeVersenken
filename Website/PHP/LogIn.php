@@ -34,7 +34,7 @@
 			$jifjif = $stmt->fetchAll(PDO::FETCH_NUM);
 			
 			if($jifjif != NULL && $jifjif[0][0] == $pwHash){
-				echo '<p> Benutzerdaten gefunden! Login!! <p>';
+				echo '<p> Benutzerdaten gefunden! Login! <p>';
 				$pwAbgleichFehler = true;
 				$logInAttempt = true;
 				session_start();

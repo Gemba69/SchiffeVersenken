@@ -9,7 +9,7 @@
 	<body>
 	<div id="page-wrapper">
 	<?php
-		echo '<p>Konto- oder Passworteingabe ist falsch!!</p>';
+		echo '<p>Konto- oder Passworteingabe ist falsch!</p>';
 		
 		echo '<p/>Bitte versuchen Sie sich erneut einzuloggen</p>';
 	
