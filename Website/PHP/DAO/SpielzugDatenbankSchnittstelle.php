@@ -219,7 +219,7 @@ class SpielzugDatenbankSchnittstelle {
                 print("An der Stelle " . $x . "/" . $y . " gibt es keinen Treffer");
             }
         } else {
-            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein) versenke");
         }
     }
 
@@ -234,7 +234,7 @@ class SpielzugDatenbankSchnittstelle {
         } else if ($spielbrettnr == 1) {
             $feld=$this->spielbrett1;
         } else {
-            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein) versenkt");
         }
         if (count(($adjazenzen = $this->findeAdjazenteTreffer($i, $j, $feld))) > 0) {
         if ($adjazenzen[0][1] < $i || $adjazenzen[0][1] > $i) {
@@ -328,7 +328,7 @@ class SpielzugDatenbankSchnittstelle {
                 $i++;
             }
         } else {
-            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein) findeAdjazenteSchiffe");
         }
         return $adjazenzen;
     }
@@ -384,7 +384,7 @@ class SpielzugDatenbankSchnittstelle {
                 $i++;
             }
         } else {
-            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            print("Spielbrett: " . $spielbrettnr . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein) findeAdjazenteTreffer");
         }
         return $adjazenzen;
     }
@@ -416,7 +416,7 @@ class SpielzugDatenbankSchnittstelle {
                 print("x: " . $x . " ist nicht vorhanden! ( 0-" . $this->feldbreite . ")");
             }
         } else {
-            print("Spielbrett: " . $spielbrett . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein)");
+            print("Spielbrett: " . $spielbrett . " ist nicht vorhanden! (Spielbrett muss 0 oder 1 sein) speicherSpielzugInDb");
         }
     }
 
