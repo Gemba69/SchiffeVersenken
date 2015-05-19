@@ -14,7 +14,7 @@ function __autoload($class_name) {
 }
 print("1");
 print("<br>");
-$spielDb = new SpielDatenbankSchnittstelle(0,1);
+$spielDb = new SpielDatenbankSchnittstelle(1,0);
 print("2");
 print("<br>");
 $spielid=$spielDb->neuesSpiel();

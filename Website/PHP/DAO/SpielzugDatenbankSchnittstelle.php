@@ -33,7 +33,7 @@ class SpielzugDatenbankSchnittstelle {
         $this->feldhoehe = $parFeldhoehe;
         $this->feldbreite = $parFeldbreite;
         $this->spielId = $parSpielId;
-        include "../Verbindung.php";
+        include "Verbindung.php";
         $this->pdo = $dbh;
 
         $this->spielzugtypDb = new SpielzugtypDatenbankSchnittstelle();

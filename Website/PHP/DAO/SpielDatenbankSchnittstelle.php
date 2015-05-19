@@ -16,7 +16,7 @@ class SpielDatenbankSchnittstelle {
     function __construct($parSpieler0, $parSpieler1) {
         $this->spieler0 = $parSpieler0;
         $this->spieler1 = $parSpieler1;
-        include "../Verbindung.php";
+        include "Verbindung.php";
         $this->pdo = $dbh;
     }
 

@@ -11,7 +11,7 @@ class SpielzugtypDatenbankSchnittstelle {
 
     //Konstruktor
     function __construct() {
-        include "../Verbindung.php";
+        include "Verbindung.php";
         $this->pdo = $dbh;
     }
 
