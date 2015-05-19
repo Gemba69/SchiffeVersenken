@@ -8,20 +8,18 @@
 
 class FarbcodeDatenbankSchnittstelle {
 
-    //Variablen für die Datenbankverbindung
-    private $server = 'mysql:dbname=SchiffeVersenken;host=localhost';
-    private $user = 'root';
-    private $password = '';
+    //Variablen fï¿½r die Datenbankverbindung
     private $pdo;
 
     //Konstruktor
     function __construct() {
-        $this->pdo = new PDO($this->server, $this->user, $this->password);
+        include "../Verbindung.php";
+        $this->pdo = $dbh;
     }
 
     /*
      * Die Funktion ladeSpielFarbcode gibt bei Mitgabe der FarbcodeID den Namen
-     * und den Hex-Farbcode zurück.
+     * und den Hex-Farbcode zurï¿½ck.
      */
     function ladeSpielFarbcode($farbcodeId) {
         $farbcode = array();
@@ -33,8 +31,8 @@ class FarbcodeDatenbankSchnittstelle {
     }
 
     /*
-     * Die Funktion ladeFarbcodeId gibt bei Mitgabe des Namen die zugehörige 
-     * FarbcodeID zurück.
+     * Die Funktion ladeFarbcodeId gibt bei Mitgabe des Namen die zugehï¿½rige 
+     * FarbcodeID zurï¿½ck.
      */
     function ladeFarbcodeId($name) {
         $farbcodeId = array();
@@ -47,8 +45,8 @@ class FarbcodeDatenbankSchnittstelle {
 
     /*
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
-     * Arrays ein eindimensionales Array zurück, in dem die Zeilen/Datensätze 
-     * aus dem zweidimensionalen Array hintereiandergehängt wurden.
+     * Arrays ein eindimensionales Array zurï¿½ck, in dem die Zeilen/Datensï¿½tze 
+     * aus dem zweidimensionalen Array hintereiandergehï¿½ngt wurden.
      */
     function array_2d_to_1d($input_array) {
         $output_array = array();

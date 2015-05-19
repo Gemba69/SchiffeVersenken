@@ -6,20 +6,18 @@
  */
 class SpielzugtypDatenbankSchnittstelle {
     
-    //Variablen für die Datenbankverbindung
-    private $server = 'mysql:dbname=SchiffeVersenken;host=localhost';
-    private $user = 'root';
-    private $password = '';
+    //Variablen fï¿½r die Datenbankverbindung
     private $pdo;
 
     //Konstruktor
     function __construct() {
-        $this->pdo = new PDO($this->server, $this->user, $this->password);
+        include "../Verbindung.php";
+        $this->pdo = $dbh;
     }
 
     /*
      * Die Funktion ladeSpielzugtyp gibt bei Mitgabe der SpielzugtypID den Namen
-     * und die Beschreibung zurück.
+     * und die Beschreibung zurï¿½ck.
      */
     function ladeSpielzugtyp($spielzugtypId) {
         $spielzugtyp = array();
@@ -45,8 +43,8 @@ class SpielzugtypDatenbankSchnittstelle {
     
     /*
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
-     * Arrays ein eindimensionales Array zurück, in dem die Zeilen/Datensätze 
-     * aus dem zweidimensionalen Array hintereiandergehängt wurden.
+     * Arrays ein eindimensionales Array zurï¿½ck, in dem die Zeilen/Datensï¿½tze 
+     * aus dem zweidimensionalen Array hintereiandergehï¿½ngt wurden.
      */
     function array_2d_to_1d($input_array) {
         $output_array = array();

@@ -19,7 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `SchiffeVersenken`
 --
-
+Create database SchiffeVersenken;
+Use SchiffeVersenken;
 -- --------------------------------------------------------
 
 --
@@ -175,3 +176,17 @@ Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('PHASE1', 'Schiffe wer
 Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('PHASE2', 'Das Spiel befindet sich in Phase 2');
 Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('GEWONNEN_SPIELER1', 'Spieler1 hat gewonnen');
 Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('GEWONNEN_SPIELER2', 'Spieler 2 hat das Spiel gewonnen');
+
+--
+-- User
+--
+CREATE USER Raeud@localhost;
+SET password for Raeud@localhost = password('admin');
+GRANT Select, Insert, Update on SchiffeVersenken.* to Raeud@localhost;
+
+--
+-- Daten Benutzer
+--
+Insert Into Benutzer (ID, Benutzername, Password, Email) VALUES (1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin@web.de');
+Insert Into Benutzer (`ID`, `Benutzername`, `Password`, `Email`) Values (0, 'KI', 'eufvegfuebf', '');
+UPDATE Benutzer SET ID = '0' WHERE Benutzername='KI';

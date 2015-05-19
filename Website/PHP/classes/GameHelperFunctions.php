@@ -7,7 +7,7 @@
 	define('SHIP_ID', "SCHIFF");
 	define('MISS_ID', "MISS");
 	define('HIT_ID', "TREFFER");
-	define('AI_ID', 2);
+	define('AI_ID', 0);
 	define('DESTROYED_ID', "VERSENKT");
 	define('ILLEGAL_SHIP_ALIGNMENT_WARNING', "<li>Die aktuelle Anordnung ist ungültig.<br>Verschiedene Schiffe dürfen sich nicht berühren.</li>");
 	define("PHASE_1_TITLE", "Planung");
@@ -15,6 +15,7 @@
 	define("PHASE_1_MAJOR_INSTRUCTIONS", "Platziere deine Schiffe auf dem unteren Feld."); //TODO: nicht hardcoden
 	define("PHASE_2_MAJOR_INSTRUCTIONS", "Feuere die Schiffe deines Gegners auf dem oberen Feld ab."); //TODO: nicht hardcoden
 	define("CONTINUE_BUTTON_CODE", "<div class='buttondiv fadeinanim'><img class='buttonimg' src='./images/arrow.png'><button id='continuebutton' onclick='nextPhaseAjaxRequest()'>Angriff beginnen</button></div>");
+	define("BACK_BUTTON_CODE", "<div class='buttondiv' fadeinanim'><img class='buttonimg' src='./images/arrow.png'><a id='backbutton' href='Spielauswahl.php'>Zurück zur Spielauswahl</a></div>");
 	define("CONTINUE_INSTRUCTIONS", "Sehr gut. Wenn du sicher bist, dass alle Schiffe richtig platziert sind, gehe nun zum Angriff über.");
 	define("SHIP_PLACEMENT_FILE", "PHP/classes/ShipPlacement.php");
 	define("SHOT_FIRING_FILE", "PHP/classes/ShotFiring.php");
@@ -31,7 +32,7 @@
 			return $d;
 		}
 	
-		public static function initializeOrFetchGame($width, $height) {
+		/*public static function initializeOrFetchGame($width, $height) {
 			$field = array();
 			for ($i = 0; $i < $width; $i++) { //TODO: feldgroesse dynamisch machen
 				for ($j = 0; $j < $height; $j++) {
@@ -40,7 +41,7 @@
 			}
 			return $field;
 			//TODO: spiel aus datenbank holen
-		}
+		}*/
 		
 		public static function drawRemainingShips($gameField, $requiredShips) {
 			$drawnShips = self::checkAmountOfShips($gameField);
@@ -66,10 +67,16 @@
 		
 			//TODO: verschiedene phasen
 		public static function generateResumeSessionArray($gameFieldSelf, $gameFieldEnemy, $requiredShips, $phase) {
+			for ($i = 0; $i < count($gameFieldEnemy); $i++) {
+				for ($j = 0; $j < count($gameFieldEnemy[$i]); $j) {
+					if ($gameFieldEnemy[$i][$j] == SHIP_ID)
+						$gameFieldEnemy[$i][$j] = WATER_ID;
+				}
+			}
 			$cellData = self::generateCellDataArray($gameFieldSelf, SELF_ID_PREFIX);
 			$cellData = array_merge($cellData, self::generateCellDataArray($gameFieldEnemy, ENEMY_ID_PREFIX));
 			$postData = array('cells' => $cellData);
-			if ($phase == 0) {
+			if ($phase == 1) {
 				if (self::allShipsPlaced($gameFieldSelf, $requiredShips)) {
 					$postData['instructions'] = CONTINUE_INSTRUCTIONS."<br><br>".CONTINUE_BUTTON_CODE;
 					$postData['title'] = PHASE_1_TITLE;
@@ -79,9 +86,15 @@
 					$postData['instructions'] = $instructions;
 					$postData['title'] = PHASE_1_TITLE;
 				}
-			} else if ($phase == 1) {
+			} else if ($phase == 2) {
 				$postData['title'] = PHASE_2_TITLE;
 				$postData['instructions'] = PHASE_2_MAJOR_INSTRUCTIONS;
+			} else if ($phase == 3) {
+				$postData['title'] = "Sieg";
+				$postData['instructions'] = BACK_BUTTON_CODE;
+			} else if ($phase == 4) {
+				$postData['title'] = "Niederlage";
+				$postData['instructions'] = BACK_BUTTON_CODE;
 			}
 
 			return $postData;
