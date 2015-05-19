@@ -208,13 +208,16 @@ a:hover {
 }
 
 #logout {
-	margin-top: 20%;
 	font-size: 25px;
 }
 
 #ULVar
 {
     list-style-type: none;
+}
+
+#indexLink {
+	color: #0033CC;
 }
 
 button {

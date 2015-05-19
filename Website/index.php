@@ -20,9 +20,9 @@
 		<p>Auf dieser Seite bieten wir dir dein Lieblingsspiel Schiffe Versenken an. Ob gegen den Computer oder bald auch gegen echte Mitspieler - hier bekommst du was du brauchst!
 		Neben einer einmaligen Optik werden auch deine Spiele aufgezeichnet und in Statistiken festgehalten. So k&oumlnnen Andere deine Erfolge sehen und du selbst dein Spiel verbessern.</p>
 		
-		<p>Um alle Funktionen unserer Seite genie&szligen zu k&oumlnnen, musst du lediglich ein <a href=Spielauswahl.php>Spiel</a> laden oder ein neues Spiel starten - und schon kann die Schlacht beginnen...</p>
+		<p>Um alle Funktionen unserer Seite genie&szligen zu k&oumlnnen, musst du lediglich ein <a id='indexLink' href=Spielauswahl.php>Spiel</a> laden oder ein neues Spiel starten - und schon kann die Schlacht beginnen...</p>
 		
-		Du kannst dir die <a href=Spielregeln.php>Spielregeln</a> oder deine <a href=Statistik.php>Highscores</a> anschauen. 
+		Du kannst dir die <a id='indexLink' href=Spielregeln.php>Spielregeln</a> oder deine <a id='indexLink' href=Statistik.php>Highscores</a> anschauen. 
 		
 		
 		</div>
