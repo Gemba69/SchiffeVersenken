@@ -71,7 +71,7 @@ class SpielzugDatenbankSchnittstelle {
      * Spielbretter aus der Spielzug-Tabelle. 
      */
     public function ladeSpielbrettAusDb() {
-        $i = -1;
+        $i = 0;
         $query = $this->pdo->prepare("SELECT Spielbrett, X_Koordinate, Y_Koordinate, Spielzugtyp FROM Spielzug WHERE SpielID = :spielId");
         $query->bindParam(':spielId', $this->spielId);
         $query->execute();
@@ -395,8 +395,8 @@ class SpielzugDatenbankSchnittstelle {
      */
     public function speicherSpielzugInDb($spielbrett, $x, $y, $spielzugTyp) {
         if ($spielbrett > -1 && $spielbrett < 2) {
-            if ($x > 0 && $x < $this->feldbreite) {
-                if ($y > 0 && $y < $this->feldhoehe) {
+            if ($x > -1 && $x < $this->feldbreite) {
+                if ($y > -1 && $y < $this->feldhoehe) {
                     if ($spielzugTyp == "SETZEN" || $spielzugTyp == "LOESCHEN" || $spielzugTyp == "ANGRIFF") {
                         $stmt = $this->pdo->prepare("INSERT INTO Spielzug(SpielID, Spielbrett, X_Koordinate, Y_Koordinate, Spielzugtyp)
                             VALUES(:spielId, :spielbrett, :x, :y, :spielzugTyp)");
