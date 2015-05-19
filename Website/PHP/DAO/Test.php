@@ -18,6 +18,7 @@ $spielDb = new SpielDatenbankSchnittstelle(1,2);
 print("2");
 print("<br>");
 $spielid=$spielDb->neuesSpiel();
+$spielDb->setSpielStatusId(3, $spielid);
 print("Neue Spiel id:". $spielid);
 print("3");
 print("<br>");

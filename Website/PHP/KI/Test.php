@@ -30,7 +30,7 @@
     $schiffe = array('10' => 0, '9' => 0, '8' => 0, '7' => 0, '6' => 0, '5' => 1, '4' => 2, '3' => 3, '2' => 4, '1' => 0); //todo: aus der datenbank auslesen
 
     $ki = new KI("Dieter", 1);
-    $ki->schiffePrüfung($feld);
+    $ki->schiffePruefung($feld);
     echo "Schiffe setzen: <br><br>";
     //$feld = $ki->schiffeSetzten($feld, $schiffe);
     ausgabe($feld);

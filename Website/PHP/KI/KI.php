@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Die Klasse KI stellt eine künstliche Intelligenz zum Setzen der Schiffe und 
+ * Die Klasse KI stellt eine kï¿½nstliche Intelligenz zum Setzen der Schiffe und 
  * zum Angrif des gegnerischen Feldes 
  */
 
@@ -51,7 +51,7 @@ class KI {
 
     /*
      * Die Funktion schiffeSetzten setzt auf das leere Feld die vorhandenen 
-     * Schiffe und gibt das mit Schiffen besetzte Feld zurück.
+     * Schiffe und gibt das mit Schiffen besetzte Feld zurï¿½ck.
      */
 
     function schiffeSetzten($feld, $schiffe) {
@@ -94,7 +94,7 @@ class KI {
             $outerzaehler++;
         } while ($outerwhile && $outerzaehler < 1000);
         if ($outerzaehler > 998) {
-            echo("Schiffe können nicht gesetzt werden!! (zu viele)");
+            echo("Schiffe kï¿½nnen nicht gesetzt werden!! (zu viele)");
         } else {
             $feld = $tempfeld;
         }
@@ -104,7 +104,7 @@ class KI {
 
     /*
      * Die Funktion schiffeSetzten setzt auf das leere Feld die vorhandenen 
-     * Schiffe und gibt das mit Schiffen besetzte Feld zurück, wenn die Schiffe 
+     * Schiffe und gibt das mit Schiffen besetzte Feld zurï¿½ck, wenn die Schiffe 
      * passen.
      */
 
@@ -126,7 +126,7 @@ class KI {
                         return($temp);
                     }
                 }
-                if ($this->schiffePrüfung($tempfeld)) {
+                if ($this->schiffePruefung($tempfeld)) {
                     $temp[0] = $tempfeld;
                     $temp[1] = true;
                     return($temp);
@@ -151,7 +151,7 @@ class KI {
                         return($temp);
                     }
                 }
-                if ($this->schiffePrüfung($tempfeld)) {
+                if ($this->schiffePruefung($tempfeld)) {
                     $temp[0] = $tempfeld;
                     $temp[1] = true;
                     return($temp);
@@ -165,11 +165,11 @@ class KI {
     }
 
     /*
-     * Die Funktion schiffePrüfung prüft, ob die gesetzten Schiffe 
+     * Die Funktion schiffePrï¿½fung prï¿½ft, ob die gesetzten Schiffe 
      * plausibel/richtig sind.
      */
 
-    function schiffePrüfung($feld) {
+    function schiffePruefung($feld) {
         for ($i = 0; $i < (sizeof($feld)); $i++) {
             for ($j = 0; $j < (max(array_map('count', $feld))); $j++) {
                 if ($feld[$i][$j] == "SCHIFF") {
@@ -186,7 +186,7 @@ class KI {
     }
 
     /*
-     * Die Funktion angriff gibt eine Koordinate zurück, die als nächster 
+     * Die Funktion angriff gibt eine Koordinate zurï¿½ck, die als nï¿½chster 
      * Angriff sinnvoll ist.
      */
 
@@ -317,7 +317,7 @@ class KI {
     }
 
     /*
-     * Die Funktion plausibel gibt zurück, ob die angegebene stelle noch nicht 
+     * Die Funktion plausibel gibt zurï¿½ck, ob die angegebene stelle noch nicht 
      * belegt ist mit "MISS", "VERSENKT" oder "TREFFER"
      */
 
@@ -329,18 +329,8 @@ class KI {
     }
 
     /*
-     * Die Funktion fireShot gibt zurück, ob der letzte angriff ein Teffer war
-     * oder nicht und führt den angriff aus.
-     */
-
-    public function fireShot(&$gameField, $requiredShips) {
-        $koordinaten = angriff(gameField, $requiredShips);
-        return $gameField->attack(koordinaten[0], koordinaten[1]);
-    }
-
-    /*
      * Die Funktion findeAdjazenteVersekt gibt alle adjazenten Felder, 
-     * die auch Versenkt sind in einem Array zurück.
+     * die auch Versenkt sind in einem Array zurï¿½ck.
      */
 
     private function findeAdjazenteVersenkt($x, $y, $feld) {
@@ -391,7 +381,7 @@ class KI {
 
     /*
      * Die Funktion findeAdjazenteTreffer gibt alle adjazenten Felder, 
-     * die auch getroffen sind in einem Array zurück.
+     * die auch getroffen sind in einem Array zurï¿½ck.
      */
 
     private function findeAdjazenteTreffer($x, $y, $feld) {
@@ -422,7 +412,7 @@ class KI {
 
     /*
      * Die Funktion findeAdjazenteSchiffe gibt alle adjazenten Felder, 
-     * die auch ein Schiff sind in einem Array zurück.
+     * die auch ein Schiff sind in einem Array zurï¿½ck.
      */
 
     private function findeAdjazenteSchiffe($x, $y, $feld) {
@@ -472,8 +462,8 @@ class KI {
 
     /*
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
-     * Arrays ein eindimensionales Array zurück, in dem die Zeilen/Datensätze 
-     * aus dem zweidimensionalen Array hintereiandergehängt wurden.
+     * Arrays ein eindimensionales Array zurï¿½ck, in dem die Zeilen/Datensï¿½tze 
+     * aus dem zweidimensionalen Array hintereiandergehï¿½ngt wurden.
      */
 
     private function array_2d_to_1d($input_array) {
