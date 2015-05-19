@@ -1,0 +1,18 @@
+Auswahl Backlog (nur ein paar Sachen)
+
+Refactor/Schöner machen (falls noch Zeit ist)
+- Session Timeout
+- Spieler verwalten: Neue Spieler durch Admin freischalten (Mit Tabelle)
+- KI schlauer machen und verschiedene Stufen
+- MehrspielerModi aktivieren
+- Anzeige Restliche Schiefe
+- Sicherheit durch Session: auth.php verbessern und in alle „Hilfsseiten“ einbinden
+- Statistik eigenen Spieler markieren
+- Timestamp in Spiele als Übersicht
+- Dynamische Spielfelder und unterschiedliche Schiffe
+- Wiederholungen: Spiele nachstellen
+- Vorlagen für Schiffe setzen
+- Turniermodus
+
+…….
+

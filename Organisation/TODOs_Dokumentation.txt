@@ -1,9 +1,0 @@
-Dokumentation SchiffeVersenken TODOs
-
-Klassenaufbau (Simon, Pöppelmann)
-raffinierte Interaktion in der Oberfläche
-
-
-Architektur
-
--> PHPDoc generieren bzw. noch machen
