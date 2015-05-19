@@ -5,20 +5,21 @@
       <title>SchiffeVersenkenFormularEinloggen</title>
 	  <script src="scripts/Script.js"></script>
 	  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-	  <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
+	  <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css">
   </head>
   <body>
+  <div id="page-wrapper">
 <?php
   session_start();
   session_destroy();
  
   echo '<p/> Sie wurden erfolgreich ausgeloggt</p>';
   
-  echo '<p/> Sie werden in wenigen Sekunden zur LoginSeite weitergeleitet</p>';
+  echo '<p/> Sie werden in wenigen Sekunden zur Login-Seite weitergeleitet</p>';
 	
   echo '<meta http-equiv="refresh" content="2; URL=../LogInFormular.html">';
 
 ?>
-
+</div>
 </body>
 </html>

@@ -24,24 +24,24 @@
 
 		<p><strong><FONT SIZE=4>Ziel des Spieles</FONT></strong></p>
 
-		<p>Jeder Spieler muss seine Flotte in Gew&aumlssern verstecken und versuchen die
-		gegnerische Flotte vollst&aumlndig zu versenken. Hierbei ist zu beachten, dass die 
+		<p>Jeder Spieler muss seine Flotte im Gewässer verstecken und versuchen die
+		gegnerische Flotte vollst&aumlndig zu versenken. Hierbei ist zu beachten, dass die eigene 
 		Flotte nicht komplett zum Opfer des Feindfeuers werden darf.<br></p>
 
 		<p><strong><FONT SIZE=4>Setzen der Schiffe</FONT></strong></p>
 
-		<p>Die eigene und die gegnerische Flotte besteht aus:<br><br>
+		<p>Die eigene und die gegnerische Flotte bestehen aus:<br><br>
 		• 1 Schlachtschiff (5 Felder groß)<br>
 		• 2 Kreuzer (4 Felder groß)<br>
 		• 3 Fregatten (3 Felder groß)<br>
 		• 4 Minensucher (2 Felder groß)<br></p>
 
 
-		<p>Vor dem ersten Zug muss jeder seine Schiffe einsetzen. Die Schiffe müssen so eingesetzt werden, 
+		<p>Vor dem ersten Zug muss jeder seine Schiffe positionieren. Die Schiffe müssen so gestellt werden, 
 		dass sie sich weder waagerecht noch senkrecht überlappen, nebeneinander stehen und nicht über Eck gestellt werden. Ebenfalls ist ein diagonales setzen nicht erlaubt.
 		Die Schiffe können durch Klicken auf die einzelnen Felder gesetzt werden. Dabei bilden mehrere Zusammenhängende markierte Kacheln ein Schiff. 
-		Durch Klicken auf ein  berets markiertes Feld wird dieses wieder zu Wasser. Ist eine Anordnung nicht korrekt oder sind Zuviele Schiffe von einem Typ gesetzt wird dies angezeigt
-		Sind alle Schiffe richtig eingesetzt, best&aumltige die Aufstellung und das Spiel kann gestartet werden.<br></p>
+		Durch Klicken auf ein bereits markiertes Feld wird dieses wieder zu Wasser. Ist eine Anordnung nicht korrekt oder sind zu viele Schiffe von einem Typ gesetzt, wird dies angezeigt.
+		Sind alle Schiffe richtig aufgestellt, best&aumltige die Aufstellung und das Spiel kann gestartet werden.<br></p>
 
 		<p><strong><FONT SIZE=4>Spielablauf</FONT></strong></p>
 
