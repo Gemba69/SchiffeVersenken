@@ -1,6 +1,6 @@
 ﻿<?php require_once('PHP/classes/DrawFunctions.php');
 	  require_once('PHP/classes/GameHelperFunctions.php');
-	  //require_once ('PHP/auth.php‘);
+	  require_once ('PHP/auth.php');
       //require_once ('PHP/Auth_Spiel.php');
 	  ?>
 <!doctype html>
