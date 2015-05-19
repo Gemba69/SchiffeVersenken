@@ -18,6 +18,7 @@ $spielDb = new SpielDatenbankSchnittstelle(1,2);
 print("2");
 print("<br>");
 $spielid=$spielDb->neuesSpiel();
+$spielDb->setSpielStatusId(3, $spielid);
 print("Neue Spiel id:". $spielid);
 print("3");
 print("<br>");
@@ -31,7 +32,9 @@ print("<br>");
 $spielzugDb->speicherSpielzugInDb(0,5,5,"ANGRIFF");
 print("6");
 print("<br>");
-ausgabe($spielzugDb->ladeSpielbrettAusDb());
+ausgabe($spielzugDb->getSpielbrett0());
+$spielzugDb->ladeSpielbrettAusDb();
+ausgabe($spielzugDb->getSpielbrett0());
 print("7");
 print("<br>");
 $spielst = new SpielStatusDatenbankSchnittstelle();
@@ -55,7 +58,7 @@ function ausgabe($feld) {
                 } elseif ($feld[$i][$j] == "MISS") {
                     print("M ");
                 }else{
-                    print($feld[$i][$j]);
+                    print("F ");
                 }
             }
             echo "<br>";

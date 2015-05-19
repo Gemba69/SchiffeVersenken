@@ -5,8 +5,8 @@ require_once('SpielzugtypDatenbankSchnittstelle.php');
 /*
  * Die Klasse SpielzugDatenbankSchnittstelle stellt eine Verbindung zur 
  * Datenbank her und regelt den Zugriff auf die Tabelle Spielzug indem sie
- * Spielzüe in der Datenbank speichern kann und das geladene Spielbrett in 
- * Arrays zu verfügung stellt.
+ * Spielzï¿½e in der Datenbank speichern kann und das geladene Spielbrett in 
+ * Arrays zu verfï¿½gung stellt.
  */
 
 class SpielzugDatenbankSchnittstelle {
@@ -18,7 +18,7 @@ class SpielzugDatenbankSchnittstelle {
     private $spielId;
     private $spielzugtypDb;
     
-    //Variablen für die Datenbankverbindung
+    //Variablen fï¿½r die Datenbankverbindung
     private $server = 'mysql:dbname=SchiffeVersenken;host=localhost';
     private $user = 'root';
     private $password = '';
@@ -55,17 +55,17 @@ class SpielzugDatenbankSchnittstelle {
     }
 
     /*
-     * Die Funktion getSpielbrett0 gibt das erste Spielbrett zurück. 
+     * Die Funktion getSpielbrett0 gibt das erste Spielbrett zurï¿½ck. 
      */
     public function getSpielbrett0() {
-        return $this->$spielbrett0;
+        return $this->spielbrett0;
     }
 
     /*
-     * Die Funktion getSpielbrett1 gibt das zweite Spielbrett zurück. 
+     * Die Funktion getSpielbrett1 gibt das zweite Spielbrett zurï¿½ck. 
      */
     public function getSpielbrett1() {
-        return $this->$spielbrett1;
+        return $this->spielbrett1;
     }
 
     /*
@@ -79,7 +79,8 @@ class SpielzugDatenbankSchnittstelle {
         $query->execute();
         $spielzugArray0 = $query->fetchAll(PDO::FETCH_NUM);
         $spielzugArray = $this->array_2d_to_1d($spielzugArray0);
-        ////print("SpielzugArraycount: " . count($spielzugArray) . " Spielid: " . $this->spielId);
+        //print_r($spielzugArray);
+        //print("SpielzugArraycount: " . count($spielzugArray) . " Spielid: " . $this->spielId);
         for ($j = 0; $j < (count($spielzugArray) / 4); $j++) {
             if ($spielzugArray[$i] == 0) {
                 $i++;
@@ -163,8 +164,8 @@ class SpielzugDatenbankSchnittstelle {
     }
 
     /*
-     * Die Funktion versenktueberpr überprüft, ob irgendein Schiff auf einem 
-     * bestimmten Spielfeld versenkt ist und ändert die Felder eines 
+     * Die Funktion versenktueberpr ï¿½berprï¿½ft, ob irgendein Schiff auf einem 
+     * bestimmten Spielfeld versenkt ist und ï¿½ndert die Felder eines 
      * versenkten Schiffes auf VERSENKT.
      */
     function versenktueberpr($spielbrettnr) {
@@ -280,7 +281,7 @@ class SpielzugDatenbankSchnittstelle {
     
     /*
      * Die Funktion findeAdjazenteSchiffe gibt alle adjazenten Felder, 
-     * die auch Schiffe sind in einem Array zurück.
+     * die auch Schiffe sind in einem Array zurï¿½ck.
      */
     public function findeAdjazenteSchiffe($spielbrettnr, $x, $y) {
         $adjazenzen = array();
@@ -336,7 +337,7 @@ class SpielzugDatenbankSchnittstelle {
 
     /*
      * Die Funktion findeAdjazenteTreffer gibt alle adjazenten Felder, 
-     * die auch Treffer sind in einem Array zurück.
+     * die auch Treffer sind in einem Array zurï¿½ck.
      */
     public function findeAdjazenteTreffer($spielbrettnr, $x, $y) {
         $adjazenzen = array();
@@ -391,7 +392,7 @@ class SpielzugDatenbankSchnittstelle {
     }
 
     /*
-     * Die Funktion speicherSpielzugInDb speichert den übergebenen 
+     * Die Funktion speicherSpielzugInDb speichert den ï¿½bergebenen 
      * Spielzug in der Datenbank
      */
     public function speicherSpielzugInDb($spielbrett, $x, $y, $spielzugTyp) {
@@ -428,8 +429,8 @@ class SpielzugDatenbankSchnittstelle {
 
     /*
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
-     * Arrays ein eindimensionales Array zurück, in dem die Zeilen/Datensätze 
-     * aus dem zweidimensionalen Array hintereiandergehängt wurden.
+     * Arrays ein eindimensionales Array zurï¿½ck, in dem die Zeilen/Datensï¿½tze 
+     * aus dem zweidimensionalen Array hintereiandergehï¿½ngt wurden.
      */
     function array_2d_to_1d($input_array) {
         $output_array = array();
