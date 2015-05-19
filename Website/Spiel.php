@@ -17,11 +17,11 @@
 	</head>
 	<body onload="resumeSessionAjaxRequest()">
 		<div id="hamburgercontainer" class='hamburger'>			
-			<a class='menuContent' href="Index.php">Startseite</a></br></br>
-			<a class='menuContent' href="Spielauswahl.php">Spielauswahl</a></br></br>
-			<a class='menuContent' href="Spielregeln.php">Spielregeln</a></br></br>
-			<a class='menuContent' href="Statistik.php">Statistik</a></br></br>
-			<a class='menuContent' href="Impressum.php">Impressum</a></br></br></br></br></br></br></br></br>
+			<a class='menuContent' href="Index.php">Startseite</a>
+			<a class='menuContent' href="Spielauswahl.php">Spielauswahl</a>
+			<a class='menuContent' href="Spielregeln.php">Spielregeln</a>
+			<a class='menuContent' href="Statistik.php">Statistik</a>
+			<a class='menuContent' href="Impressum.php">Impressum</a></br></br></br>
 		<form action="PHP/Logout.php" method="post">
 		<div class="buttondiv">
 				<button id="Logoff" class="button menuContent" type='submit'>Logoff</button>
