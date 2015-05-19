@@ -36,7 +36,16 @@
 			$stmt1->execute();			
 			$temp = $stmt1->fetchAll(PDO::FETCH_NUM);
 			
-			if ($temp != NULL){
+			$stmt3 = $dbh->prepare("SELECT Email FROM benutzer WHERE Email = :email");
+																		
+			$stmt3->bindParam(':email', $Email);
+			$Email = $_POST['email'];
+			$stmt3->execute();			
+			$temp2 = $stmt3->fetchAll(PDO::FETCH_NUM);
+			var_dump($temp);
+			echo 'wechsel';
+			var_dump($temp2);
+			if ($temp != NULL || $temp2 != NULL){
 				$fehlermeldung = "<span class='Fehler'> Der Benutzername existiert bereits! </span>";
 				header("Location: Wrong_Registrierung.php");
 			}else{
