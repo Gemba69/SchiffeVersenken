@@ -39,6 +39,16 @@
 		$dao->ladeSpielbrettAusDb();
 		$gameFieldSelf = new GameField($dao->getSpielbrett0()); 
 		$gameFieldEnemy = new GameField($dao->getSpielbrett1());
+		for ($i = 0; $i < count($gameFieldSelf->getAsArray()); $i++) {
+			for ($j = 0; $j < count($gameFieldSelf->getAsArray()[$i]); $j++) {
+				if ($gameFieldSelf->getAsArray()[$i][$j] == HIT_ID) {
+					$gameFieldSelf->destroyShip($i, $j);
+				}
+				if ($gameFieldEnemy->getAsArray()[$i][$j] == HIT_ID) {
+					$gameFieldEnemy->destroyShip($i, $j);
+				}
+			}
+		}
 		$gamePhase = $gameDao->getSpielStatusId($_SESSION['Spiel']);
 		$turn = SELF_ID_PREFIX; 
 		
@@ -117,7 +127,7 @@
 		
 		$result = $gameFieldEnemy->attack($i, $j);
 		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['Spiel']); //TODO: wie immer Spielfeldgr��e
-		$dao->speicherSpielzugInDb(0, $i, $j, "ANGRIFF"); //todo: hardcoding....
+		$dao->speicherSpielzugInDb(1, $i, $j, "ANGRIFF"); //todo: hardcoding....
 
 		if ($result == HIT_ID) {
 			$postData['instructions'] = $instructions.'<ul><li class="fadeinanim">Treffer! Noch einmal!</li></ul>';
@@ -165,7 +175,7 @@
 		$j = $koords[1];
 		$ship = $gameFieldSelf->attack($i, $j);
 		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['Spiel']); //TODO: wie immer Spielfeldgr��e
-		$dao->speicherSpielzugInDb(1, $i, $j, "ANGRIFF"); //todo: hardcoding....
+		$dao->speicherSpielzugInDb(0, $i, $j, "ANGRIFF"); //todo: hardcoding....
 		if ($ship == MISS_ID) {
 			$postData['instructions'] = PHASE_2_MAJOR_INSTRUCTIONS;
 		} else if ($ship == DESTROYED_ID) {

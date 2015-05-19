@@ -43,7 +43,7 @@
 			} else if ($this->gameField[$i][$j] === SHIP_ID) {
 				$this->gameField[$i][$j] = HIT_ID;
 				if ($this->checkIfDestroyed($i, $j, $this->gameField)) {
-					$this->destroyShip($i, $j, $this->gameField);
+					$this->destroyShipCore($i, $j, $this->gameField);
 					return DESTROYED_ID;
 				}
 				else
@@ -78,7 +78,12 @@
 			return $destroyed;
 		}
 		
-		private function destroyShip($i, $j, &$gameField) {
+		public function destroyShip($i, $j) {
+			if ($this->checkIfDestroyed($i, $j, $this->gameField))
+				$this->destroyShipCore($i, $j, $this->gameField);
+		}
+		
+		private function destroyShipCore($i, $j, &$gameField) {
 			if ($gameField[$i][$j] == HIT_ID) {				
 				$iminus = ($i <= 0) ? 0: $i - 1;
 				$iplus = ($i >= 9) ? 9 : $i + 1;
@@ -87,10 +92,10 @@
 					
 				$gameField[$i][$j] = DESTROYED_ID;
 			
-				$this->destroyShip($i, $jplus, $gameField);
-				$this->destroyShip($i, $jminus, $gameField);
-				$this->destroyShip($iplus, $j, $gameField);
-				$this->destroyShip($iminus, $j, $gameField);
+				$this->destroyShipCore($i, $jplus, $gameField);
+				$this->destroyShipCore($i, $jminus, $gameField);
+				$this->destroyShipCore($iplus, $j, $gameField);
+				$this->destroyShipCore($iminus, $j, $gameField);
 			} 
 		}
 		
