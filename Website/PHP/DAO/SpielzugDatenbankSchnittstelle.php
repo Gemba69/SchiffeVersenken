@@ -171,13 +171,13 @@ class SpielzugDatenbankSchnittstelle {
             for ($j = 0; $j < $this->feldbreite; $j++) {
                 if ($spielbrettnr == 0) {
                     if ($this->spielbrett0[$i][$j] == self::CONST_TREFFER) {
-                        if ($this->versenkt($i, $j, $spielbrettnr)) {
+                        if ($this->versenkt($spielbrettnr, $i, $j)) {
                             $this->setzeVersenkt($spielbrettnr, $i, $j);
                         }
                     }
                 } else if ($spielbrettnr == 1) {
                     if ($this->spielbrett1[$i][$j] == self::CONST_TREFFER) {
-                        if ($this->versenkt($i, $j, $spielbrettnr)) {
+                        if ($this->versenkt($spielbrettnr, $i, $j)) {
                             $this->setzeVersenkt($spielbrettnr, $i, $j);
                         }
                     }
