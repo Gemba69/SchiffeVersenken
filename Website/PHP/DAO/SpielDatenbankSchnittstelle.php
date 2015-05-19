@@ -9,22 +9,20 @@ class SpielDatenbankSchnittstelle {
     private $spieler0;
     private $spieler1;
     
-    //Variablen für die Datenbankverbindung
-    private $server = 'mysql:dbname=SchiffeVersenken;host=localhost';
-    private $user = 'root';
-    private $password = '';
+    //Variablen fï¿½r die Datenbankverbindung
     private $pdo;
 
     //Konstruktor
     function __construct($parSpieler0, $parSpieler1) {
         $this->spieler0 = $parSpieler0;
         $this->spieler1 = $parSpieler1;
-        $this->pdo = new PDO($this->server, $this->user, $this->password);
+        include "../Verbindung.php";
+        $this->pdo = $dbh;
     }
 
     /*
-     * Die Funktion ladeSpiele gibt alle SpielIDs in einem Array zurück, 
-     * die zu den beiden SpilerIds passen, die dem Konstruktor übergeben wurden.
+     * Die Funktion ladeSpiele gibt alle SpielIDs in einem Array zurï¿½ck, 
+     * die zu den beiden SpilerIds passen, die dem Konstruktor ï¿½bergeben wurden.
      */
     function ladeSpiele() {
         $spieleIds = array();
@@ -38,7 +36,7 @@ class SpielDatenbankSchnittstelle {
 
     /*
      * Die Funktion getSpielStatusId gibt bei Mitgabe der SpielID die StatusID 
-     * des Spiels zurück.
+     * des Spiels zurï¿½ck.
      */
     function getSpielStatusId($spielId) {
         $spielStatusId = array();
@@ -52,8 +50,8 @@ class SpielDatenbankSchnittstelle {
     /*
      * Die Funktion setSpielStatusId ordnet durch Mitgabe der SpielID und einer 
      * SpielStatusID die SpielStatusID dem Spiel zu. 
-     * Dadurch wird der alte SpielStatus überschrieben. 
-     * Außerdem gibt die Funktion die geänderte SpielStatusId zurück.
+     * Dadurch wird der alte SpielStatus ï¿½berschrieben. 
+     * Auï¿½erdem gibt die Funktion die geï¿½nderte SpielStatusId zurï¿½ck.
      */
     function setSpielStatusId($spielStatusId, $spielId) {
         $stmt = $this->pdo->prepare("UPDATE Spiel SET StatusID = :spielStatusId WHERE ID = :id");
@@ -66,7 +64,7 @@ class SpielDatenbankSchnittstelle {
     /*
      * Die Funktion neuesSpiel legt ein neues Spiel mit den beiden im 
      * Konstruktor mitgegebenen SpielerIds an 
-     * und gibt die SpielID des neuen Spiels zurück.
+     * und gibt die SpielID des neuen Spiels zurï¿½ck.
      */
     function neuesSpiel() {
         include 'SpielStatusDatenbankSchnittstelle.php';
@@ -86,8 +84,8 @@ class SpielDatenbankSchnittstelle {
 
     /*
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
-     * Arrays ein eindimensionales Array zurück, in dem die Zeilen/Datensätze 
-     * aus dem zweidimensionalen Array hintereiandergehängt wurden.
+     * Arrays ein eindimensionales Array zurï¿½ck, in dem die Zeilen/Datensï¿½tze 
+     * aus dem zweidimensionalen Array hintereiandergehï¿½ngt wurden.
      */
     function array_2d_to_1d($input_array) {
         $output_array = array();

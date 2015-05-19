@@ -19,9 +19,6 @@ class SpielzugDatenbankSchnittstelle {
     private $spielzugtypDb;
     
     //Variablen f�r die Datenbankverbindung
-    private $server = 'mysql:dbname=SchiffeVersenken;host=localhost';
-    private $user = 'root';
-    private $password = '';
     private $pdo;
 
     const CONST_WASSER = "WASSER";
@@ -36,7 +33,8 @@ class SpielzugDatenbankSchnittstelle {
         $this->feldhoehe = $parFeldhoehe;
         $this->feldbreite = $parFeldbreite;
         $this->spielId = $parSpielId;
-        $this->pdo = new PDO($this->server, $this->user, $this->password);
+        include "../Verbindung.php";
+        $this->pdo = $dbh;
 
         $this->spielzugtypDb = new SpielzugtypDatenbankSchnittstelle();
 

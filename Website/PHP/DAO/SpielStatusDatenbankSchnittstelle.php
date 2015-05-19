@@ -7,20 +7,18 @@
 
 class SpielStatusDatenbankSchnittstelle {
 
-    //Variablen für die Datenbankverbindung
-    private $server = 'mysql:dbname=SchiffeVersenken;host=localhost';
-    private $user = 'root';
-    private $password = '';
+    //Variablen fï¿½r die Datenbankverbindung
     private $pdo;
 
     //Konstruktor
     function __construct() {
-        $this->pdo = new PDO($this->server, $this->user, $this->password);
+        include "../Verbindung.php";
+        $this->pdo = $dbh;
     }
 
     /*
      * Die Funktion ladeSpielStatus gibt bei Mitgabe einer SpielStatusID 
-     * den zugehörigen Status_Typ und die zugehörige Beschreibung zurück.
+     * den zugehï¿½rigen Status_Typ und die zugehï¿½rige Beschreibung zurï¿½ck.
      */
     function ladeSpielStatus($spielStatusId) {
         $spielStatus = array();
@@ -33,7 +31,7 @@ class SpielStatusDatenbankSchnittstelle {
 
     /*
      * Die Funktion ladeSpielStatusId gibt bei Mitgabe des Status_Typs 
-     * die SpielStatusId zurück.
+     * die SpielStatusId zurï¿½ck.
      */
     function ladeSpielStatusId($status_Typ) {
         $spielStatus = array();
@@ -46,8 +44,8 @@ class SpielStatusDatenbankSchnittstelle {
 
     /*
      * Die Funktion array_2d_to_1d gibt bei mitgabe eines zweidimensionalen
-     * Arrays ein eindimensionales Array zurück, in dem die Zeilen/Datensätze 
-     * aus dem zweidimensionalen Array hintereiandergehängt wurden.
+     * Arrays ein eindimensionales Array zurï¿½ck, in dem die Zeilen/Datensï¿½tze 
+     * aus dem zweidimensionalen Array hintereiandergehï¿½ngt wurden.
      */
 
     function array_2d_to_1d($input_array) {
