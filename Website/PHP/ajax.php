@@ -76,7 +76,7 @@
 		$postData = GameHelperFunctions::generateClickResponseArray($gameFieldSelfArray, $_SESSION['requiredShips'], 1, null, null, null, null);
 		$_SESSION['gameFieldEnemy'] = new GameField(AI::schiffeSetzen(GameHelperFunctions::initializeNewField(10, 10), $_SESSION['requiredShips'])); // TODO: 10x10 zentral auslesen
 		
-		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['Spiel']); //TODO: wie immer Spielfeldgr��e
+		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['Spiel']); //TODO: wie immer Spielfeldgr??e
 		for ($i = 0; $i < count($_SESSION['gameFieldEnemy']->getAsArray()); $i++) {
 			for ($j = 0; $j < count($_SESSION['gameFieldEnemy']->getAsArray()[$i]); $j++) {
 				if ($_SESSION['gameFieldEnemy']->getAsArray()[$i][$j] == SHIP_ID)
@@ -106,7 +106,7 @@
 		
 		$gameFieldSelf->toggleShip($i, $j);
 		
-		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['Spiel']); //TODO: wie immer Spielfeldgr��e
+		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['Spiel']); //TODO: wie immer Spielfeldgr??e
 		if ($gameFieldSelf->getAsArray()[$i][$j] == SHIP_ID)
 			$dao->speicherSpielzugInDb(0, $i, $j, "SETZEN"); //todo: hardcoding....
 		else 
@@ -126,7 +126,7 @@
 		$aiTurn = false;
 		
 		$result = $gameFieldEnemy->attack($i, $j);
-		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['Spiel']); //TODO: wie immer Spielfeldgr��e
+		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['Spiel']); //TODO: wie immer Spielfeldgr??e
 		$dao->speicherSpielzugInDb(1, $i, $j, "ANGRIFF"); //todo: hardcoding....
 
 		if ($result == HIT_ID) {
@@ -174,7 +174,7 @@
 		$i = $koords[0];
 		$j = $koords[1];
 		$ship = $gameFieldSelf->attack($i, $j);
-		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['Spiel']); //TODO: wie immer Spielfeldgr��e
+		$dao = new SpielzugDatenbankschnittstelle(10, 10, $_SESSION['Spiel']); //TODO: wie immer Spielfeldgr??e
 		$dao->speicherSpielzugInDb(0, $i, $j, "ANGRIFF"); //todo: hardcoding....
 		if ($ship == MISS_ID) {
 			$postData['instructions'] = PHASE_2_MAJOR_INSTRUCTIONS;

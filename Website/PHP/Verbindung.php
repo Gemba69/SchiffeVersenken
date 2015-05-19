@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // Zugangsdaten zur Datenbank
 $DB_HOST = "localhost"; // Datenbank-Host
 $DB_NAME = "SchiffeVersenken"; // Datenbank-Name
