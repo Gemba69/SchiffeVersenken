@@ -3,11 +3,8 @@ Use SchiffeVersenken;
 -- Testdaten Benutzer
 -- Gemba: 123; Klaubautermann: password; admin: admin; test: test
 --
-Insert Into Benutzer (`ID`, `Benutzername`, `Password`, `Email`) Values (0, 'KI', 'eufvegfuebf', '');
-UPDATE Benutzer SET ID = '0' WHERE Benutzername='KI';
-Insert Into Benutzer (ID, Benutzername, Password, Email) VALUES (1, 'Gemba', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'bluhn@web.de');
-Insert Into Benutzer (ID, Benutzername, Password, Email) VALUES (2, 'Klabautermann', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'klaubautermann@web.de');
-Insert Into Benutzer (ID, Benutzername, Password, Email) VALUES (3, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin@web.de');
+Insert Into Benutzer (ID, Benutzername, Password, Email) VALUES (2, 'Gemba', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'bluhn@web.de');
+Insert Into Benutzer (ID, Benutzername, Password, Email) VALUES (3, 'Klabautermann', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'klaubautermann@web.de');
 Insert Into Benutzer (ID, Benutzername, Password, Email) VALUES (4, 'test', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'test@web.de');
 
 --
