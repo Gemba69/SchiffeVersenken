@@ -23,7 +23,7 @@
 	</div>
 <?php
 
-$dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
+include "PHP/Verbindung.php";
 
 $rank = $dbh->query("Select (GewonneneSpiele/GespielteSpiele) as Gewinnquote, a.Benutzername,a.gespielteSpiele as GespielteSpiele,
 b.gewonneneSpiele as GewonneneSpiele
@@ -61,8 +61,6 @@ on a.Benutzername=b.Benutzername order by GewonneneSpiele desc
 			</table>
 <?php
 
-$dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
-
 $rank = $dbh->query("Select (GewonneneSpiele/GespielteSpiele) as Gewinnquote, a.Benutzername,a.gespielteSpiele as GespielteSpiele,
 b.gewonneneSpiele as GewonneneSpiele
 from highscore_gespielte_spiele a left outer join highscore_gewonnene_spiele b 
@@ -96,8 +94,6 @@ on a.Benutzername=b.Benutzername order by GespielteSpiele desc
 ?>
 			</table>
 <?php
-
-$dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
 
 $rank = $dbh->query("Select (GewonneneSpiele/GespielteSpiele) as Gewinnquote, a.Benutzername,a.gespielteSpiele as GespielteSpiele,
 b.gewonneneSpiele as GewonneneSpiele

@@ -29,7 +29,7 @@
 			</form>
 <?php
 
-$dbh = new PDO('mysql:host=localhost;dbname=SchiffeVersenken', 'root', '');
+include "PHP/Verbindung.php";
 
 $query = $dbh->prepare("Select SpielID, Status_Typ, Benutzername
 From

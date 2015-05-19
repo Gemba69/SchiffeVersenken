@@ -1,3 +1,5 @@
+Use SchiffeVersenken;
+
 Drop Table Spielzug;
 Drop Table Spiel;
 Drop Table Farbcode;
@@ -6,3 +8,5 @@ Drop Table Spielzugtyp;
 Drop Table SpielStatus;
 Drop View highscore_gespielte_Spiele;
 Drop View highscore_gewonnene_Spiele;
+Drop User 'Raeud'@'localhost';
+Drop Database SchiffeVersenken;
