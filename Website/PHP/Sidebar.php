@@ -8,13 +8,13 @@
 			<li><a class='menuContent' href="Impressum.php">Impressum</a></li>
 			<li>
 				<form action="PHP/Logout.php" method="post">
-			<li>
-				<div class='buttondiv'
+			
+				<div class='buttondiv'>
 					<button id='logout' class='button menuContent' type='submit'>Logout</button>
 				</div>
-			</li>
+			
 				</form>
 			</li>
-		<ul>
-	<nav>
+		</ul>
+	</nav>
 </div>
