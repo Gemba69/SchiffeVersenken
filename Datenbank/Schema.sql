@@ -180,5 +180,5 @@ Insert Into SpielStatus(Status_Typ, Beschreibung) VALUES ('GEWONNEN_SPIELER2', '
 
 CREATE USER Raeud@localhost;
 SET password for Raeud@localhost = password('admin');
-GRANT Select, Insert on SchiffeVersenken.* to Raeud@localhost;
+GRANT Select, Insert, Update on SchiffeVersenken.* to Raeud@localhost;
 
