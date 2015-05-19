@@ -12,6 +12,11 @@ body {
 	-o-background-size: cover;
 }
 
+nav ul li, nav ul, nav{
+	padding: 0;
+	margin: 0;
+}
+
 a, a:link, a:visited, a:active {
 	text-decoration: none;
 	color: #333;
@@ -21,7 +26,7 @@ a:hover {
 	background-color: rgba(50, 50, 50, .3);
 }
 
-.menuContent {
+li .menuContent{
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 0;
@@ -241,7 +246,7 @@ aside ul {
 	list-style-type: none;
 }
 
-ul li {
+li {
 	margin: 10px;
 }
 
