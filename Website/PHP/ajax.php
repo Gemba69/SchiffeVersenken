@@ -51,7 +51,7 @@
 		} else if ($_SESSION['turn'] == ENEMY_ID_PREFIX) {
 			aiPlays();
 		}
-		$postData = GameHelperFunctions::generateResumeSessionArray($gameFieldSelf->getAsArray(), $gameFieldEnemy->getAsArray(), $_SESSION['requiredShips'], $_SESSION['gamePhase']);
+		$postData = GameHelperFunctions::generateResumeSessionArray($gameFieldSelf->getAsArray(), $gameFieldEnemy->getAsArray(), $_SESSION['requiredShips'], $gamePhase);
 		echo json_encode(GameHelperFunctions::utf8ize($postData));
 	}
 	

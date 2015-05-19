@@ -64,7 +64,6 @@
 			return $noShipsLeft;
 		}
 		
-			//TODO: verschiedene phasen
 		public static function generateResumeSessionArray($gameFieldSelf, $gameFieldEnemy, $requiredShips, $phase) {
 			for ($i = 0; $i < count($gameFieldEnemy); $i++) {
 				for ($j = 0; $j < count($gameFieldEnemy[$i]); $j++) {

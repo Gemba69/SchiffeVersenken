@@ -155,8 +155,8 @@ class SpielzugDatenbankSchnittstelle {
                 $i++;
             }
         }
-        $this->versenktueberpr(0);
-        $this->versenktueberpr(1);
+       // $this->versenktueberpr(0);
+       // $this->versenktueberpr(1);
     }
 
     /*
