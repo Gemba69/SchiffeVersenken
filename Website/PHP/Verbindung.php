@@ -1,9 +1,9 @@
-<?php
+﻿<?php
 // Zugangsdaten zur Datenbank
 $DB_HOST = "localhost"; // Datenbank-Host
-$DB_NAME = "schiffeversenken"; // Datenbank-Name
-$DB_BENUTZER = "root"; // Datenbank-Benutzer
-$DB_PASSWORT = ""; // Datenbank-Passwort
+$DB_NAME = "SchiffeVersenken"; // Datenbank-Name
+$DB_BENUTZER = "Raeud"; // Datenbank-Benutzer
+$DB_PASSWORT = "admin"; // Datenbank-Passwort
 
 
 try {
