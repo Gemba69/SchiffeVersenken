@@ -1,23 +1,17 @@
 Programmierung Restaufgaben
 
-Phase 2 fertig implementieren + DAO einbinden
-Phasen in DB speichern -> Pöppelmann
-Markierung wenn Schiff versenkt
-index.php umbenennen
-
-Session: Timeout, 
 
 Bugfixes
 
 Testen (u. A. auch Sarah)
-Pöppelmann Debug Sachen rausnehmen + Session
+Pöppelmann Debug Sachen rausnehmen + Session Destroyen rausnehmen
 
 
 
 
 
 Refactor/Schöner machen (falls noch Zeit ist)
-- Session Tineout
+- Session Timeout
 - Spieler verwalten: freischalten (Mit Tabelle?)
 - KI schlauer machen
 - MehrspielerModi
