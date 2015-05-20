@@ -8,12 +8,11 @@
 			$this->gameField = $array;
 		}
 		
+		/**
+		* @return Das Spielfeld als Array
+		*/
 		public function getAsArray() {
 			return $this->gameField;
-		}
-		
-		public function get($i, $j) {
-			return $this->gameField[$i][$j];
 		}
 		
 		public function toggleShip($i, $j) {
@@ -35,6 +34,9 @@
 		* the function returns true as an indicator that the attack hit a ship. Invalid
 		* moves (such as attacking a piece that is out of bounds or a piece that was 
 		* attacked already) return "INVALID".
+		* @param $i the X coordinate
+		* @param $j the Y coordinate
+		* @return MISS_ID if missed, HIT_ID if hit, DESTROYED_ID if destroyed, 'INVALID' if a piece already hit, missed or destroyed was attacked
 		*/
 		public function attack($i, $j) {
 			if ($this->gameField[$i][$j] === WATER_ID) {
@@ -54,8 +56,11 @@
 		
 		
 		/**
-		*
-		*
+		* Überprüft, ob die übergebene Zelle zu einem zerstörten Schiff gehört.
+		* @param $i X-Koordinate
+		* @param $j Y-Koordinate
+		* @param $gameField Spielfeld als Array
+		* @return true wenn zerstört, false wenn nicht
 		*/
 		private function checkIfDestroyed($i, $j, $gameField) {
 			$destroyed = true;
@@ -78,11 +83,19 @@
 			return $destroyed;
 		}
 		
+		/**
+		* Zerstört das gesamte Schiff der angegebenen Zelle
+		* @param $i X-Koordinate
+		* @param $j Y-Koordinate
+		*/
 		public function destroyShip($i, $j) {
 			if ($this->checkIfDestroyed($i, $j, $this->gameField))
 				$this->destroyShipCore($i, $j, $this->gameField);
 		}
 		
+		/**
+		* Logik der destroyShip-Methode. Hier ist noch &$gameField als Parameter nötig, weil die Methode rekursiv arbeitet.
+		*/
 		private function destroyShipCore($i, $j, &$gameField) {
 			if ($gameField[$i][$j] == HIT_ID) {				
 				$iminus = ($i <= 0) ? 0: $i - 1;
@@ -99,10 +112,19 @@
 			} 
 		}
 		
+		/**
+		* Gibt alle Zellen eines zerstörten Schiffs zurück
+		* @param $i X-Koordinate 
+		* @param $j Y-Koordinate
+		* @return Die zerstörten Zellen als Array
+		*/
 		public function getAllDestroyedTiles($i, $j) {
 			return $this->getAllDestroyedTilesCore($i, $j, $this->gameField);
 		}
 		
+		/**
+		* Logik der getAllDestroyedTiles-Methode. Hier ist noch $gameField als Parameter nötig, weil die Methode rekursiv arbeitet.
+		*/
 		private function getAllDestroyedTilesCore($i, $j, $gameField) {
 			if ($gameField[$i][$j] == DESTROYED_ID) {				
 				$iminus = ($i <= 0) ? 0: $i - 1;

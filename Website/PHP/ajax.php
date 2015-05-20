@@ -7,6 +7,8 @@
 
 	session_start();
 	
+	require_once('timeout.php');
+	
 	switch ($_POST['requestType']) {
 		case 'reset':
 			destroySession();

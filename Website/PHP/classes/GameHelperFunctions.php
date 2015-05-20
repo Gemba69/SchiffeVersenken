@@ -1,6 +1,7 @@
 <?php 
 	require_once('DrawFunctions.php');
 
+	//Konstanten
 	define('ENEMY_ID_PREFIX', "enemy");
 	define('SELF_ID_PREFIX', "self");
 	define('WATER_ID', "WASSER");
@@ -14,13 +15,21 @@
 	define("PHASE_2_TITLE", "Angriff");
 	define("PHASE_1_MAJOR_INSTRUCTIONS", "Platziere deine Schiffe auf dem unteren Feld."); //TODO: nicht hardcoden
 	define("PHASE_2_MAJOR_INSTRUCTIONS", "Feuere die Schiffe deines Gegners auf dem oberen Feld ab."); //TODO: nicht hardcoden
-	define("CONTINUE_BUTTON_CODE", "<div class='buttondiv fadeinanim'><img class='buttonimg' src='./images/arrow.png'><button id='continuebutton' onclick='nextPhaseAjaxRequest()'>Angriff beginnen</button></div>");
-	define("BACK_BUTTON_CODE", "<div class='buttondiv' fadeinanim'><img class='buttonimg' src='./images/arrow.png'><a id='backbutton' href='Spielauswahl.php'>Zurück zur Spielauswahl</a></div>");
+	define("CONTINUE_BUTTON_CODE", "<div class='buttondiv fadeinanim'><img class='buttonimg' src='./resources/attack.png'><button id='continuebutton' onclick='nextPhaseAjaxRequest()'>Angriff beginnen</button></div>");
+	define("BACK_BUTTON_CODE", "<div class='buttondiv' fadeinanim'><img class='buttonimg' src='./resources/arrow.png'><a id='backbutton' href='Spielauswahl.php'>Zurück zur Spielauswahl</a></div>");
 	define("CONTINUE_INSTRUCTIONS", "Sehr gut. Wenn du sicher bist, dass alle Schiffe richtig platziert sind, gehe nun zum Angriff über.");
 	define("SHIP_PLACEMENT_FILE", "PHP/classes/ShipPlacement.php");
 	define("SHOT_FIRING_FILE", "PHP/classes/ShotFiring.php");
 	
+	/**
+	* Klasse, die verschiedene Funktionen bereitstellt, die das Leben vereinfachen.
+	*/
 	class GameHelperFunctions {
+		
+		/**
+		* Kodiert einen String oder ein Array mit UTF-8. Das ist nötig, um Arrays korrekt in JSON zu parsen
+		* @return Das UTF-8-kodierte Array 
+		*/
 		public function utf8ize($d) {
 			if (is_array($d)) {
 				foreach ($d as $k => $v) {
@@ -32,6 +41,12 @@
 			return $d;
 		}
 	
+		/**
+		* Erstellt eine neues, zweidimensionales Array der angegebenen Größe und füllt es komplett mit Wasser (WATER_ID)
+		* @param $width Die Breite des Felds
+		* @param $height Die Höhe des Felds
+		* @return Das erstellte Array
+		*/
 		public static function initializeNewField($width, $height) {
 			$field = array();
 			for ($i = 0; $i < $width; $i++) { 
@@ -42,6 +57,13 @@
 			return $field;
 		}
 		
+		/**
+		* Erstellt HTML-Code, der die noch zu setztenden Schiffe darstellt. 
+		* Der Unterschied zu getDrawnShipsCode ist, dass die erforderlichen Parameter anders sind.
+		* @param $gameField Das GameField als zweidimensionales Array
+		* @param $requiredShips Die Schiffe, die zu platzieren sind
+		* @return HTML-Code, der die noch zu zeichnenden Schiffe abbildet
+		*/
 		public static function drawRemainingShips($gameField, $requiredShips) {
 			$drawnShips = self::checkAmountOfShips($gameField);
 			$warning = "";
@@ -53,6 +75,12 @@
 			return getDrawnShipsCode($remainingShips)."</li><li>".$warning."</li>";
 		}
 		
+		/**
+		* Überprüft, ob alle erforderlichen Schiffe gesetzt wurden.
+		* @param $gameField Das GameField als zweidimensionales Array
+		* @param $requiredShips Die Schiffe, die zu platzieren sind
+		* @return true, wenn alle Schiffe gesetzt wurden, false wenn zu viele oder zu wenige Schiffe gesetzt wurden
+		*/
 		public static function allShipsPlaced($gameField, $requiredShips) {
 			$drawnShips = self::checkAmountOfShips($gameField);
 			$remainingShips = self::getRemainingShips($drawnShips, $requiredShips);
@@ -64,6 +92,16 @@
 			return $noShipsLeft;
 		}
 		
+		/**
+		* Erstellt ein Response-Array, das von JavaScript ausgewertet wird. Diese Funktion sollte nur verwendet werden,
+		* wenn im Frontend noch kein Feld umgedreht wurde, es im Backend aber schon viele umgedrehte Felder gibt (also wenn ein
+		* bestehendes Spiel wieder aufgenommen wurde)
+		* @param $gameFieldSelf Das Spielfeld des Spielers als Array
+		* @param $gameFieldEnemy Das Spielfeld des Gegners als Array
+		* @param $requiredShips Die zu platzierenden Schiffe
+		* @param $Die aktuelle Spielphase
+		* @return Das Array, welches zurück an den Client gesendet wird. Es muss vorher mit JSON kodiert werden
+		*/
 		public static function generateResumeSessionArray($gameFieldSelf, $gameFieldEnemy, $requiredShips, $phase) {
 			for ($i = 0; $i < count($gameFieldEnemy); $i++) {
 				for ($j = 0; $j < count($gameFieldEnemy[$i]); $j++) {
@@ -98,6 +136,19 @@
 			return $postData;
 		}
 		
+		/**
+		* Erstellt ein Response-Array, das von JavaScript ausgewertet wird. Diese Funktion ist ähnlich wie generateResumeSessionArray,
+		* aber wird im laufenden Spiel verwendet. Der Unterschied ist, dass dem Client hier gesagt wird, dass nur ein Feld umzudrehen ist,
+		* nicht alle.
+		* @param $gameFieldSelf Das Spielfeld des Spielers als Array
+		* @param $gameFieldEnemy Das Spielfeld des Gegners als Array
+		* @param $iJustClicked Die X-Koordinate des Feldes, das zurückgesendet werden soll
+		* @param $jJustClicked Die Y-Koordinate des Feldes, das zurückgesendet werden soll
+		* @param $fieldJustClicked Das idPrefix (SELF_ID_PREFIX, ENEMY_ID_PREFIX) des Feldes, das zurückgesendet werden soll 
+		* @param $colorJustClicked Die Farbe, die das zurückgesendete Feld annehmen soll
+		* @param $Die aktuelle Spielphase
+		* @return Das Array, welches zurück an den Client gesendet wird. Es muss vorher mit JSON kodiert werden
+		*/
 		public static function generateClickResponseArray($gameFieldSelf, $requiredShips, $phase, $iJustClicked, $jJustClicked, $fieldJustClicked, $colorJustClicked) {
 			$cellData = self::generateCellDataArrayForSingleClick($iJustClicked, $jJustClicked, $colorJustClicked, $fieldJustClicked);
 			$postData = array('cells' => $cellData);
@@ -118,6 +169,12 @@
 			return $postData;
 		}
 		
+		/**
+		* Erstellt ein Teilarray der Funktion generateResumeSessionArray. Hier werden nur die zu färbenden Zellen zurückgegeben, 
+		* nicht aber die anderen Informationen wie Titel und Instructions.
+		* @param $gameFieldArray Das Spielfeld als Array
+		* @param $selfEnemy Das idPrefix (SELF_ID_PREFIX, ENEMY_ID_PREFIX) des Feldes, das zurückgesendet werden soll 
+		*/ 
 		public static function generateCellDataArray($gameFieldArray, $selfEnemy) {
 			$cellData = array();
 			$counter = 0;
@@ -137,6 +194,14 @@
 			return $cellData;
 		}
 		
+		/**
+		* Erstellt ein Teilarray der Funktion generateClickResponseArray. Hier wird nur eine zu färbenden Zellen zurückgegeben, 
+		* nicht aber die anderen Informationen wie Titel und Instructions.
+		* @param $i X-Koordinate der zurückzusendenen Zelle
+		* @param $j Y-Koordinate der zurückzusendenen Zelle
+		* @param $color  Die Feldtypkonstante (Name ist etwas irreführend)
+		* @param $gameField Das idPrefix (SELF_ID_PREFIX, ENEMY_ID_PREFIX) des Feldes, das zurückgesendet werden soll (Name ist etwas irreführend)
+		*/ 
 		public static function generateCellDataArrayForSingleClick($i, $j, $color, $gameField) {
 			$jsColor = self::convertColor($color);
 
@@ -148,6 +213,11 @@
 			return $cellData;
 		}
 		
+		/**
+		* Konvertiert die Konstante des Feldtyps in eine Farbe, die JavaScript akzeptiert.
+		* @param $colorConstant Die Feldtypkonstante
+		* $return Die Farbe, die JavaScript benutzt
+		*/
 		public static function convertColor($colorConstant) {
 			//var_dump ($colorConstant);
 			$color = "";
@@ -168,6 +238,11 @@
 			return $color;
 		}
 		
+		/**
+		* Überprüft, ob das Spiel gewonnen wurde
+		* @param $gameField Das Spielfeld als Array
+		* @return true, wenn das Spiel gewonnen wurde, false wenn nicht
+		*/
 		public static function checkWin($gameField) {
 			for ($i = 0; $i < count($gameField); $i++) {
 				for ($j = 0; $j < count($gameField); $j++) {
@@ -178,6 +253,13 @@
 			return true;
 		}
 		
+		/**
+		* Gibt die noch zu setztenden Schiffe zurück und hängt eine Warnung an, wenn gegen Regeln verstoßen wurde.
+		* @param $drawnShips Die bereits gesetzten Schiffe
+		* @param $requiredShips Die zu setzenden Schiffe
+		* @param &$warning Die auszugebene Warnung
+		* $return Die noch zu setzenden Schiffe und die Warnung
+		*/
 		private static function getRemainingShipsPlusWarning($drawnShips, $requiredShips, &$warning) {
 			$remainingShips = array();
 			$warning = "";
@@ -190,11 +272,22 @@
 			return $remainingShips;
 		}
 		
+		/**
+		* Gibt die noch zu setzenden Schiffe zurück
+		* @param $drawnShips Die Schiffe, die bereits gesetzt wurden
+		* @param $requiredShips Die zu setztenden Schiffe
+		* @return Die noch zu setzenden Schiffe
+		*/
 		private static function getRemainingShips($drawnShips, $requiredShips) {
 			$throwAwayWarning = "";
 			return self::getRemainingShipsPlusWarning($drawnShips, $requiredShips, $throwAwayWarning);
 		}
 		
+		/**
+		* Gibt zurück, wie viele Schiffe welcher Art auf einem Feld gesetzt wurden.
+		* @param $gameField Das zu überprüfende GameField als Array
+		* @return Array, in dem steht wie viele Schiffe welcher Art gesetzt wurden.
+		*/
 		private static function checkAmountOfShips($gameField) {
 			$result = array();
 			if(!self::shipAlignmentIsValid($gameField)) {
@@ -212,6 +305,11 @@
 			return $result;
 		}
 			
+		/**
+		* Überprüft, ob die Schiffsanordnung auf dem übergebenen GameField gültig ist.
+		* @param $gameField Das GameField als Array
+		* @return true, wenn die Schiffe gültig angeordnet sind, false wenn nicht
+		*/
 		private static function shipAlignmentIsValid($gameField) {
 		 for ($i = 0; $i < (sizeof($gameField)); $i++) {
             for ($j = 0; $j < (max(array_map('count', $gameField))); $j++) {
@@ -228,6 +326,13 @@
         return true;
 		}
 		
+		/**
+		* Gibt die Länge des angegebenen Schiffteils zurück
+		* @param $i X-Koordinate der zu überprüfenden Zelle
+		* @param $j Y-Koordinate der zu überprüfenden Zelle
+		* @param &$gameField das GameField als Array
+		* @return Die berechnete Länge
+		*/
 		private static function checkShipLength($i, $j, &$gameField) {
 			$length = 0;
 			if ($gameField[$i][$j] == SHIP_ID) {

@@ -1,4 +1,14 @@
 <?php
+
+	/**
+	* Erstellt ein Spielfeld der angegebenen Größe. 
+	* Jede Zelle erhält ihre Koordinaten und das idPrefix als ID.
+	* Auch verschiedene Listener werden registriert.
+	* @param $rows Die Anzahl an Zeilen
+	* @param $columns Die Anzahl an Spalten
+	* @param $idPrefix Ein Präfix, das vor jede ID gehangen wird
+	* @return Das Spielfeld als HTML-Tabelle 
+	*/
 	function createBoard($rows, $columns, $idPrefix) {
 		echo("<table class='board'>");
 		for ($i = 0; $i < $rows; $i++) {
@@ -11,6 +21,12 @@
 		echo("</table>");
 	}
 	
+	/**
+	* Erstellt Code, der abbildet, wie viel der erforderlichen Schiffe bereits gesetzt wurden.
+	* @param $ships Gibt an, wie viele Schiffe noch zu setzen sind. Jeder Key ist die Schiffsgröße,
+	* 				jeder Value ist die Anzahl dieser Schiffe, die noch gesetzt werden müssen.
+	* @return HTML-Code, der die noch zu zeichnenden Schiffe abbildet
+	*/
 	function getDrawnShipsCode($ships) {
 		$shipfragment = "<span class='example_cell graycol'></span>";
 		$ret = "";
@@ -48,6 +64,9 @@
 		return $ret;
 	}
 	
+	/**
+	* Ruft die getDrawnShipsCode-Funktion mit leerem Parameter auf.
+	*/
 	function drawShips() {
 		$output = getDrawnShipsCode("");
 		echo $output;
