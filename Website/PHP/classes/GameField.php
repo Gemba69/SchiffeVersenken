@@ -56,11 +56,11 @@
 		
 		
 		/**
-		* ÃœberprÃ¼ft, ob die Ã¼bergebene Zelle zu einem zerstÃ¶rten Schiff gehÃ¶rt.
+		* Überprüft, ob die übergebene Zelle zu einem zerstörten Schiff gehört.
 		* @param $i X-Koordinate
 		* @param $j Y-Koordinate
 		* @param $gameField Spielfeld als Array
-		* @return true wenn zerstÃ¶rt, false wenn nicht
+		* @return true wenn zerstört, false wenn nicht
 		*/
 		private function checkIfDestroyed($i, $j, $gameField) {
 			$destroyed = true;
@@ -84,7 +84,7 @@
 		}
 		
 		/**
-		* ZerstÃ¶rt das gesamte Schiff der angegebenen Zelle
+		* Zerstört das gesamte Schiff der angegebenen Zelle
 		* @param $i X-Koordinate
 		* @param $j Y-Koordinate
 		*/
@@ -94,7 +94,7 @@
 		}
 		
 		/**
-		* Logik der destroyShip-Methode. Hier ist noch &$gameField als Parameter nÃ¶tig, weil die Methode rekursiv arbeitet.
+		* Logik der destroyShip-Methode. Hier ist noch &$gameField als Parameter nötig, weil die Methode rekursiv arbeitet.
 		*/
 		private function destroyShipCore($i, $j, &$gameField) {
 			if ($gameField[$i][$j] == HIT_ID) {				
@@ -113,17 +113,17 @@
 		}
 		
 		/**
-		* Gibt alle Zellen eines zerstÃ¶rten Schiffs zurÃ¼ck
+		* Gibt alle Zellen eines zerstörten Schiffs zurück
 		* @param $i X-Koordinate 
 		* @param $j Y-Koordinate
-		* @return Die zerstÃ¶rten Zellen als Array
+		* @return Die zerstörten Zellen als Array
 		*/
 		public function getAllDestroyedTiles($i, $j) {
 			return $this->getAllDestroyedTilesCore($i, $j, $this->gameField);
 		}
 		
 		/**
-		* Logik der getAllDestroyedTiles-Methode. Hier ist noch $gameField als Parameter nÃ¶tig, weil die Methode rekursiv arbeitet.
+		* Logik der getAllDestroyedTiles-Methode. Hier ist noch $gameField als Parameter nötig, weil die Methode rekursiv arbeitet.
 		*/
 		private function getAllDestroyedTilesCore($i, $j, $gameField) {
 			if ($gameField[$i][$j] == DESTROYED_ID) {				

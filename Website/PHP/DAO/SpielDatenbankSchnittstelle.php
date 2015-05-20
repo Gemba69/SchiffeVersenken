@@ -38,7 +38,7 @@ class SpielDatenbankSchnittstelle {
     /*
      * Die Funktion getSpielStatusId gibt bei Mitgabe der SpielID die StatusID 
      * des Spiels zur?ck.
-     * @parm $spielId Die Spielid fÃ¼r die der Status bestimmt werden soll
+     * @parm $spielId Die Spielid für die der Status bestimmt werden soll
      * @return int der Status der Spielid
      */
     function getSpielStatusId($spielId) {
@@ -55,8 +55,8 @@ class SpielDatenbankSchnittstelle {
      * SpielStatusID die SpielStatusID dem Spiel zu. 
      * Dadurch wird der alte SpielStatus ?berschrieben. 
      * Au?erdem gibt die Funktion die ge?nderte SpielStatusId zur?ck.
-     * @parm $spielStatusId Die StatusId, die fÃ¼r das bestimmte Spiel gesetzt werden soll.
-     * @parm $spielId das Spiel, dem der SpielStatus hinzugefÃ¼gt werden soll
+     * @parm $spielStatusId Die StatusId, die für das bestimmte Spiel gesetzt werden soll.
+     * @parm $spielId das Spiel, dem der SpielStatus hinzugefügt werden soll
      * @return int die neue SpielId
      */
     function setSpielStatusId($spielStatusId, $spielId) {
@@ -93,8 +93,8 @@ class SpielDatenbankSchnittstelle {
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
      * Arrays ein eindimensionales Array zur?ck, in dem die Zeilen/Datens?tze 
      * aus dem zweidimensionalen Array hintereiandergeh?ngt wurden.
-     * @parm $input_array ein 2D Array, mit Daten gefÃ¼llt
-     * @return array() ein zusammengefÃ¼gtes 1D-Array
+     * @parm $input_array ein 2D Array, mit Daten gefüllt
+     * @return array() ein zusammengefügtes 1D-Array
      */
     function array_2d_to_1d($input_array) {
         $output_array = array();

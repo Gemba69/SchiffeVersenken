@@ -49,8 +49,8 @@ class SpielStatusDatenbankSchnittstelle {
      * Die Funktion array_2d_to_1d gibt bei mitgabe eines zweidimensionalen
      * Arrays ein eindimensionales Array zur?ck, in dem die Zeilen/Datens?tze 
      * aus dem zweidimensionalen Array hintereiandergeh?ngt wurden.
-     * @parm $input_array ein 2D Array, mit Daten gefÃ¼llt
-     * @return array() ein zusammengefÃ¼gtes 1D-Array
+     * @parm $input_array ein 2D Array, mit Daten gefüllt
+     * @return array() ein zusammengefügtes 1D-Array
      */
     function array_2d_to_1d($input_array) {
         $output_array = array();
