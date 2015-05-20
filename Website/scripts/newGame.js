@@ -13,7 +13,6 @@ function checkEnemy(){
 
 function checkGame(){
 	var val = getRadioVal(document.getElementById("table"), "Spiel");
-	alert(val);
 	
 	if (val!=null) {
 		document.getElementById("StartGame").disabled=false;
