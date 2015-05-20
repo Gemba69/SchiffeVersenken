@@ -5,7 +5,6 @@
  * Datenbank her mit der man den Farbcode oder die FarbcodeId aus der Tabelle
  * Farbcode auslesen kann.
  */
-
 class FarbcodeDatenbankSchnittstelle {
 
     //Variablen f?r die Datenbankverbindung
@@ -20,6 +19,8 @@ class FarbcodeDatenbankSchnittstelle {
     /*
      * Die Funktion ladeSpielFarbcode gibt bei Mitgabe der FarbcodeID den Namen
      * und den Hex-Farbcode zur?ck.
+     * @parm $farbcodeId Die Id des Farbcodenamens, der geladen werden soll.
+     * @return array() Ein Array mit dem Namen des Farbcodes und dem Farbcode selber.
      */
     function ladeSpielFarbcode($farbcodeId) {
         $farbcode = array();
@@ -33,6 +34,8 @@ class FarbcodeDatenbankSchnittstelle {
     /*
      * Die Funktion ladeFarbcodeId gibt bei Mitgabe des Namen die zugeh?rige 
      * FarbcodeID zur?ck.
+     * @parm $name der Name einer Farbe
+     * @return int die Id einer Farbe
      */
     function ladeFarbcodeId($name) {
         $farbcodeId = array();
@@ -47,6 +50,8 @@ class FarbcodeDatenbankSchnittstelle {
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
      * Arrays ein eindimensionales Array zur?ck, in dem die Zeilen/Datens?tze 
      * aus dem zweidimensionalen Array hintereiandergeh?ngt wurden.
+     * @parm $input_array ein 2D Array, mit Daten gefüllt
+     * @return array() ein zusammengefügtes 1D-Array
      */
     function array_2d_to_1d($input_array) {
         $output_array = array();
@@ -57,6 +62,7 @@ class FarbcodeDatenbankSchnittstelle {
         }
         return $output_array;
     }
+
 }
 
 ?>

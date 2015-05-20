@@ -23,6 +23,7 @@ class SpielDatenbankSchnittstelle {
     /*
      * Die Funktion ladeSpiele gibt alle SpielIDs in einem Array zur?ck, 
      * die zu den beiden SpilerIds passen, die dem Konstruktor ?bergeben wurden.
+     * @return array() Ein Array mit allen Spielen der beiden Spieler
      */
     function ladeSpiele() {
         $spieleIds = array();
@@ -37,6 +38,8 @@ class SpielDatenbankSchnittstelle {
     /*
      * Die Funktion getSpielStatusId gibt bei Mitgabe der SpielID die StatusID 
      * des Spiels zur?ck.
+     * @parm $spielId Die Spielid für die der Status bestimmt werden soll
+     * @return int der Status der Spielid
      */
     function getSpielStatusId($spielId) {
         $spielStatusId = array();
@@ -52,6 +55,9 @@ class SpielDatenbankSchnittstelle {
      * SpielStatusID die SpielStatusID dem Spiel zu. 
      * Dadurch wird der alte SpielStatus ?berschrieben. 
      * Au?erdem gibt die Funktion die ge?nderte SpielStatusId zur?ck.
+     * @parm $spielStatusId Die StatusId, die für das bestimmte Spiel gesetzt werden soll.
+     * @parm $spielId das Spiel, dem der SpielStatus hinzugefügt werden soll
+     * @return int die neue SpielId
      */
     function setSpielStatusId($spielStatusId, $spielId) {
         $stmt = $this->pdo->prepare("UPDATE Spiel SET StatusID = :spielStatusId WHERE ID = :id");
@@ -65,6 +71,7 @@ class SpielDatenbankSchnittstelle {
      * Die Funktion neuesSpiel legt ein neues Spiel mit den beiden im 
      * Konstruktor mitgegebenen SpielerIds an 
      * und gibt die SpielID des neuen Spiels zur?ck.
+     * @return int die Id des neuen Spiels
      */
     function neuesSpiel() {
         include 'SpielStatusDatenbankSchnittstelle.php';
@@ -86,6 +93,8 @@ class SpielDatenbankSchnittstelle {
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
      * Arrays ein eindimensionales Array zur?ck, in dem die Zeilen/Datens?tze 
      * aus dem zweidimensionalen Array hintereiandergeh?ngt wurden.
+     * @parm $input_array ein 2D Array, mit Daten gefüllt
+     * @return array() ein zusammengefügtes 1D-Array
      */
     function array_2d_to_1d($input_array) {
         $output_array = array();

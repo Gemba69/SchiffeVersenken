@@ -8,7 +8,6 @@ require_once('SpielzugtypDatenbankSchnittstelle.php');
  * Spielz?e in der Datenbank speichern kann und das geladene Spielbrett in 
  * Arrays zu verf?gung stellt.
  */
-
 class SpielzugDatenbankSchnittstelle {
 
     private $spielbrett0 = array();
@@ -41,6 +40,7 @@ class SpielzugDatenbankSchnittstelle {
 
     /*
      * Die Funktion getSpielbrett0 gibt das erste Spielbrett zur?ck. 
+     * @return array() das 0. Spielbrett
      */
     public function getSpielbrett0() {
         return $this->spielbrett0;
@@ -48,6 +48,7 @@ class SpielzugDatenbankSchnittstelle {
 
     /*
      * Die Funktion getSpielbrett1 gibt das zweite Spielbrett zur?ck. 
+     * @return array() das 1. Spielbrett
      */
     public function getSpielbrett1() {
         return $this->spielbrett1;
@@ -163,6 +164,7 @@ class SpielzugDatenbankSchnittstelle {
      * Die Funktion versenktueberpr ?berpr?ft, ob irgendein Schiff auf einem 
      * bestimmten Spielfeld versenkt ist und ?ndert die Felder eines 
      * versenkten Schiffes auf VERSENKT.
+     * @parm $spielbrettnr die Spielbrettnummer für die Versenktueberpruefung
      */
     function versenktueberpr($spielbrettnr) {
         for ($i = 0; $i < $this->feldhoehe; $i++) {
@@ -188,6 +190,9 @@ class SpielzugDatenbankSchnittstelle {
      * Die Funktion setzeVersenkt setzt setzt ein feld x/y und alle anderen des 
      * Schiffes auf einem bestimmten Spielbrett auf VERSENKT.
      * (Versekt ein Schiff)
+     * @parm $spielbrettnr die Spielbrttnummer 
+     * @parm $x die Start x koordinate
+     * @parm $y die Start y koordinate
      */
     public function setzeVersenkt($spielbrettnr, $x, $y) {
         $this->versenke($spielbrettnr, $x, $y);
@@ -202,6 +207,9 @@ class SpielzugDatenbankSchnittstelle {
      * Die Funktion versenke setzt setzt ein feld x/y auf einem bestimmten 
      * Spielbrett auf VERSENKT.
      * (Versekt ein Feld des Schiffes)
+     * @parm $spielbrettnr die Spielbrttnummer 
+     * @parm $x die Start x koordinate
+     * @parm $y die Start y koordinate
      */
     public function versenke($spielbrettnr, $x, $y) {
         if ($spielbrettnr == 0) {
@@ -225,6 +233,9 @@ class SpielzugDatenbankSchnittstelle {
      * Die Funktion versenke setzt setzt ein feld x/y auf einem bestimmten 
      * Spielbrett auf VERSENKT.
      * (Versekt ein Feld des Schiffes)
+     * @parm $spielbrettnr die Spielbrttnummer 
+     * @parm $i die Start x koordinate
+     * @parm $j die Start y koordinate
      */
     public function versenkt($spielbrettnr, $i, $j) {
         if($spielbrettnr==0){
@@ -278,6 +289,10 @@ class SpielzugDatenbankSchnittstelle {
     /*
      * Die Funktion findeAdjazenteSchiffe gibt alle adjazenten Felder, 
      * die auch Schiffe sind in einem Array zur?ck.
+     * @parm $spielbrettnr die Spielbrttnummer 
+     * @parm $x die Start x koordinate
+     * @parm $y die Start y koordinate
+     * @return array() Das array mit allen adjazenzen 
      */
     public function findeAdjazenteSchiffe($spielbrettnr, $x, $y) {
         $adjazenzen = array();
@@ -334,6 +349,10 @@ class SpielzugDatenbankSchnittstelle {
     /*
      * Die Funktion findeAdjazenteTreffer gibt alle adjazenten Felder, 
      * die auch Treffer sind in einem Array zur?ck.
+     * @parm $spielbrettnr die Spielbrttnummer 
+     * @parm $x die Start x koordinate
+     * @parm $y die Start y koordinate
+     * @return array() Das array mit allen adjazenzen 
      */
     public function findeAdjazenteTreffer($spielbrettnr, $x, $y) {
         $adjazenzen = array();
@@ -390,6 +409,10 @@ class SpielzugDatenbankSchnittstelle {
     /*
      * Die Funktion speicherSpielzugInDb speichert den ?bergebenen 
      * Spielzug in der Datenbank
+     * @parm $spielbrettnr die Spielbrttnummer 
+     * @parm $x die x koordinate
+     * @parm $y die y koordinate
+     * @parm $spielzugTyp der Spielzugtyp, der ausgeführt werden soll
      */
     public function speicherSpielzugInDb($spielbrett, $x, $y, $spielzugTyp) {
         if ($spielbrett > -1 && $spielbrett < 2) {
@@ -427,6 +450,8 @@ class SpielzugDatenbankSchnittstelle {
      * Die Funktion array_2d_to_1d gibt bei Mitgabe eines zweidimensionalen
      * Arrays ein eindimensionales Array zur?ck, in dem die Zeilen/Datens?tze 
      * aus dem zweidimensionalen Array hintereiandergeh?ngt wurden.
+     * @parm $input_array ein 2D Array, mit Daten gefüllt
+     * @return array() ein zusammengefügtes 1D-Array
      */
     function array_2d_to_1d($input_array) {
         $output_array = array();

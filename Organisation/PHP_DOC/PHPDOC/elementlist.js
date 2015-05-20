@@ -1,0 +1,3 @@
+
+var ApiGen = ApiGen || {};
+ApiGen.elements = [["f","__autoload()"],["f","advancePhase()"],["c","AI"],["f","aiPlays()"],["f","ausgabe()"],["f","createBoard()"],["f","destroySession()"],["f","drawShips()"],["c","FarbcodeDatenbankSchnittstelle"],["c","GameField"],["c","GameHelperFunctions"],["f","getDrawnShipsCode()"],["f","processCellClicked()"],["f","processPhase1CellClick()"],["f","processPhase2CellClick()"],["f","resetSession()"],["f","resumeSession()"],["c","SpielDatenbankSchnittstelle"],["c","SpielStatusDatenbankSchnittstelle"],["c","SpielzugDatenbankSchnittstelle"],["c","SpielzugtypDatenbankSchnittstelle"]];

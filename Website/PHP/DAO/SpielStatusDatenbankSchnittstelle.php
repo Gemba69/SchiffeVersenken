@@ -4,7 +4,6 @@
  * Die Klasse SpielStatusDatenbankSchnittstelle stellt eine Verbindung zur 
  * Datenbank her und regelt den Zugriff auf die Tabelle SpielStatus.
  */
-
 class SpielStatusDatenbankSchnittstelle {
 
     //Variablen f?r die Datenbankverbindung
@@ -19,6 +18,8 @@ class SpielStatusDatenbankSchnittstelle {
     /*
      * Die Funktion ladeSpielStatus gibt bei Mitgabe einer SpielStatusID 
      * den zugeh?rigen Status_Typ und die zugeh?rige Beschreibung zur?ck.
+     * @parm $spielStatusId Die Spielstausid, zu der der Statustyp und die Beschreibung geladen werden soll
+     * @return array() Das Array mit dem Spielstatusinformationen
      */
     function ladeSpielStatus($spielStatusId) {
         $spielStatus = array();
@@ -32,6 +33,8 @@ class SpielStatusDatenbankSchnittstelle {
     /*
      * Die Funktion ladeSpielStatusId gibt bei Mitgabe des Status_Typs 
      * die SpielStatusId zur?ck.
+     * @parm $status_Typ
+     * @return int Die Id von dem status_Typ
      */
     function ladeSpielStatusId($status_Typ) {
         $spielStatus = array();
@@ -46,8 +49,9 @@ class SpielStatusDatenbankSchnittstelle {
      * Die Funktion array_2d_to_1d gibt bei mitgabe eines zweidimensionalen
      * Arrays ein eindimensionales Array zur?ck, in dem die Zeilen/Datens?tze 
      * aus dem zweidimensionalen Array hintereiandergeh?ngt wurden.
+     * @parm $input_array ein 2D Array, mit Daten gefüllt
+     * @return array() ein zusammengefügtes 1D-Array
      */
-
     function array_2d_to_1d($input_array) {
         $output_array = array();
 
