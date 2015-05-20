@@ -1,12 +1,13 @@
 ﻿<?php
 	if ($_SERVER['REQUEST_METHOD'] === "POST") {		
-
+	//initialisierung wichtiger Parameter zur Eingabeüberprüfung
 		$regExBenutzername = '/^[A-Za-z0-9]{1,32}$/';	
 		$regExEmail = '/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/';	
 		$emptyBoolean = false;
 		$regExFehlerBoolean = false;
 		$pwAbgleichFehler = false;
-	
+	// Überprufüng ob Felder noch keine Input haben. Wenn ein/mehrere/alle Felder nicht gefüllt sind werden Parameter auf True gesetzt
+	// um eine falsche/leer Eingabe abzufangen
 		if(empty($_POST['benutzername']) || empty($_POST['email']) || empty($_POST['passwort']) || empty($_POST['passwortBestaetigen'])) {
 			echo 'Es müssen alle Felder ausgefüllt werden!</br>';
 			$emptyBoolean = true;
@@ -24,7 +25,8 @@
 				$pwAbgleichFehler = true;
 			}
 		}
-	
+	//Erst wenn alle Bedingungen erfüllt sind, wird eine Verbindung zur Datenbank hergesetllt
+	//Es folgen Prüfungen bei den Eingaben, um doppelte Nutzernamen und Multiaccounting zu verhindern
 		if(!$emptyBoolean && !$regExFehlerBoolean && !$pwAbgleichFehler) {
 					
 			include "Verbindung.php";
@@ -60,7 +62,7 @@
 				$Benutzername = $_POST['benutzername'];
 				$Email = $_POST['email'];
 				$Passwort = $pwHash;
-		
+		//bei erfolgreichem Ablauf folgt die Weiterleitung zum Login
 				if ($stmt2->execute()){
 					echo '<p> Erfolgreich registriert! <p>';
 					header("Location: Registrierung_successfully.php");
