@@ -213,19 +213,19 @@
 		}
 			
 		private static function shipAlignmentIsValid($gameField) {
-			for ($i = 1; $i < 9; $i++) {
-				for ($j = 1; $j < 9; $j++) {
-					if ($gameField[$i][$j] == SHIP_ID) { 				
-						if ($gameField[$i + 1][$j + 1] == SHIP_ID || 
-							$gameField[$i - 1][$j + 1] == SHIP_ID ||
-							$gameField[$i + 1][$j - 1] == SHIP_ID ||
-							$gameField[$i - 1][$j - 1] == SHIP_ID) {
-							return false;
-						}
-					}
-				}
-			} //TODO: dynamisch
-			return true;
+		 for ($i = 0; $i < (sizeof($gameField)); $i++) {
+            for ($j = 0; $j < (max(array_map('count', $gameField))); $j++) {
+                if ($gameField[$i][$j] == "SCHIFF") {
+                    if ((isset($gameField[$i + 1][$j + 1]) && $gameField[$i + 1][$j + 1] == "SCHIFF") ||
+                            (isset($gameField[$i - 1][$j + 1]) && $gameField[$i - 1][$j + 1] == "SCHIFF") ||
+                            (isset($gameField[$i + 1][$j - 1]) && $gameField[$i + 1][$j - 1] == "SCHIFF") ||
+                            (isset($gameField[$i - 1][$j - 1]) && $gameField[$i - 1][$j - 1] == "SCHIFF")) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
 		}
 		
 		private static function checkShipLength($i, $j, &$gameField) {
