@@ -83,7 +83,7 @@
 					$dao->speicherSpielzugInDb(1, $i, $j, "SETZEN");
 			}
 		}	
-		$gameDao = new SpielDatenbankSchnittstelle(1, AI_ID); //TODO: spielerid auslesen
+		$gameDao = new SpielDatenbankSchnittstelle($_SESSION['BenutzerID'], AI_ID);
 		$gameDao->setSpielStatusId(2, $_SESSION['Spiel']);
 		echo json_encode(GameHelperFunctions::utf8ize($postData));
 	}
@@ -131,11 +131,11 @@
 
 		if ($result == HIT_ID) {
 			$postData['instructions'] = $instructions.'<ul><li class="fadeinanim">Treffer! Noch einmal!</li></ul>';
-			$ship = HIT_ID; //TODO: Farbe irgendwoher beziehen.
+			$ship = HIT_ID; 
 		} else if ($result == MISS_ID) {
 			$postData['instructions'] = $instructions.'<ul><li class="fadeinanim">Daneben. Der Gegner ist an der Reihe.</li></ul>';
 			$_SESSION['turn'] = ENEMY_ID_PREFIX;
-			$ship = MISS_ID; //TODO: Farbe irgendwoher beziehen.
+			$ship = MISS_ID;
 			$aiTurn = true;
 		} else if ($result == DESTROYED_ID) {
 			$postData['instructions'] = $instructions.'<ul><li class="fadeinanim">Versenkt! Und weiter geht\'s!</li></ul>';
