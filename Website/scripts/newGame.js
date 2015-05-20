@@ -13,6 +13,7 @@ function checkEnemy(){
 
 function checkGame(){
 	var val = getRadioVal(document.getElementById("table"), "Spiel");
+	alert(val);
 	
 	if (val!=null) {
 		document.getElementById("StartGame").disabled=false;
@@ -22,7 +23,8 @@ function checkGame(){
 function getRadioVal(form, name) {
     var val;
     // get list of radio buttons with specified name
-    var radios = form.elements[name];
+    //var radios = form.elements[name];
+    var radios = document.getElementsByName(name);
     
     // loop through list of radio buttons
     for (var i=0, len=radios.length; i<len; i++) {
